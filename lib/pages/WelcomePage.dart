@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 
 import '../Components/HeaderApp.dart';
+import 'Curved_navigation_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -64,7 +65,8 @@ class WelcomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const ListDuAn()),
+                                    builder: (context) =>
+                                        const Curved_navigation_page()),
                               )
                             },
                             child: Row(
