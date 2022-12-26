@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smart_bee/Components/CoCauToChuc.dart';
+import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
 import 'package:smart_bee/Components/ListDuAn_CardList.dart';
 import 'package:smart_bee/Components/ListDuAn_Overview.dart';
+import 'package:smart_bee/Components/NhomMuc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ListDuAn extends StatefulWidget {
@@ -17,6 +20,9 @@ class _ListDuAnState extends State<ListDuAn> {
   List<Widget> _pages = [
     ListDuAnCardList(),
     ListDuAnOverview(),
+    NhomMuc(),
+    CoCauToChuc(),
+    HeSoPhuCapChucVu()
   ];
 
   _onchanged(int index) {
