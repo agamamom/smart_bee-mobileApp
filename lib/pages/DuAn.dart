@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_bee/Components/DuAnDangThucHien.dart';
+import 'package:smart_bee/Components/DuAn_CongViec.dart';
+import 'package:smart_bee/Components/DuAn_DangThucHien.dart';
+import 'package:smart_bee/Components/DuAn_TaiChinh.dart';
+import 'package:smart_bee/Components/DuAn_TienDo.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DuAn extends StatefulWidget {
@@ -13,7 +16,14 @@ class _DuAnState extends State<DuAn> {
   int _currentPage = 0;
   PageController _controller = PageController();
 
-  List<Widget> _pages = [DuAnDangThucHien()];
+  List<Widget> _pages = [
+    const DuAnDangThucHien(),
+    DuAn_TaiChinh(),
+    DuAn_CongViec(),
+    DuAn_TienDo(
+      color: Color.fromARGB(31, 161, 51, 51),
+    )
+  ];
 
   _onchanged(int index) {
     setState(() {
@@ -94,20 +104,18 @@ class _DuAnState extends State<DuAn> {
                                                   99, 99, 100, 1)));
                                 })),
                           ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Positioned(
-                            left: 60,
-                            top: 50,
-                            child: Text(
-                              "Dự án",
-                              style: TextStyle(
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color.fromRGBO(99, 99, 100, 1)),
-                            ),
-                          ),
+
+                          // Positioned(
+                          //   left: 140,
+                          //   top: 50,
+                          //   child: Text(
+                          //     "Dự án",
+                          //     style: TextStyle(
+                          //         fontSize: 28.0,
+                          //         fontWeight: FontWeight.w700,
+                          //         color: Color.fromRGBO(99, 99, 100, 1)),
+                          //   ),
+                          // ),
                           Container(
                             child: PageView.builder(
                               scrollDirection: Axis.horizontal,
@@ -118,7 +126,7 @@ class _DuAnState extends State<DuAn> {
                                 return _pages[index];
                               },
                             ),
-                            margin: EdgeInsets.only(top: 120),
+                            margin: EdgeInsets.only(top: 70),
                           )
                         ],
                       ),
