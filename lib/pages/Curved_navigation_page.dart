@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
+import 'package:smart_bee/pages/TaiChinh.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -68,6 +69,9 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
         break;
       case 1:
         widget = const DuAn();
+        break;
+      case 2:
+        widget = const TaiChinh();
         break;
       default:
         widget = const ListDuAn();

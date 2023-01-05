@@ -21,7 +21,7 @@ class _DuAnState extends State<DuAn> {
     DuAn_TaiChinh(),
     DuAn_CongViec(),
     DuAn_TienDo(
-      color: Color.fromARGB(31, 161, 51, 51),
+      color: Color.fromRGBO(0, 219, 153, 1),
     )
   ];
 
