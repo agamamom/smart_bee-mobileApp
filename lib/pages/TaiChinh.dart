@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:smart_bee/Components/ChiChuyenKhoan.dart';
+import 'package:smart_bee/Components/ChiTienMat.dart';
 import 'package:smart_bee/Components/CoCauToChuc.dart';
+import 'package:smart_bee/Components/GhiSo.dart';
 import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
 import 'package:smart_bee/Components/NhomMuc.dart';
+import 'package:smart_bee/Components/ThuChuyenKhoan.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -154,7 +158,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ForgotPassword()))
+                                              ThuChuyenKhoan()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -221,7 +225,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ForgotPassword()))
+                                              ChiTienMat()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -288,7 +292,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ForgotPassword()))
+                                              ChiChuyenKhoan()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -361,7 +365,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ForgotPassword()))
+                                              GhiSo()))
                                 },
                                 child: Container(
                                   width: 163,

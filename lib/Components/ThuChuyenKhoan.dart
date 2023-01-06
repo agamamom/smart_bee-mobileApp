@@ -19,6 +19,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_bee/Components/FilePicker.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -30,11 +31,141 @@ class ThuChuyenKhoan extends StatefulWidget {
 }
 
 class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
   String dropdownValue = list.first;
   String _fileText = "";
+  String? _fileName;
+  String? _saveAsFileName;
+  List<PlatformFile>? _paths;
+  String? _directoryPath;
+  String? _extension;
+  bool _isLoading = false;
+  bool _userAborted = false;
+  bool _multiPick = false;
+  FileType _pickingType = FileType.any;
+  TextEditingController _controller = TextEditingController();
   @override
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() => _extension = _controller.text);
+  }
+
+  void _pickFiles() async {
+    _resetState();
+    try {
+      _directoryPath = null;
+      _paths = (await FilePicker.platform.pickFiles(
+        type: _pickingType,
+        allowMultiple: _multiPick,
+        onFileLoading: (FilePickerStatus status) => print(status),
+        allowedExtensions: (_extension?.isNotEmpty ?? false)
+            ? _extension?.replaceAll(' ', '').split(',')
+            : null,
+      ))
+          ?.files;
+    } on PlatformException catch (e) {
+      _logException('Unsupported operation' + e.toString());
+    } catch (e) {
+      _logException(e.toString());
+    }
+    if (!mounted) return;
+    setState(() {
+      _isLoading = false;
+      _fileName =
+          _paths != null ? _paths!.map((e) => e.name).toString() : '...';
+      _userAborted = _paths == null;
+    });
+  }
+
+  void _clearCachedFiles() async {
+    _resetState();
+    try {
+      bool? result = await FilePicker.platform.clearTemporaryFiles();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: result! ? Colors.green : Colors.red,
+          content: Text((result
+              ? 'Temporary files removed with success.'
+              : 'Failed to clean temporary files')),
+        ),
+      );
+    } on PlatformException catch (e) {
+      _logException('Unsupported operation' + e.toString());
+    } catch (e) {
+      _logException(e.toString());
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  void _selectFolder() async {
+    _resetState();
+    try {
+      String? path = await FilePicker.platform.getDirectoryPath();
+      setState(() {
+        _directoryPath = path;
+        _userAborted = path == null;
+      });
+    } on PlatformException catch (e) {
+      _logException('Unsupported operation' + e.toString());
+    } catch (e) {
+      _logException(e.toString());
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _saveFile() async {
+    _resetState();
+    try {
+      String? fileName = await FilePicker.platform.saveFile(
+        allowedExtensions: (_extension?.isNotEmpty ?? false)
+            ? _extension?.replaceAll(' ', '').split(',')
+            : null,
+        type: _pickingType,
+      );
+      setState(() {
+        _saveAsFileName = fileName;
+        _userAborted = fileName == null;
+      });
+    } on PlatformException catch (e) {
+      _logException('Unsupported operation' + e.toString());
+    } catch (e) {
+      _logException(e.toString());
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  void _logException(String message) {
+    print(message);
+    _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
+    _scaffoldMessengerKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  void _resetState() {
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _isLoading = true;
+      _directoryPath = null;
+      _fileName = null;
+      _paths = null;
+      _saveAsFileName = null;
+      _userAborted = false;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Stack(
         children: [
           Container(
@@ -136,6 +267,9 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                       vertical: 14.74, horizontal: 24.34),
                                   border: OutlineInputBorder(),
                                   hintText: 'Số:',
+                                  hintStyle: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromRGBO(179, 179, 179, 1),
@@ -693,12 +827,158 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                               ),
                             ),
                             Container(
-                              height: 55,
-                              child: ElevatedButton(
-                                onPressed: _pickMultipleFiles,
-                                child: Text("Pick Multiple Files"),
-                              ),
-                            ),
+                                child: Column(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: ElevatedButton.icon(
+                                    onPressed: () => _pickFiles(),
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Color.fromRGBO(120, 116, 134, 1),
+                                    ),
+                                    label: Text(
+                                      _multiPick ? 'Thêm files' : 'Thêm file',
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(120, 116, 134, 1)),
+                                    ),
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll(
+                                          Color.fromRGBO(254, 251, 251, 1)),
+                                    ),
+                                  ),
+                                ),
+
+                                // Builder(builder: (BuildContext context) =>_isLoading ?  ),
+                                Container(
+                                  child: Builder(
+                                    builder: (BuildContext context) =>
+                                        _isLoading
+                                            ? Container(
+                                                child:
+                                                    const CircularProgressIndicator(),
+                                              )
+                                            : _userAborted
+                                                ? Container(
+                                                    child: const Text(
+                                                      'User has aborted the dialog',
+                                                    ),
+                                                  )
+                                                : _directoryPath != null
+                                                    ? ListTile(
+                                                        title: const Text(
+                                                            'Directory path'),
+                                                        subtitle: Text(
+                                                            _directoryPath!),
+                                                      )
+                                                    : _paths != null
+                                                        ? Container(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.20,
+                                                            child: Scrollbar(
+                                                                child: ListView
+                                                                    .separated(
+                                                              itemCount: _paths !=
+                                                                          null &&
+                                                                      _paths!
+                                                                          .isNotEmpty
+                                                                  ? _paths!
+                                                                      .length
+                                                                  : 1,
+                                                              itemBuilder:
+                                                                  (BuildContext
+                                                                          context,
+                                                                      int index) {
+                                                                final bool
+                                                                    isMultiPath =
+                                                                    _paths !=
+                                                                            null &&
+                                                                        _paths!
+                                                                            .isNotEmpty;
+                                                                final String name = 'File $index: ' +
+                                                                    (isMultiPath
+                                                                        ? _paths!.map((e) => e.name).toList()[
+                                                                            index]
+                                                                        : _fileName ??
+                                                                            '...');
+                                                                final path = kIsWeb
+                                                                    ? null
+                                                                    : _paths!
+                                                                        .map((e) => e
+                                                                            .path)
+                                                                        .toList()[
+                                                                            index]
+                                                                        .toString();
+
+                                                                return ListTile(
+                                                                  title: Text(
+                                                                    name,
+                                                                  ),
+                                                                  subtitle: Text(
+                                                                      path ??
+                                                                          ''),
+                                                                );
+                                                              },
+                                                              separatorBuilder:
+                                                                  (BuildContext
+                                                                              context,
+                                                                          int index) =>
+                                                                      const Divider(),
+                                                            )),
+                                                          )
+                                                        : _saveAsFileName !=
+                                                                null
+                                                            ? ListTile(
+                                                                title: const Text(
+                                                                    'Save file'),
+                                                                subtitle: Text(
+                                                                    _saveAsFileName!),
+                                                              )
+                                                            : const SizedBox(),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Column(children: [
+                                    SizedBox(
+                                      height: 47,
+                                      width: 175,
+                                      child: ElevatedButton(
+                                        onPressed: () => _saveFile(),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStatePropertyAll(
+                                                  Color.fromRGBO(
+                                                      89, 132, 62, 1)),
+                                        ),
+                                        child: const Text('Save',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextButton(
+                                      onPressed: () => _clearCachedFiles(),
+                                      child: const Text(
+                                        'Cancel',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                              ],
+                            )),
                           ],
                         ),
                       )
@@ -711,19 +991,5 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
         ],
       ),
     );
-  }
-
-  void _pickMultipleFiles() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: true);
-
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      setState(() {
-        _fileText = files.toString();
-      });
-    } else {
-      // User canceled the picker
-    }
   }
 }

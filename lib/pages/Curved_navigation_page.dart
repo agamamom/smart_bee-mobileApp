@@ -41,10 +41,12 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: Container(
-        child: getSelectedWidget(index: index),
-      )),
+      body: SafeArea(
+        child: Container(
+            child: Container(
+          child: getSelectedWidget(index: index),
+        )),
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         height: 60.0,
         items: items,
