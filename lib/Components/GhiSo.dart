@@ -1,6 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:quickalert/quickalert.dart';
+
+import '../pages/TaiChinh.dart';
 
 class GhiSo extends StatefulWidget {
   const GhiSo({super.key});
@@ -10,18 +13,29 @@ class GhiSo extends StatefulWidget {
 }
 
 class _GhiSoState extends State<GhiSo> {
-  //  String _value1;
-  // String _value2;
   String _fileText = "";
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;
   String? selectedValue2;
-  // void initState() {
-  //   super.initState();
-  //   _value1 = items[0];
-  //   _value2 = items[2];
-  // }
+
+  void _returnTaiChinhPage() {
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: 'Bạn có chắc sẽ thoát',
+      confirmBtnText: 'Có',
+      cancelBtnText: 'Không',
+      confirmBtnColor: Colors.green,
+      onConfirmBtnTap: () => {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => TaiChinh()))
+      },
+      onCancelBtnTap: () =>
+          {Navigator.of(context, rootNavigator: true).pop(false)},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -775,22 +789,94 @@ class _GhiSoState extends State<GhiSo> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Container(
-                        width: double.infinity,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
                                   "TỔNG CỘNG:",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14),
                                 ),
-                              )
-                            ]),
-                      )
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  height: 31,
+                                  width: 135,
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.all(4),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color:
+                                                Color.fromARGB(130, 79, 82, 78),
+                                            width: 1),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color:
+                                                Color.fromARGB(130, 79, 82, 78),
+                                            width: 1),
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color:
+                                                Color.fromARGB(130, 79, 82, 78),
+                                            width: 1),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      filled: true,
+                                      fillColor:
+                                          Color.fromARGB(255, 255, 255, 255),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional.center,
+                        child: Column(children: [
+                          SizedBox(
+                            height: 47,
+                            width: 175,
+                            child: ElevatedButton(
+                              onPressed: () => ({}),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    Color.fromRGBO(89, 132, 62, 1)),
+                              ),
+                              child: const Text('Save',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.w700)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextButton(
+                            onPressed: () => _returnTaiChinhPage(),
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ]),
+                      ),
                     ],
                   ),
                 )
