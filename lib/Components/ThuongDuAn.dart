@@ -6,14 +6,14 @@ import '../pages/TaiChinh.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
 
-class SoQuy extends StatefulWidget {
-  const SoQuy({super.key});
+class ThuongDuAn extends StatefulWidget {
+  const ThuongDuAn({super.key});
 
   @override
-  State<SoQuy> createState() => _SoQuyState();
+  State<ThuongDuAn> createState() => _SoQuyState();
 }
 
-class _SoQuyState extends State<SoQuy> {
+class _SoQuyState extends State<ThuongDuAn> {
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;
@@ -78,6 +78,10 @@ class _SoQuyState extends State<SoQuy> {
                 margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Image.asset(
+                      'assets/images/bee-icon.png',
+                      fit: BoxFit.contain,
+                    ),
                     SizedBox(
                       width: 15.0,
                     ),
@@ -96,20 +100,10 @@ class _SoQuyState extends State<SoQuy> {
                   SizedBox(
                     height: 14.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Welcome, hienltt',
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: Color.fromRGBO(99, 99, 100, 1)),
-                      ),
-                      Image.asset(
-                        'assets/images/bee-icon.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ],
+                  Text(
+                    'Welcome, hienltt',
+                    style: TextStyle(
+                        fontSize: 15.0, color: Color.fromRGBO(99, 99, 100, 1)),
                   ),
                   SizedBox(
                     height: 20,
@@ -122,10 +116,69 @@ class _SoQuyState extends State<SoQuy> {
                         color: Colors.white),
                     child: Column(
                       children: [
+                        Container(
+                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4.0)),
+                              child: Container(
+                                width: 38,
+                                height: 38,
+                                color: Color.fromARGB(90, 120, 116, 134),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.close,
+                                      size: 18,
+                                    ),
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    onPressed: () => _returnTaiChinhPage(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         Text(
-                          "Sổ quỹ",
+                          "Thưởng dự án",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Today",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(
+                              "02/02/2022",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(
+                              "17h00",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 12,
@@ -148,7 +201,7 @@ class _SoQuyState extends State<SoQuy> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        '1111 Tiền Việt Nam',
+                                        'DA_CAT  100 triệu đồng',
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color.fromARGB(
@@ -370,7 +423,8 @@ class _SoQuyState extends State<SoQuy> {
                         Table(
                           columnWidths: {
                             0: FractionColumnWidth(.33),
-                            1: FractionColumnWidth(.33)
+                            1: FractionColumnWidth(.23),
+                            2: FractionColumnWidth(.1)
                           },
                           border: TableBorder.all(
                               color: Color.fromARGB(255, 219, 216, 216),
@@ -386,7 +440,7 @@ class _SoQuyState extends State<SoQuy> {
                                     child: Container(
                                       height: 35.0,
                                       alignment: Alignment.center,
-                                      child: Text('Ngày tháng',
+                                      child: Text('Họ và tên',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -397,7 +451,8 @@ class _SoQuyState extends State<SoQuy> {
                                   Container(
                                     height: 35.0,
                                     alignment: Alignment.center,
-                                    child: Text('Thu',
+                                    child: Text('Vai trò',
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -407,7 +462,17 @@ class _SoQuyState extends State<SoQuy> {
                                   Container(
                                     alignment: Alignment.center,
                                     height: 35.0,
-                                    child: Text('Chi',
+                                    child: Text('%',
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            color: Color.fromRGBO(
+                                                112, 112, 112, 1),
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 35.0,
+                                    child: Text('Thành tiền',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -419,7 +484,8 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('01/01/2022',
+                                child: Text('Lê Quang Phú',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -428,7 +494,7 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('10.000.000.000',
+                                child: Text('leader',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -437,7 +503,16 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('Giám đốc điều hành',
+                                child: Text('10%',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('10.000.000',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -448,7 +523,8 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: Text('Nguyễn Duy Khánh',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -457,7 +533,16 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: Text('coder',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('9%',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -500,26 +585,6 @@ class _SoQuyState extends State<SoQuy> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
-                              )
-                            ]),
-                            TableRow(children: [
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
                               ),
                               Container(
                                 height: 50.0,
@@ -541,26 +606,6 @@ class _SoQuyState extends State<SoQuy> {
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
                               ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              )
-                            ]),
-                            TableRow(children: [
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
@@ -616,9 +661,103 @@ class _SoQuyState extends State<SoQuy> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
                               )
                             ]),
                             TableRow(children: [
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              )
+                            ]),
+                            TableRow(children: [
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              )
+                            ]),
+                            TableRow(children: [
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
@@ -652,43 +791,6 @@ class _SoQuyState extends State<SoQuy> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(69, 114, 173, 1)),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
-                          child: Text(
-                            "TỐN QUỸ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(165, 213, 254, 1)),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
-                            child: Center(
-                              child: Text(
-                                "9.990.000.000",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 209, 38, 38),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
                 ]),
               )),
             )

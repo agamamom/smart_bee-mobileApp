@@ -6,6 +6,7 @@ import 'package:smart_bee/Components/GhiSo.dart';
 import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
 import 'package:smart_bee/Components/NhomMuc.dart';
 import 'package:smart_bee/Components/SoQuy.dart';
+import 'package:smart_bee/Components/ThemViec.dart';
 import 'package:smart_bee/Components/ThuChuyenKhoan.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
 import 'package:smart_bee/Components/ThuongDuAn.dart';
@@ -13,14 +14,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Components/ForgotPassword.dart';
 
-class TaiChinh extends StatefulWidget {
-  const TaiChinh({super.key});
+class CongViec extends StatefulWidget {
+  const CongViec({super.key});
 
   @override
-  State<TaiChinh> createState() => _TaiChinhState();
+  State<CongViec> createState() => _TaiChinhState();
 }
 
-class _TaiChinhState extends State<TaiChinh> {
+class _TaiChinhState extends State<CongViec> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +77,7 @@ class _TaiChinhState extends State<TaiChinh> {
                       ),
                       Center(
                         child: Text(
-                          "Tài Chính",
+                          "Công việc",
                           style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.w700,
@@ -123,11 +124,13 @@ class _TaiChinhState extends State<TaiChinh> {
                                                   BorderRadius.circular(12),
                                               color: Color.fromRGBO(
                                                   72, 181, 69, 1)),
-                                          child: Icon(
-                                            Icons.add_box_outlined,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            size: 50.0,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 18, vertical: 18),
+                                            child: Image.asset(
+                                              "assets/images/ViecGap.png",
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
                                         ),
                                         Row(
@@ -138,7 +141,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Thu TM",
+                                                "Việc gấp",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -193,9 +196,13 @@ class _TaiChinhState extends State<TaiChinh> {
                                                     BorderRadius.circular(12),
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1)),
-                                            child: Image.asset(
-                                              "assets/images/ThuCK.png",
-                                              fit: BoxFit.cover,
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8, vertical: 8),
+                                              child: Image.asset(
+                                                "assets/images/DangLam.png",
+                                                fit: BoxFit.contain,
+                                              ),
                                             )),
                                         Row(
                                           mainAxisAlignment:
@@ -205,7 +212,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Thu CK",
+                                                "Đang làm",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -260,9 +267,13 @@ class _TaiChinhState extends State<TaiChinh> {
                                                     BorderRadius.circular(12),
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1)),
-                                            child: Image.asset(
-                                              "assets/images/ChiTM.png",
-                                              fit: BoxFit.cover,
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5),
+                                              child: Image.asset(
+                                                "assets/images/ChoDuyet.png",
+                                                fit: BoxFit.cover,
+                                              ),
                                             )),
                                         Row(
                                           mainAxisAlignment:
@@ -272,7 +283,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Chi TM",
+                                                "Chờ duyệt",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -327,9 +338,13 @@ class _TaiChinhState extends State<TaiChinh> {
                                                   BorderRadius.circular(12),
                                               color: Color.fromRGBO(
                                                   72, 181, 69, 1)),
-                                          child: Image.asset(
-                                            "assets/images/ChiCK.png",
-                                            fit: BoxFit.cover,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 5),
+                                            child: Image.asset(
+                                              "assets/images/TreHan.png",
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                         Row(
@@ -340,7 +355,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Chi CK",
+                                                "Trễ hạn",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -372,7 +387,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              GhiSo()))
+                                              ThemViec()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -399,7 +414,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                                 color: Color.fromRGBO(
                                                     255, 199, 39, 1)),
                                             child: Image.asset(
-                                                "assets/images/GhiSo.png")),
+                                                "assets/images/ThemViec.png")),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -408,7 +423,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Ghi sổ",
+                                                "Thêm việc",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -463,9 +478,13 @@ class _TaiChinhState extends State<TaiChinh> {
                                                     BorderRadius.circular(12),
                                                 color: Color.fromRGBO(
                                                     255, 199, 39, 1)),
-                                            child: Image.asset(
-                                              "assets/images/ExchangeCurrency.png",
-                                              fit: BoxFit.cover,
+                                            child: Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 5),
+                                              child: Image.asset(
+                                                "assets/images/DiCongTac.png",
+                                                fit: BoxFit.cover,
+                                              ),
                                             )),
                                         Row(
                                           mainAxisAlignment:
@@ -475,7 +494,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 12),
                                               child: Text(
-                                                "Số quỹ",
+                                                "Đi công tác",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
                                                     fontWeight: FontWeight.w600,
@@ -485,7 +504,7 @@ class _TaiChinhState extends State<TaiChinh> {
                                             ),
                                             Container(
                                               margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
+                                                  horizontal: 6),
                                               child: Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(

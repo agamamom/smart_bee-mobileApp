@@ -46,10 +46,6 @@ class _DuAnState extends State<DuAn> {
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      Image.asset(
-                        'assets/images/bee-icon.png',
-                        fit: BoxFit.contain,
-                      ),
                       SizedBox(
                         width: 15.0,
                       ),
@@ -68,11 +64,20 @@ class _DuAnState extends State<DuAn> {
                     SizedBox(
                       height: 14.0,
                     ),
-                    Text(
-                      'Welcome, hienltt',
-                      style: TextStyle(
-                          fontSize: 15.0,
-                          color: Color.fromRGBO(99, 99, 100, 1)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Welcome, hienltt',
+                          style: TextStyle(
+                              fontSize: 15.0,
+                              color: Color.fromRGBO(99, 99, 100, 1)),
+                        ),
+                        Image.asset(
+                          'assets/images/bee-icon.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ],
                     ),
                     Container(
                         child: Expanded(

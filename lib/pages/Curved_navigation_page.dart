@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_bee/pages/CongViec.dart';
 import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 import 'package:smart_bee/pages/TaiChinh.dart';
@@ -76,7 +77,7 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
         widget = const TaiChinh();
         break;
       default:
-        widget = const ListDuAn();
+        widget = const CongViec();
         break;
     }
     return widget;

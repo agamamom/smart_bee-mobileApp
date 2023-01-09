@@ -181,10 +181,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                 margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    Image.asset(
-                      'assets/images/bee-icon.png',
-                      fit: BoxFit.contain,
-                    ),
                     SizedBox(
                       width: 15.0,
                     ),
@@ -203,10 +199,20 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                   SizedBox(
                     height: 14.0,
                   ),
-                  Text(
-                    'Welcome, hienltt',
-                    style: TextStyle(
-                        fontSize: 15.0, color: Color.fromRGBO(99, 99, 100, 1)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome, hienltt',
+                        style: TextStyle(
+                            fontSize: 15.0,
+                            color: Color.fromRGBO(99, 99, 100, 1)),
+                      ),
+                      Image.asset(
+                        'assets/images/bee-icon.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
