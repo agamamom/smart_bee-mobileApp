@@ -146,14 +146,13 @@ class _ThemViecState extends State<ThemViec> {
                           width: 6,
                         ),
                         Container(
-                          height: 600,
                           width: double.infinity,
 
                           child: DefaultTabController(
                             length: 2,
                             child: Column(children: [
                               Container(
-                                height: 58,
+                                height: 48,
                                 decoration: BoxDecoration(
                                     color: Color.fromRGBO(179, 179, 179, 1),
                                     borderRadius: BorderRadius.circular(10)),
@@ -174,122 +173,891 @@ class _ThemViecState extends State<ThemViec> {
                                     ]),
                               ),
                               SizedBox(
-                                height: 300,
+                                height: 700,
                                 child: TabBarView(children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    child: Container(
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                          color: Colors.orangeAccent,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        child: Container(
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2(
-                                              isExpanded: true,
-                                              hint: Row(
-                                                children: const [
-                                                  // Icon(
-                                                  //   Icons.list,
-                                                  //   size: 16,
-                                                  //   color: Colors.yellow,
-                                                  // ),
-                                                  SizedBox(
-                                                    width: 4,
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      'Select Item',
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Color.fromARGB(
-                                                            255, 255, 255, 255),
+                                    padding: EdgeInsets.symmetric(vertical: 30),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: Container(
+                                              width: 500,
+                                              height: 50,
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2(
+                                                  isExpanded: true,
+                                                  hint: Row(
+                                                    children: const [
+                                                      // Icon(
+                                                      //   Icons.list,
+                                                      //   size: 16,
+                                                      //   color: Colors.yellow,
+                                                      // ),
+                                                      SizedBox(
+                                                        width: 4,
                                                       ),
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              items: items
-                                                  .map((item) =>
-                                                      DropdownMenuItem<String>(
-                                                        value: item,
+                                                      Expanded(
                                                         child: Text(
-                                                          item,
-                                                          style:
-                                                              const TextStyle(
+                                                          'Chọn dự án',
+                                                          style: TextStyle(
                                                             fontSize: 14,
-                                                            color: Colors.white,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    71,
+                                                                    69,
+                                                                    69),
                                                           ),
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                         ),
-                                                      ))
-                                                  .toList(),
-                                              value: selectedValue,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  selectedValue =
-                                                      value as String;
-                                                });
-                                              },
-                                              // icon: const Icon(
-                                              //   Icons.arrow_forward_ios_outlined,
-                                              // ),
-                                              iconSize: 24,
-                                              iconEnabledColor: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              iconDisabledColor: Colors.grey,
-                                              buttonHeight: 31,
-                                              buttonWidth: 150,
-                                              buttonPadding:
-                                                  const EdgeInsets.only(
-                                                      left: 10, right: 10),
-                                              buttonDecoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                                border: Border.all(
-                                                  color: Color.fromRGBO(
-                                                      191, 107, 123, 1),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  items: items
+                                                      .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 14,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        71,
+                                                                        69,
+                                                                        69),
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: selectedValue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedValue =
+                                                          value as String;
+                                                    });
+                                                  },
+                                                  // icon: const Icon(
+                                                  //   Icons.arrow_forward_ios_outlined,
+                                                  // ),
+                                                  iconSize: 24,
+                                                  iconEnabledColor:
+                                                      Color.fromARGB(
+                                                          255, 71, 69, 69),
+                                                  iconDisabledColor:
+                                                      Colors.grey,
+                                                  buttonHeight: 31,
+                                                  buttonWidth: 150,
+                                                  buttonPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  buttonDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    border: Border.all(
+                                                      color: Color.fromARGB(
+                                                          114, 97, 95, 95),
+                                                    ),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  buttonElevation: 2,
+                                                  itemHeight: 40,
+                                                  itemPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  dropdownMaxHeight: 200,
+                                                  dropdownWidth: 200,
+                                                  dropdownPadding: null,
+                                                  dropdownDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  dropdownElevation: 8,
+                                                  scrollbarRadius:
+                                                      const Radius.circular(4),
+                                                  scrollbarThickness: 6,
+                                                  scrollbarAlwaysShow: true,
+                                                  offset: const Offset(0, -7),
                                                 ),
-                                                color: Color.fromRGBO(
-                                                    191, 107, 123, 1),
                                               ),
-                                              buttonElevation: 2,
-                                              itemHeight: 40,
-                                              itemPadding:
-                                                  const EdgeInsets.only(
-                                                      left: 10, right: 10),
-                                              dropdownMaxHeight: 200,
-                                              dropdownWidth: 200,
-                                              dropdownPadding: null,
-                                              dropdownDecoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(4),
-                                                color: Color.fromRGBO(
-                                                    191, 107, 123, 1),
-                                              ),
-                                              dropdownElevation: 8,
-                                              scrollbarRadius:
-                                                  const Radius.circular(4),
-                                              scrollbarThickness: 6,
-                                              scrollbarAlwaysShow: true,
-                                              offset: const Offset(0, -7),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: Container(
+                                              width: 500,
+                                              height: 50,
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2(
+                                                  isExpanded: true,
+                                                  hint: Row(
+                                                    children: const [
+                                                      // Icon(
+                                                      //   Icons.list,
+                                                      //   size: 16,
+                                                      //   color: Colors.yellow,
+                                                      // ),
+                                                      SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Bước thực hiện',
+                                                          style: TextStyle(
+                                                            fontSize: 14,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    71,
+                                                                    69,
+                                                                    69),
+                                                          ),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  items: items
+                                                      .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 14,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        71,
+                                                                        69,
+                                                                        69),
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: selectedValue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedValue =
+                                                          value as String;
+                                                    });
+                                                  },
+                                                  // icon: const Icon(
+                                                  //   Icons.arrow_forward_ios_outlined,
+                                                  // ),
+                                                  iconSize: 24,
+                                                  iconEnabledColor:
+                                                      Color.fromARGB(
+                                                          255, 71, 69, 69),
+                                                  iconDisabledColor:
+                                                      Colors.grey,
+                                                  buttonHeight: 31,
+                                                  buttonWidth: 150,
+                                                  buttonPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  buttonDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    border: Border.all(
+                                                      color: Color.fromARGB(
+                                                          114, 97, 95, 95),
+                                                    ),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  buttonElevation: 2,
+                                                  itemHeight: 40,
+                                                  itemPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  dropdownMaxHeight: 200,
+                                                  dropdownWidth: 200,
+                                                  dropdownPadding: null,
+                                                  dropdownDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  dropdownElevation: 8,
+                                                  scrollbarRadius:
+                                                      const Radius.circular(4),
+                                                  scrollbarThickness: 6,
+                                                  scrollbarAlwaysShow: true,
+                                                  offset: const Offset(0, -7),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: Container(
+                                              width: 500,
+                                              height: 50,
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2(
+                                                  isExpanded: true,
+                                                  hint: Row(
+                                                    children: const [
+                                                      // Icon(
+                                                      //   Icons.list,
+                                                      //   size: 16,
+                                                      //   color: Colors.yellow,
+                                                      // ),
+                                                      SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Nhóm việc',
+                                                          style: TextStyle(
+                                                            fontSize: 14,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    71,
+                                                                    69,
+                                                                    69),
+                                                          ),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  items: items
+                                                      .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 14,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        71,
+                                                                        69,
+                                                                        69),
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: selectedValue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedValue =
+                                                          value as String;
+                                                    });
+                                                  },
+                                                  // icon: const Icon(
+                                                  //   Icons.arrow_forward_ios_outlined,
+                                                  // ),
+                                                  iconSize: 24,
+                                                  iconEnabledColor:
+                                                      Color.fromARGB(
+                                                          255, 71, 69, 69),
+                                                  iconDisabledColor:
+                                                      Colors.grey,
+                                                  buttonHeight: 31,
+                                                  buttonWidth: 150,
+                                                  buttonPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  buttonDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    border: Border.all(
+                                                      color: Color.fromARGB(
+                                                          114, 97, 95, 95),
+                                                    ),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  buttonElevation: 2,
+                                                  itemHeight: 40,
+                                                  itemPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  dropdownMaxHeight: 200,
+                                                  dropdownWidth: 200,
+                                                  dropdownPadding: null,
+                                                  dropdownDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  dropdownElevation: 8,
+                                                  scrollbarRadius:
+                                                      const Radius.circular(4),
+                                                  scrollbarThickness: 6,
+                                                  scrollbarAlwaysShow: true,
+                                                  offset: const Offset(0, -7),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: Container(
+                                              width: 500,
+                                              height: 50,
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2(
+                                                  isExpanded: true,
+                                                  hint: Row(
+                                                    children: const [
+                                                      // Icon(
+                                                      //   Icons.list,
+                                                      //   size: 16,
+                                                      //   color: Colors.yellow,
+                                                      // ),
+                                                      SizedBox(
+                                                        width: 4,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Tên việc',
+                                                          style: TextStyle(
+                                                            fontSize: 14,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    71,
+                                                                    69,
+                                                                    69),
+                                                          ),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  items: items
+                                                      .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 14,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        71,
+                                                                        69,
+                                                                        69),
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: selectedValue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedValue =
+                                                          value as String;
+                                                    });
+                                                  },
+                                                  // icon: const Icon(
+                                                  //   Icons.arrow_forward_ios_outlined,
+                                                  // ),
+                                                  iconSize: 24,
+                                                  iconEnabledColor:
+                                                      Color.fromARGB(
+                                                          255, 71, 69, 69),
+                                                  iconDisabledColor:
+                                                      Colors.grey,
+                                                  buttonHeight: 31,
+                                                  buttonWidth: 150,
+                                                  buttonPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  buttonDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    border: Border.all(
+                                                      color: Color.fromARGB(
+                                                          114, 97, 95, 95),
+                                                    ),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  buttonElevation: 2,
+                                                  itemHeight: 40,
+                                                  itemPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  dropdownMaxHeight: 200,
+                                                  dropdownWidth: 200,
+                                                  dropdownPadding: null,
+                                                  dropdownDecoration:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    color: Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                                  ),
+                                                  dropdownElevation: 8,
+                                                  scrollbarRadius:
+                                                      const Radius.circular(4),
+                                                  scrollbarThickness: 6,
+                                                  scrollbarAlwaysShow: true,
+                                                  offset: const Offset(0, -7),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(boxShadow: [
+                                            BoxShadow(
+                                                color:
+                                                    Color.fromARGB(76, 0, 0, 0),
+                                                blurRadius: 3,
+                                                offset: Offset(0, 2))
+                                          ]),
+                                          child: TextFormField(
+                                            maxLines: 2,
+                                            decoration: InputDecoration(
+                                              isDense: true,
+                                              contentPadding:
+                                                  EdgeInsets.all(15),
+                                              hintText: 'Mô tả việc',
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        130, 79, 82, 78),
+                                                    width: 1),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        130, 79, 82, 78),
+                                                    width: 1),
+                                              ),
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        130, 79, 82, 78),
+                                                    width: 1),
+                                                borderRadius:
+                                                    BorderRadius.circular(4),
+                                              ),
+                                              filled: true,
+                                              fillColor: Color.fromARGB(
+                                                  255, 255, 255, 255),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        Container(
+                                          width: double.infinity,
+                                          child: Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "ĐVT:",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  Container(
+                                                    width: 70,
+                                                    child: TextFormField(
+                                                      decoration:
+                                                          InputDecoration(
+                                                        isDense: true,
+                                                        contentPadding:
+                                                            EdgeInsets.all(4),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                        ),
+                                                        border:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor:
+                                                            Color.fromARGB(255,
+                                                                255, 255, 255),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Số lượng:",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  Container(
+                                                    width: 70,
+                                                    child: TextFormField(
+                                                      decoration:
+                                                          InputDecoration(
+                                                        isDense: true,
+                                                        contentPadding:
+                                                            EdgeInsets.all(4),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                        ),
+                                                        border:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          130,
+                                                                          79,
+                                                                          82,
+                                                                          78),
+                                                                  width: 1),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor:
+                                                            Color.fromARGB(255,
+                                                                255, 255, 255),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Giờ công:",
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Colors.black),
+                                                    ),
+                                                    Container(
+                                                      height: 31,
+                                                      child: TextFormField(
+                                                        decoration:
+                                                            InputDecoration(
+                                                          isDense: true,
+                                                          contentPadding:
+                                                              EdgeInsets.all(4),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                          ),
+                                                          border:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  255,
+                                                                  255,
+                                                                  255),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 6,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Hạn hoàn thành:",
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black),
+                                                ),
+                                                Container(
+                                                  height: 31,
+                                                  width: 162,
+                                                  child: TextFormField(
+                                                    decoration: InputDecoration(
+                                                      isDense: true,
+                                                      contentPadding:
+                                                          EdgeInsets.all(4),
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    130,
+                                                                    79,
+                                                                    82,
+                                                                    78),
+                                                            width: 1),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    130,
+                                                                    79,
+                                                                    82,
+                                                                    78),
+                                                            width: 1),
+                                                      ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    130,
+                                                                    79,
+                                                                    82,
+                                                                    78),
+                                                            width: 1),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      filled: true,
+                                                      fillColor: Color.fromARGB(
+                                                          255, 255, 255, 255),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(vertical: 10),
                                     child: Container(
-                                      child: Text("2021"),
+                                      child: Text(
+                                        "2021",
+                                        style: TextStyle(color: Colors.black12),
+                                      ),
                                     ),
                                   )
                                 ]),
