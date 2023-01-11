@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:smart_bee/icon/curved_icon2_icons.dart';
+import 'package:smart_bee/icon/curved_icon4_icons.dart';
+import 'package:smart_bee/icon/curved_icon5_icons.dart';
+import 'package:smart_bee/icon/my_flutter_app_icons.dart';
 import 'package:smart_bee/pages/CongViec.dart';
 import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 import 'package:smart_bee/pages/TaiChinh.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Curved_navigation_page extends StatefulWidget {
   const Curved_navigation_page({super.key});
@@ -16,12 +21,12 @@ class Curved_navigation_page extends StatefulWidget {
 class _Curved_navigation_pageState extends State<Curved_navigation_page> {
   final items = const [
     Icon(
-      Icons.people,
+      MyFlutterApp.group_1000001220,
       size: 30,
       color: Colors.white,
     ),
     Icon(
-      Icons.person,
+      CurvedIcon2.wallet,
       size: 30,
       color: Colors.white,
     ),
@@ -31,9 +36,14 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
       color: Colors.white,
     ),
     Icon(
-      Icons.search_outlined,
+      CurvedIcon4.checkbox_marked_outline,
       size: 30,
       color: Colors.white,
+    ),
+    Icon(
+      CurvedIcon5.signal,
+      size: 30,
+      color: Color.fromARGB(255, 255, 255, 255),
     )
   ];
 

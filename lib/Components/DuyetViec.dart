@@ -6,25 +6,25 @@ import 'package:smart_bee/pages/Curved_navigation_page.dart';
 import '../pages/TaiChinh.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:custom_check_box/custom_check_box.dart';
 
-class SoQuy extends StatefulWidget {
-  const SoQuy({super.key});
+class DuyetViec extends StatefulWidget {
+  const DuyetViec({super.key});
 
   @override
-  State<SoQuy> createState() => _SoQuyState();
+  State<DuyetViec> createState() => _DuyetViecState();
 }
 
-class _SoQuyState extends State<SoQuy> {
+class _DuyetViecState extends State<DuyetViec> {
   final List<String> items = ['Vào', 'Ra', 'Khác'];
-  final List<String> itemsTK = ['No 1', "No 2"];
+
   String? selectedValue;
-  String? selectedValue2;
 
   void _returnTaiChinhPage() {
     QuickAlert.show(
       context: context,
       type: QuickAlertType.warning,
-      text: 'Bạn có chắc sẽ thoát',
+      text: 'Bạn có chắc sẽ không duyệt',
       confirmBtnText: 'Có',
       cancelBtnText: 'Không',
       confirmBtnColor: Colors.green,
@@ -63,6 +63,9 @@ class _SoQuyState extends State<SoQuy> {
     });
   }
 
+  bool shouldCheck = false;
+  bool shouldCheck2 = false;
+  bool shouldCheckDefault = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,10 +126,69 @@ class _SoQuyState extends State<SoQuy> {
                         color: Colors.white),
                     child: Column(
                       children: [
+                        Container(
+                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(4.0)),
+                              child: Container(
+                                width: 38,
+                                height: 38,
+                                color: Color.fromARGB(90, 120, 116, 134),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.close,
+                                      size: 18,
+                                    ),
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    onPressed: () => _returnTaiChinhPage(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         Text(
-                          "Sổ quỹ",
+                          "Duyệt việc",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Today",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(
+                              "02/02/2022",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(
+                              "17h00",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 12,
@@ -149,7 +211,7 @@ class _SoQuyState extends State<SoQuy> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        '1111 Tiền Việt Nam',
+                                        'phulq 1.111 giờ công',
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color.fromARGB(
@@ -220,157 +282,9 @@ class _SoQuyState extends State<SoQuy> {
                         SizedBox(
                           height: 10,
                         ),
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: Container(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        'Từ ngày - Đến ngày',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color:
-                                              Color.fromARGB(255, 83, 81, 81),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                items: items
-                                    .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Color.fromARGB(
-                                                  255, 83, 81, 81),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                    .toList(),
-                                value: selectedValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue = value as String;
-                                  });
-                                },
-                                // icon: const Icon(
-                                //   Icons.arrow_forward_ios_outlined,
-                                // ),
-                                iconSize: 24,
-                                iconEnabledColor:
-                                    Color.fromARGB(255, 83, 81, 81),
-                                iconDisabledColor: Colors.grey,
-                                buttonHeight: 31,
-                                buttonWidth: double.infinity,
-                                buttonPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                buttonDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(
-                                    color: Color.fromRGBO(238, 238, 238, 1),
-                                  ),
-                                  color: Color.fromRGBO(238, 238, 238, 1),
-                                ),
-                                buttonElevation: 2,
-                                itemHeight: 40,
-                                itemPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                dropdownMaxHeight: 200,
-                                dropdownWidth: 200,
-                                dropdownPadding: null,
-                                dropdownDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Color.fromRGBO(238, 238, 238, 1),
-                                ),
-                                dropdownElevation: 8,
-                                scrollbarRadius: const Radius.circular(4),
-                                scrollbarThickness: 6,
-                                scrollbarAlwaysShow: true,
-                                offset: const Offset(0, -7),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Wrap(
-                            spacing: 4.0,
-                            direction: Axis.horizontal,
-                            children: [
-                              FractionallySizedBox(
-                                widthFactor: 0.5,
-                                child: Form(
-                                  child: DateTimePicker(
-                                    type: DateTimePickerType.date,
-                                    //dateMask: 'yyyy/MM/dd',
-                                    controller: _controller3,
-                                    //initialValue: _initialValue,
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2100),
-                                    icon: Icon(Icons.event),
-
-                                    locale: Locale('en', 'US'),
-                                    onChanged: (val) =>
-                                        setState(() => _valueChanged3 = val),
-                                    validator: (val) {
-                                      setState(
-                                          () => _valueToValidate3 = val ?? '');
-                                      return null;
-                                    },
-                                    onSaved: (val) => setState(
-                                        () => _valueSaved3 = val ?? ''),
-                                  ),
-                                ),
-                              ),
-                              FractionallySizedBox(
-                                widthFactor: 0.48,
-                                child: Form(
-                                  child: DateTimePicker(
-                                    type: DateTimePickerType.date,
-                                    //dateMask: 'yyyy/MM/dd',
-                                    controller: _controller3,
-                                    //initialValue: _initialValue,
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2100),
-                                    icon: Icon(Icons.event),
-
-                                    locale: Locale('en', 'US'),
-                                    onChanged: (val) =>
-                                        setState(() => _valueChanged3 = val),
-                                    validator: (val) {
-                                      setState(
-                                          () => _valueToValidate3 = val ?? '');
-                                      return null;
-                                    },
-                                    onSaved: (val) => setState(
-                                        () => _valueSaved3 = val ?? ''),
-                                  ),
-                                ),
-                              )
-                            ]),
-                        SizedBox(
-                          height: 20,
-                        ),
                         Table(
                           columnWidths: {
-                            0: FractionColumnWidth(.33),
+                            0: FractionColumnWidth(.53),
                             1: FractionColumnWidth(.33)
                           },
                           border: TableBorder.all(
@@ -387,7 +301,7 @@ class _SoQuyState extends State<SoQuy> {
                                     child: Container(
                                       height: 35.0,
                                       alignment: Alignment.center,
-                                      child: Text('Ngày tháng',
+                                      child: Text('Mô tả việc',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -398,7 +312,7 @@ class _SoQuyState extends State<SoQuy> {
                                   Container(
                                     height: 35.0,
                                     alignment: Alignment.center,
-                                    child: Text('Thu',
+                                    child: Text('Giờ công',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -408,7 +322,7 @@ class _SoQuyState extends State<SoQuy> {
                                   Container(
                                     alignment: Alignment.center,
                                     height: 35.0,
-                                    child: Text('Chi',
+                                    child: Text('',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -420,7 +334,7 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('01/01/2022',
+                                child: Text('xadacascvcxvc',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -429,7 +343,7 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('10.000.000.000',
+                                child: Text('10h',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -438,11 +352,23 @@ class _SoQuyState extends State<SoQuy> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('Giám đốc điều hành',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
+                                child: CustomCheckBox(
+                                  value: shouldCheck,
+                                  shouldShowBorder: true,
+                                  borderColor:
+                                      Color.fromARGB(255, 132, 130, 130),
+                                  checkedFillColor:
+                                      Color.fromRGBO(72, 181, 69, 1),
+                                  borderRadius: 4,
+                                  borderWidth: 1,
+                                  checkBoxSize: 18,
+                                  onChanged: (val) {
+                                    //do your stuff here
+                                    setState(() {
+                                      shouldCheck = val;
+                                    });
+                                  },
+                                ),
                               )
                             ]),
                             TableRow(children: [
@@ -465,13 +391,23 @@ class _SoQuyState extends State<SoQuy> {
                                         fontWeight: FontWeight.w400)),
                               ),
                               Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: Text('10.000.000',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
+                                child: CustomCheckBox(
+                                  value: shouldCheck2,
+                                  shouldShowBorder: true,
+                                  borderColor:
+                                      Color.fromARGB(255, 132, 130, 130),
+                                  checkedFillColor:
+                                      Color.fromRGBO(72, 181, 69, 1),
+                                  borderRadius: 4,
+                                  borderWidth: 1,
+                                  checkBoxSize: 18,
+                                  onChanged: (val) {
+                                    //do your stuff here
+                                    setState(() {
+                                      shouldCheck2 = val;
+                                    });
+                                  },
+                                ),
                               )
                             ]),
                             TableRow(children: [
@@ -653,43 +589,38 @@ class _SoQuyState extends State<SoQuy> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(69, 114, 173, 1)),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
-                          child: Text(
-                            "TỐN QUỸ",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Column(children: [
+                      SizedBox(
+                        height: 47,
+                        width: 175,
+                        child: ElevatedButton(
+                          onPressed: () => ({}),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                Color.fromRGBO(89, 132, 62, 1)),
                           ),
+                          child: const Text('Duyệt',
+                              style: TextStyle(fontWeight: FontWeight.w700)),
                         ),
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(165, 213, 254, 1)),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
-                            child: Center(
-                              child: Text(
-                                "9.990.000.000",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 209, 38, 38),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextButton(
+                        onPressed: () => _returnTaiChinhPage(),
+                        child: const Text(
+                          'Không duyệt',
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ]),
+                  ),
                 ]),
               )),
             )

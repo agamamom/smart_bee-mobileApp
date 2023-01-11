@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:quickalert/quickalert.dart';
+import 'package:smart_bee/pages/Curved_navigation_page.dart';
 
 import '../pages/TaiChinh.dart';
 
@@ -28,8 +29,8 @@ class _GhiSoState extends State<GhiSo> {
       cancelBtnText: 'Không',
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => TaiChinh()))
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => Curved_navigation_page()))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},

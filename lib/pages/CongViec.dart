@@ -10,8 +10,11 @@ import 'package:smart_bee/Components/ThemViec.dart';
 import 'package:smart_bee/Components/ThuChuyenKhoan.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
 import 'package:smart_bee/Components/ThuongDuAn.dart';
+import 'package:smart_bee/Components/TongHopViecTheoND.dart';
+import 'package:smart_bee/Components/TongHopViecTheoCaNhan.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'package:smart_bee/Components/DuyetViec.dart';
 import '../Components/ForgotPassword.dart';
 
 class CongViec extends StatefulWidget {
@@ -168,7 +171,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ThuChuyenKhoan()))
+                                              TongHopViecTheoCaNhan()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -239,7 +242,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ChiTienMat()))
+                                              DuyetViec()))
                                 },
                                 child: Container(
                                   width: 163,

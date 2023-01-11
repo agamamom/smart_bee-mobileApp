@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:smart_bee/pages/Curved_navigation_page.dart';
 
 import '../pages/TaiChinh.dart';
 
@@ -94,8 +95,8 @@ class _ThuTienMatState extends State<ThuTienMat> {
       cancelBtnText: 'Không',
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => TaiChinh()))
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => Curved_navigation_page()))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
