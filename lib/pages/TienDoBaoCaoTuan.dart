@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:smart_bee/Components/DuAn_CongViec.dart';
-import 'package:smart_bee/Components/DuAn_DangThucHien.dart';
-import 'package:smart_bee/Components/DuAn_TaiChinh.dart';
-import 'package:smart_bee/Components/DuAn_TienDo.dart';
+import 'package:smart_bee/Components/BaoCaoDuAn.dart';
+import 'package:smart_bee/Components/BaoCaoViec.dart';
+import 'package:smart_bee/Components/TienDoChart.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class DuAn extends StatefulWidget {
-  const DuAn({super.key});
+class TienDoBaoCaoTuan extends StatefulWidget {
+  const TienDoBaoCaoTuan({super.key});
 
   @override
-  State<DuAn> createState() => _DuAnState();
+  State<TienDoBaoCaoTuan> createState() => _TienDoBaoCaoTuanState();
 }
 
-class _DuAnState extends State<DuAn> {
+class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
   int _currentPage = 0;
   PageController _controller = PageController();
 
   List<Widget> _pages = [
-    const DuAnDangThucHien(),
-    DuAn_TaiChinh(),
-    DuAn_CongViec(),
-    DuAn_TienDo(
+    TienDoChart(
       color: Color.fromRGBO(0, 219, 153, 1),
-    )
+    ),
   ];
 
   _onchanged(int index) {

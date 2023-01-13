@@ -7,6 +7,7 @@ import 'package:smart_bee/pages/CongViec.dart';
 import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 import 'package:smart_bee/pages/TaiChinh.dart';
+import 'package:smart_bee/pages/TienDoBaoCaoTuan.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -85,6 +86,9 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
         break;
       case 2:
         widget = const TaiChinh();
+        break;
+      case 3:
+        widget = const TienDoBaoCaoTuan();
         break;
       default:
         widget = const CongViec();

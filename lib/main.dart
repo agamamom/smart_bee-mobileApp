@@ -26,8 +26,3 @@ class HomePage extends StatelessWidget {
     return Container(child: SafeArea(child: FormLogin()));
   }
 }
-
-// import 'package:smart_bee/Components/FilePicker.dart';
-// import 'package:flutter/widgets.dart';
-
-// void main() => runApp(FilePickerDemo());
