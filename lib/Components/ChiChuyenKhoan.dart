@@ -30,7 +30,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   String? _extension;
   bool _isLoading = false;
   bool _userAborted = false;
-  bool _multiPick = false;
+  bool _multiPick = true;
   FileType _pickingType = FileType.any;
   TextEditingController _controller = TextEditingController();
   @override
@@ -1017,28 +1017,32 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                                                               null &&
                                                                           _paths!
                                                                               .isNotEmpty;
-                                                                  final String name = 'File $index: ' +
-                                                                      (isMultiPath
-                                                                          ? _paths!.map((e) => e.name).toList()[
-                                                                              index]
-                                                                          : _fileName ??
-                                                                              '...');
+
                                                                   final path = kIsWeb
                                                                       ? null
                                                                       : _paths!
-                                                                          .map((e) => e
-                                                                              .path)
-                                                                          .toList()[
-                                                                              index]
-                                                                          .toString();
+                                                                          .map((e) =>
+                                                                              e.path)
+                                                                          .toList();
 
-                                                                  return ListTile(
-                                                                    title: Text(
-                                                                      name,
-                                                                    ),
-                                                                    subtitle: Text(
-                                                                        path ??
-                                                                            ''),
+                                                                  print(
+                                                                      "path $path");
+
+                                                                  return Row(
+                                                                    children: path!
+                                                                        .map(
+                                                                          (i) =>
+                                                                              new CircleAvatar(
+                                                                            radius:
+                                                                                60,
+                                                                            backgroundColor:
+                                                                                Colors.purpleAccent,
+                                                                            backgroundImage: i == null
+                                                                                ? null
+                                                                                : FileImage(File(i.toString())),
+                                                                          ),
+                                                                        )
+                                                                        .toList(),
                                                                   );
                                                                 },
                                                                 separatorBuilder:

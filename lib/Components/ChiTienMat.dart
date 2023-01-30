@@ -30,7 +30,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
   String? _extension;
   bool _isLoading = false;
   bool _userAborted = false;
-  bool _multiPick = false;
+  bool _multiPick = true;
   FileType _pickingType = FileType.any;
   TextEditingController _controller = TextEditingController();
   @override
@@ -889,28 +889,18 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                                                               null &&
                                                                           _paths!
                                                                               .isNotEmpty;
-                                                                  final String name = 'File $index: ' +
-                                                                      (isMultiPath
-                                                                          ? _paths!.map((e) => e.name).toList()[
-                                                                              index]
-                                                                          : _fileName ??
-                                                                              '...');
-                                                                  final path = kIsWeb
-                                                                      ? null
-                                                                      : _paths!
-                                                                          .map((e) => e
-                                                                              .path)
-                                                                          .toList()[
-                                                                              index]
-                                                                          .toString();
 
-                                                                  return ListTile(
-                                                                    title: Text(
-                                                                      name,
-                                                                    ),
-                                                                    subtitle: Text(
-                                                                        path ??
-                                                                            ''),
+                                                                  return Row(
+                                                                    children:
+                                                                        _paths!
+                                                                            .map(
+                                                                              (i) => CircleAvatar(
+                                                                                radius: 60,
+                                                                                backgroundColor: Colors.purpleAccent,
+                                                                                backgroundImage: FileImage(File(i.path.toString())),
+                                                                              ),
+                                                                            )
+                                                                            .toList(),
                                                                   );
                                                                 },
                                                                 separatorBuilder:

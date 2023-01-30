@@ -6,8 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
+import 'package:smart_bee/sqlhelper.dart';
 
 import '../pages/TaiChinh.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SQLHelper.getDatabase;
+  runApp(const ThuChuyenKhoan());
+}
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -21,6 +28,9 @@ class ThuChuyenKhoan extends StatefulWidget {
 class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+  final List<String> LinkFile = [];
+
   String dropdownValue = list.first;
   String _fileText = "";
   String? _fileName;
@@ -30,7 +40,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   String? _extension;
   bool _isLoading = false;
   bool _userAborted = false;
-  bool _multiPick = false;
+  bool _multiPick = true;
   FileType _pickingType = FileType.any;
   TextEditingController _controller = TextEditingController();
   @override
@@ -121,6 +131,11 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   }
 
   Future<void> _saveFile() async {
+    SQLHelper.insertNote(Note(
+            title: dropdownValue,
+            content: dropdownValue,
+            description: 'description4444'))
+        .whenComplete(() => setState(() {}));
     _resetState();
     try {
       String? fileName = await FilePicker.platform.saveFile(
@@ -956,28 +971,18 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                                                               null &&
                                                                           _paths!
                                                                               .isNotEmpty;
-                                                                  final String name = 'File $index: ' +
-                                                                      (isMultiPath
-                                                                          ? _paths!.map((e) => e.name).toList()[
-                                                                              index]
-                                                                          : _fileName ??
-                                                                              '...');
-                                                                  final path = kIsWeb
-                                                                      ? null
-                                                                      : _paths!
-                                                                          .map((e) => e
-                                                                              .path)
-                                                                          .toList()[
-                                                                              index]
-                                                                          .toString();
 
-                                                                  return ListTile(
-                                                                    title: Text(
-                                                                      name,
-                                                                    ),
-                                                                    subtitle: Text(
-                                                                        path ??
-                                                                            ''),
+                                                                  return Row(
+                                                                    children:
+                                                                        _paths!
+                                                                            .map(
+                                                                              (i) => CircleAvatar(
+                                                                                radius: 60,
+                                                                                backgroundColor: Colors.purpleAccent,
+                                                                                backgroundImage: FileImage(File(i.path.toString())),
+                                                                              ),
+                                                                            )
+                                                                            .toList(),
                                                                   );
                                                                 },
                                                                 separatorBuilder:
