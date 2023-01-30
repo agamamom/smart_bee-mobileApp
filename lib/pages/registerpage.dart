@@ -106,7 +106,7 @@ class _registerpageState extends State<registerpage> {
                         TextFormField(
                           validator: (value) {
                             if (value!.isEmpty ||
-                                !RegExp(r'^+$').hasMatch(value!)) {
+                                !RegExp(r'^+$').hasMatch(value)) {
                               return "Enter correct phone number";
                             } else {
                               return null;
@@ -130,7 +130,7 @@ class _registerpageState extends State<registerpage> {
                         TextFormField(
                           validator: (value) {
                             if (value!.isEmpty ||
-                                !RegExp(r'^+$').hasMatch(value!)) {
+                                !RegExp(r'^+$').hasMatch(value)) {
                               return "Enter correct phone number";
                             } else {
                               return null;

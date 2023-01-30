@@ -73,7 +73,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       TextFormField(
                         validator: (value) {
                           if (value!.isEmpty ||
-                              !RegExp(r'^+$').hasMatch(value!)) {
+                              !RegExp(r'^+$').hasMatch(value)) {
                             return "Enter correct phone number";
                           } else {
                             return null;

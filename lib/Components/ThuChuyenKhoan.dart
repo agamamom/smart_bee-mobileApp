@@ -416,7 +416,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                           margin: EdgeInsets.symmetric(vertical: 5),
                           child: Column(
                             children: [
-                              Align(
+                              const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   "Ngày chứng từ:",
@@ -433,31 +433,31 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                   decoration: InputDecoration(
                                     isDense: true,
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                           color:
                                               Color.fromARGB(130, 79, 82, 78),
                                           width: 1),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color:
                                               Color.fromARGB(130, 79, 82, 78),
                                           width: 1),
                                     ),
                                     border: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                           color:
                                               Color.fromARGB(130, 79, 82, 78),
                                           width: 1),
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                     filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
+                                    fillColor: const Color.fromARGB(
+                                        255, 255, 255, 255),
                                   ),
                                   dropdownColor:
-                                      Color.fromARGB(255, 255, 255, 255),
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   value: dropdownValue,
                                   onChanged: (String? newValue) {
                                     setState(() {
@@ -477,7 +477,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
+                          margin: const EdgeInsets.symmetric(vertical: 5),
                           child: Column(
                             children: [
                               Align(
@@ -527,6 +527,9 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                     setState(() {
                                       dropdownValue = newValue!;
                                     });
+
+                                    // ignore: avoid_print
+                                    print(dropdownValue);
                                   },
                                   items: list.map<DropdownMenuItem<String>>(
                                       (String value) {
