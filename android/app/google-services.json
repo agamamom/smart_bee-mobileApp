@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "198650164285",
+    "project_id": "smartbee-9dd2b",
+    "storage_bucket": "smartbee-9dd2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198650164285:android:444fe6a7f60119c1a4e654",
+        "android_client_info": {
+          "package_name": "com.example.smart_bee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198650164285-kuqcl5np42puon5c6gheimcdrmko8eb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6WfMKNFm-tlbALc65YalquIaJ0eiKiTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198650164285-kuqcl5np42puon5c6gheimcdrmko8eb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

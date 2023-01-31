@@ -3,18 +3,21 @@ import 'Components/ForgotPassword.dart';
 import 'Components/FormLogin.dart';
 import 'Components/HeaderApp.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: const HomePage(),
     theme: ThemeData(fontFamily: 'Poppins'),
-    localizationsDelegates: [
+    localizationsDelegates: const [
       GlobalWidgetsLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
     ],
-    supportedLocales: [Locale('en', 'US')],
+    supportedLocales: const [Locale('en', 'US')],
   ));
 }
 
@@ -23,6 +26,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: SafeArea(child: FormLogin()));
+    return const SafeArea(child: FormLogin());
   }
 }
