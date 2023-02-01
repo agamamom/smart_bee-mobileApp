@@ -7,6 +7,7 @@ import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/CongViec.dart';
 import 'package:custom_check_box/custom_check_box.dart';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -101,10 +102,7 @@ class _ThemViecState extends State<ThemViec> {
                     SizedBox(
                       width: 15.0,
                     ),
-                    Image.asset(
-                      'assets/images/setting-icon.png',
-                      fit: BoxFit.contain,
-                    )
+                    const SettingButton()
                   ]),
                   SizedBox(
                     height: 14.0,

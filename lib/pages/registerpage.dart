@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:smart_bee/widget/snackbar.dart';
 import '../Components/HeaderApp.dart';
 import 'package:intl/intl.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,12 +22,13 @@ class _RegisterPageState extends State<RegisterPage> {
   late String phone;
   late String cccd;
   late String noicap;
-
+  late String _uid;
   var _isObscure = true;
   TextEditingController dateinput = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
+  bool processing = false;
   @override
   void initState() {
     dateinput.text = ""; //set the initial value of text field
@@ -44,6 +49,54 @@ class _RegisterPageState extends State<RegisterPage> {
           ],
         ),
       );
+
+  CollectionReference customers =
+      FirebaseFirestore.instance.collection('customers');
+
+  void signUp() async {
+    setState(() {
+      processing = true;
+    });
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+
+        _uid = FirebaseAuth.instance.currentUser!.uid;
+
+        await customers.doc(_uid).set({
+          'name': name,
+          'email': email,
+          'phone': phone,
+          'cccd': cccd,
+          'noicap': noicap,
+          'cid': _uid
+        });
+        _formKey.currentState!.reset();
+
+        Navigator.pushReplacementNamed(context, '/login_screen');
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          setState(() {
+            processing = false;
+          });
+          MyMessageHandler.showSnackBar(
+              _scaffoldKey, 'The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          setState(() {
+            processing = false;
+          });
+          MyMessageHandler.showSnackBar(
+              _scaffoldKey, 'The account already exists for that email.');
+        }
+      }
+    } else {
+      setState(() {
+        processing = false;
+      });
+      MyMessageHandler.showSnackBar(_scaffoldKey, 'please fill all fields');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,6 +251,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 }
                                 return null;
                               },
+
                               controller:
                                   dateinput, //editing controller of this TextField
                               decoration: InputDecoration(
@@ -208,9 +262,25 @@ class _RegisterPageState extends State<RegisterPage> {
                                           await showDatePicker(
                                               context: context,
                                               initialDate: DateTime.now(),
-                                              firstDate: DateTime(
-                                                  2000), //DateTime.now() - not to allow to choose before today.
-                                              lastDate: DateTime(2101));
+                                              firstDate: DateTime(2000),
+                                              lastDate: DateTime(2100));
+
+                                      if (pickedDate != null) {
+                                        print(
+                                            pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                        String formattedDate =
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(pickedDate);
+                                        print(
+                                            formattedDate); //formatted date output using intl package =>  2021-03-16
+                                        //you can implement different kind of Date Format here according to your requirement
+                                        setState(() {
+                                          dateinput.text =
+                                              formattedDate; //set output date to TextField value.
+                                        });
+                                      } else {
+                                        print("Date is not selected");
+                                      }
                                     },
                                   ),
                                   //icon of text field
@@ -245,7 +315,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   print(
                                       formattedDate); //formatted date output using intl package =>  2021-03-16
                                   //you can implement different kind of Date Format here according to your requirement
-
                                   setState(() {
                                     dateinput.text =
                                         formattedDate; //set output date to TextField value.
@@ -360,46 +429,31 @@ class _RegisterPageState extends State<RegisterPage> {
                             const SizedBox(
                               height: 16.0,
                             ),
-                            GestureDetector(
-                              // onTap: () => {
-                              //   Navigator.of(context).pushReplacement(
-                              //       MaterialPageRoute(
-                              //           builder: (BuildContext context) =>
-                              //               FormLogin()))
-                              // },
-                              child: ElevatedButton(
-                                child: Text("Đăng ký",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600)),
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        const Color.fromRGBO(89, 132, 62, 1),
-                                    shadowColor: const Color.fromARGB(
-                                        255, 125, 130, 128),
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(32.0)),
-                                    minimumSize: const Size(400, 50)),
-                                onPressed: () {
-                                  // Navigator.of(context).pushReplacement(
-                                  //     MaterialPageRoute(
-                                  //         builder: (BuildContext context) =>
-                                  //             FormLogin()))
-                                  if (_formKey.currentState!.validate()) {
-                                    // ignore: avoid_print
-                                    print("valid");
-
-                                    print(name);
-                                    print(email);
-                                    print(password);
-                                  } else {
-                                    print('not valid');
-                                  }
-                                },
-                              ),
-                            )
+                            processing == true
+                                ? const CircularProgressIndicator(
+                                    color: Colors.purple,
+                                  )
+                                : GestureDetector(
+                                    child: ElevatedButton(
+                                      child: Text("Đăng ký",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600)),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color.fromRGBO(
+                                              89, 132, 62, 1),
+                                          shadowColor: const Color.fromARGB(
+                                              255, 125, 130, 128),
+                                          elevation: 3,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(32.0)),
+                                          minimumSize: const Size(400, 50)),
+                                      onPressed: () {
+                                        signUp();
+                                      },
+                                    ),
+                                  )
                           ],
                         ),
                       ))

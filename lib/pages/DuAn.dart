@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_bee/Components/DuAn_CongViec.dart';
 import 'package:smart_bee/Components/DuAn_DangThucHien.dart';
 import 'package:smart_bee/Components/DuAn_TaiChinh.dart';
 import 'package:smart_bee/Components/DuAn_TienDo.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class DuAn extends StatefulWidget {
   const DuAn({super.key});
@@ -56,10 +59,7 @@ class _DuAnState extends State<DuAn> {
                       SizedBox(
                         width: 15.0,
                       ),
-                      Image.asset(
-                        'assets/images/setting-icon.png',
-                        fit: BoxFit.contain,
-                      )
+                      const SettingButton(),
                     ]),
                     SizedBox(
                       height: 14.0,
@@ -130,5 +130,65 @@ class _DuAnState extends State<DuAn> {
         ],
       ),
     );
+  }
+}
+
+class MenuItem {
+  final String text;
+  final IconData icon;
+
+  const MenuItem({
+    required this.text,
+    required this.icon,
+  });
+}
+
+class MenuItems {
+  static const List<MenuItem> firstItems = [like, share, download];
+  static const List<MenuItem> secondItems = [logout];
+
+  static const like = MenuItem(text: 'Like', icon: Icons.favorite);
+  static const share = MenuItem(text: 'Share', icon: Icons.share);
+  static const download = MenuItem(text: 'Download', icon: Icons.download);
+  static const logout = MenuItem(text: 'Logout', icon: Icons.logout);
+
+  static Widget buildItem(MenuItem item) {
+    return Row(
+      children: [
+        Icon(
+          item.icon,
+          color: Colors.white,
+          size: 22,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          item.text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  static onChanged(BuildContext context, MenuItem item) {
+    switch (item) {
+      case MenuItems.like:
+        //Do something
+        break;
+      case MenuItems.share:
+        //Do something
+        break;
+      case MenuItems.download:
+        //Do something
+        break;
+      case MenuItems.logout:
+        {
+          FirebaseAuth.instance.signOut();
+        }
+        break;
+    }
   }
 }

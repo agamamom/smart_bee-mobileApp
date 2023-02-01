@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_bee/Components/BaoCaoDuAn.dart';
 import 'package:smart_bee/Components/BaoCaoViec.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/Components/TienDoChart.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -52,10 +53,7 @@ class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
                       SizedBox(
                         width: 15.0,
                       ),
-                      Image.asset(
-                        'assets/images/setting-icon.png',
-                        fit: BoxFit.contain,
-                      )
+                      const SettingButton()
                     ]),
                     SizedBox(
                       height: 14.0,

@@ -48,7 +48,7 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
     )
   ];
 
-  int index = 1;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {

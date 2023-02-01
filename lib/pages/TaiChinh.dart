@@ -5,6 +5,7 @@ import 'package:smart_bee/Components/CoCauToChuc.dart';
 import 'package:smart_bee/Components/GhiSo.dart';
 import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
 import 'package:smart_bee/Components/NhomMuc.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/Components/SoQuy.dart';
 import 'package:smart_bee/Components/ThuChuyenKhoan.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
@@ -48,10 +49,7 @@ class _TaiChinhState extends State<TaiChinh> {
                         SizedBox(
                           width: 15.0,
                         ),
-                        Image.asset(
-                          'assets/images/setting-icon.png',
-                          fit: BoxFit.contain,
-                        )
+                        const SettingButton()
                       ]),
                       SizedBox(
                         height: 14.0,

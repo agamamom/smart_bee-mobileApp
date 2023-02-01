@@ -4,6 +4,7 @@ import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
 import 'package:smart_bee/Components/ListDuAn_CardList.dart';
 import 'package:smart_bee/Components/ListDuAn_Overview.dart';
 import 'package:smart_bee/Components/NhomMuc.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ListDuAn extends StatefulWidget {
@@ -56,10 +57,7 @@ class _ListDuAnState extends State<ListDuAn> {
                       SizedBox(
                         width: 15.0,
                       ),
-                      Image.asset(
-                        'assets/images/setting-icon.png',
-                        fit: BoxFit.contain,
-                      )
+                      const SettingButton(),
                     ]),
                     SizedBox(
                       height: 14.0,

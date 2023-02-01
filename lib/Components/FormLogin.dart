@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_bee/Components/ForgotPassword.dart';
 import 'package:smart_bee/pages/WelcomePage.dart';
@@ -15,6 +17,8 @@ class FormLogin extends StatefulWidget {
 class _FormLoginState extends State<FormLogin> {
   bool isPasswordVisible = false;
   bool isChecked = false;
+  final taiKhoanController = TextEditingController();
+  final matKhauController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
         context: context,
@@ -32,6 +36,14 @@ class _FormLoginState extends State<FormLogin> {
       );
 
   @override
+  void dispose() {
+    taiKhoanController.dispose();
+    matKhauController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
@@ -42,7 +54,6 @@ class _FormLoginState extends State<FormLogin> {
                 fit: BoxFit.cover)),
         child: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            reverse: true,
             child: Column(
               children: [
                 Container(
@@ -96,6 +107,7 @@ class _FormLoginState extends State<FormLogin> {
                                               color: Colors.black26, width: 1),
                                           borderRadius:
                                               BorderRadius.circular(30))),
+                                  controller: taiKhoanController,
                                 ),
                                 Container(
                                     margin: EdgeInsets.only(top: 10.0),
@@ -109,6 +121,7 @@ class _FormLoginState extends State<FormLogin> {
                                     }
                                     return null;
                                   },
+                                  controller: matKhauController,
                                   obscureText: true,
                                   enableSuggestions: false,
                                   autocorrect: false,
@@ -173,7 +186,7 @@ class _FormLoginState extends State<FormLogin> {
                                         //           const WelcomePage()),
                                         // )
                                         if (_formKey.currentState!.validate())
-                                          {print("valid")}
+                                          {signIn()}
                                         else
                                           {print('not valid')}
                                       },
@@ -280,4 +293,11 @@ class _FormLoginState extends State<FormLogin> {
   }
 
   launchUrl(Uri parse) {}
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: taiKhoanController.text.trim(),
+      password: matKhauController.text.trim(),
+    );
+    Navigator.pushReplacementNamed(context, '/welcome');
+  }
 }

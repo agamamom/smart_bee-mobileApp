@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
 import 'package:smart_bee/sqlhelper.dart';
 
@@ -207,10 +208,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                     SizedBox(
                       width: 15.0,
                     ),
-                    Image.asset(
-                      'assets/images/setting-icon.png',
-                      fit: BoxFit.contain,
-                    )
+                    const SettingButton(),
                   ]),
                   SizedBox(
                     height: 14.0,
