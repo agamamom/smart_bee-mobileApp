@@ -38,14 +38,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Do you want to exit app?'),
+          title: const Text('Do you want to exit app?'),
           actions: [
             ElevatedButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: Text('No')),
+                child: const Text('No')),
             ElevatedButton(
                 onPressed: () => Navigator.pop(context, true),
-                child: Text('Yes')),
+                child: const Text('Yes')),
           ],
         ),
       );
@@ -74,6 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
         _formKey.currentState!.reset();
 
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, '/login_screen');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

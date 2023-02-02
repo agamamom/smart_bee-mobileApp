@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:smart_bee/Components/FormLogin.dart';
@@ -130,6 +131,7 @@ class MenuItems {
           cancelBtnText: 'Không',
           confirmBtnColor: Colors.green,
           onConfirmBtnTap: () async {
+            await GoogleSignIn().signOut();
             await FirebaseAuth.instance.signOut();
             Navigator.pushReplacementNamed(context, '/login_screen');
           },

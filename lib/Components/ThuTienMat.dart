@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -7,6 +9,8 @@ import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
+import 'package:smart_bee/widget/snackbar.dart';
+import 'package:path/path.dart' as path;
 
 import '../pages/TaiChinh.dart';
 
@@ -31,10 +35,16 @@ class _ThuTienMatState extends State<ThuTienMat> {
   String? _extension;
   bool _isLoading = false;
   bool _userAborted = false;
-  bool _multiPick = false;
-  FileType _pickingType = FileType.any;
-  TextEditingController _controller = TextEditingController();
-  @override
+  final bool _multiPick = true;
+  final FileType _pickingType = FileType.any;
+  final TextEditingController _controller = TextEditingController();
+
+  late double _price;
+  late String _donVi;
+  late String _noiDungThu;
+  late String _moTaNguonThu;
+  late String _priceByString;
+
   @override
   void initState() {
     super.initState();
@@ -55,7 +65,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
       ))
           ?.files;
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     }
@@ -113,7 +123,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
         _userAborted = path == null;
       });
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     } finally {
@@ -135,9 +145,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
         _userAborted = fileName == null;
       });
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
-      _logException(e.toString());
+      _logException('Lỗi chưa chọn tệp!');
     } finally {
       setState(() => _isLoading = false);
     }
@@ -167,818 +177,951 @@ class _ThuTienMatState extends State<ThuTienMat> {
     });
   }
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/background.png'),
-                      fit: BoxFit.cover)),
-              child: SingleChildScrollView(
-                  child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-                child: Column(children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    SizedBox(
-                      width: 15.0,
-                    ),
-                    Image.asset(
-                      'assets/images/calendar-icon.png',
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(
-                      width: 15.0,
-                    ),
-                    const SettingButton()
-                  ]),
-                  SizedBox(
-                    height: 14.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Welcome, hienltt',
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: Color.fromRGBO(99, 99, 100, 1)),
-                      ),
-                      Image.asset(
-                        'assets/images/bee-icon.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Thu tiền mặt",
-                          style: TextStyle(
-                              fontSize: 35, fontWeight: FontWeight.w500),
+    return ScaffoldMessenger(
+      key: _scaffoldMessengerKey,
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/background.png'),
+                        fit: BoxFit.cover)),
+                child: SingleChildScrollView(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 20.0),
+                      child: Column(children: [
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const SizedBox(
+                                width: 15.0,
+                              ),
+                              Image.asset(
+                                'assets/images/calendar-icon.png',
+                                fit: BoxFit.contain,
+                              ),
+                              const SizedBox(
+                                width: 15.0,
+                              ),
+                              const SettingButton()
+                            ]),
+                        const SizedBox(
+                          height: 14.0,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Today",
+                            const Text(
+                              'Welcome, hienltt',
                               style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                                  fontSize: 15.0,
+                                  color: Color.fromRGBO(99, 99, 100, 1)),
                             ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              "02/02/2022",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromRGBO(120, 116, 134, 1)),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            Text(
-                              "17h00",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color.fromRGBO(120, 116, 134, 1)),
+                            Image.asset(
+                              'assets/images/bee-icon.png',
+                              fit: BoxFit.contain,
                             ),
                           ],
                         ),
-                        Wrap(
-                          spacing: 4.0,
-                          direction: Axis.horizontal,
-                          children: [
-                            FractionallySizedBox(
-                              widthFactor: 0.47,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Color.fromRGBO(179, 179, 179, 1),
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 14.74, horizontal: 24.34),
-                                    border: OutlineInputBorder(),
-                                    hintText: 'Số:',
-                                    hintStyle: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255)),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.white),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Thu tiền mặt",
+                                  style: TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Text(
+                                      "Today",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
                                           color:
-                                              Color.fromRGBO(179, 179, 179, 1),
-                                          width: 1),
+                                              Color.fromRGBO(120, 116, 134, 1)),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                    SizedBox(
+                                      width: 6,
+                                    ),
+                                    Text(
+                                      "02/02/2022",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
                                           color:
-                                              Color.fromRGBO(179, 179, 179, 1),
-                                          width: 1),
-                                    )),
-                              ),
-                            ),
-                            FractionallySizedBox(
-                                widthFactor: 0.47,
-                                child: Container(
-                                  height: 55,
-                                  child: DropdownButtonFormField(
-                                    isExpanded: true,
-                                    elevation: 16,
-                                    iconEnabledColor: Colors.white,
-                                    iconSize: 20,
-                                    style: TextStyle(color: Colors.white),
-                                    icon: Icon(Icons.arrow_drop_down_outlined),
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromRGBO(72, 181, 69, 1),
-                                            width: 1),
-                                        borderRadius: BorderRadius.circular(4),
+                                              Color.fromRGBO(120, 116, 134, 1)),
+                                    ),
+                                    SizedBox(
+                                      width: 6,
+                                    ),
+                                    Text(
+                                      "17h00",
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              Color.fromRGBO(120, 116, 134, 1)),
+                                    ),
+                                  ],
+                                ),
+                                Wrap(
+                                  spacing: 4.0,
+                                  direction: Axis.horizontal,
+                                  children: [
+                                    const FractionallySizedBox(
+                                      widthFactor: 0.47,
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Color.fromRGBO(
+                                                179, 179, 179, 1),
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 14.74,
+                                                    horizontal: 24.34),
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Số:',
+                                            hintStyle: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      179, 179, 179, 1),
+                                                  width: 1),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      179, 179, 179, 1),
+                                                  width: 1),
+                                            )),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromRGBO(72, 181, 69, 1),
-                                            width: 1),
+                                    ),
+                                    FractionallySizedBox(
+                                      widthFactor: 0.47,
+                                      child: DropdownButtonFormField(
+                                        isExpanded: true,
+                                        elevation: 16,
+                                        iconEnabledColor: Colors.white,
+                                        iconSize: 20,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                        icon: const Icon(
+                                            Icons.arrow_drop_down_outlined),
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 14.74,
+                                                  horizontal: 24.34),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromRGBO(
+                                                    72, 181, 69, 1),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromRGBO(
+                                                    72, 181, 69, 1),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromRGBO(
+                                                    72, 181, 69, 1),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: const Color.fromRGBO(
+                                              72, 181, 69, 1),
+                                        ),
+                                        dropdownColor: const Color.fromRGBO(
+                                            72, 181, 69, 1),
+                                        value: dropdownValue,
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
                                       ),
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromRGBO(72, 181, 69, 1),
-                                            width: 1),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      filled: true,
-                                      fillColor: Color.fromRGBO(72, 181, 69, 1),
                                     ),
-                                    dropdownColor:
-                                        Color.fromRGBO(72, 181, 69, 1),
-                                    value: dropdownValue,
-                                    onChanged: (String? newValue) {
-                                      setState(() {
-                                        dropdownValue = newValue!;
-                                      });
-                                    },
-                                    items: list.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  ),
-                                )),
-                          ],
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Người/đơn vị nộp:",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
+                                  ],
                                 ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  dropdownColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  value: dropdownValue,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: list.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Ngày chứng từ:",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  dropdownColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  value: dropdownValue,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: list.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Phân loại (tiểu mục):",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  dropdownColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  value: dropdownValue,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: list.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Nội dung thu:",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    hintText: 'Dslalhlcas',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Tên Dự Án:",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  dropdownColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  value: dropdownValue,
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: list.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Mô tả nguồn thu (nếu có):",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    hintText: 'Dslalhlcas',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Số tiền",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    hintText: 'Dslalhlcas',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Bằng chữ",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
-                                height: 55,
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    hintText: 'Dslalhlcas',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(130, 79, 82, 78),
-                                          width: 1),
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    filled: true,
-                                    fillColor:
-                                        Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "Đính kèm",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Container(
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
                                   child: Column(
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () => _pickFiles(),
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Color.fromRGBO(120, 116, 134, 1),
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Người/đơn vị nộp:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
                                       ),
-                                      label: Text(
-                                        _multiPick ? 'Thêm files' : 'Thêm file',
-                                        style: TextStyle(
-                                            color: Color.fromRGBO(
-                                                120, 116, 134, 1)),
+                                      DropdownButtonFormField(
+                                        isExpanded: true,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          isDense: true,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                        dropdownColor:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        value: dropdownValue,
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
                                       ),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStatePropertyAll(
-                                                Color.fromRGBO(
-                                                    254, 251, 251, 1)),
-                                      ),
-                                    ),
+                                    ],
                                   ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Ngày chứng từ:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      DropdownButtonFormField(
+                                        isExpanded: true,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          isDense: true,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                        dropdownColor:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        value: dropdownValue,
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Phân loại (tiểu mục):",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      DropdownButtonFormField(
+                                        isExpanded: true,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          isDense: true,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                        dropdownColor:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        value: dropdownValue,
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Nội dung thư:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        onChanged: (value) {
+                                          _noiDungThu = value;
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Không được bỏ trống';
+                                          }
+                                          return null;
+                                        },
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: 'Dslalhlcas',
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Tên Dự Án:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      DropdownButtonFormField(
+                                        isExpanded: true,
+                                        decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          isDense: true,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                        dropdownColor:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                        value: dropdownValue,
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        },
+                                        items: list
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Mô tả nguồn thu (nếu có):",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        onChanged: (value) {
+                                          _moTaNguonThu = value;
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Không được bỏ trống';
+                                          }
+                                          return null;
+                                        },
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: 'Dslalhlcas',
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Số tiền:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Không được bỏ trống';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          _price = double.parse(value!);
+                                        },
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: 'Dslalhlcas',
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Bằng chữ:",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        onChanged: (value) {
+                                          _priceByString = value;
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Không được bỏ trống';
+                                          }
+                                          return null;
+                                        },
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: 'Dslalhlcas',
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16.74,
+                                                  horizontal: 24.34),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    130, 79, 82, 78),
+                                                width: 1),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                          ),
+                                          filled: true,
+                                          fillColor: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Column(
+                                    children: [
+                                      const Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "Đính kèm",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                      Container(
+                                          child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: AlignmentDirectional
+                                                .centerStart,
+                                            child: ElevatedButton.icon(
+                                              onPressed: () => _pickFiles(),
+                                              icon: const Icon(
+                                                Icons.add,
+                                                color: Color.fromRGBO(
+                                                    120, 116, 134, 1),
+                                              ),
+                                              label: Text(
+                                                _multiPick
+                                                    ? 'Thêm files'
+                                                    : 'Thêm file',
+                                                style: const TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        120, 116, 134, 1)),
+                                              ),
+                                              style: const ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStatePropertyAll(
+                                                        Color.fromRGBO(
+                                                            254, 251, 251, 1)),
+                                              ),
+                                            ),
+                                          ),
 
-                                  // Builder(builder: (BuildContext context) =>_isLoading ?  ),
-                                  Container(
-                                    child: Builder(
-                                      builder: (BuildContext context) =>
-                                          _isLoading
-                                              ? Container(
-                                                  child:
-                                                      const CircularProgressIndicator(),
-                                                )
-                                              : _userAborted
-                                                  ? Container(
-                                                      child: const Text(
-                                                        'User has aborted the dialog',
-                                                      ),
-                                                    )
-                                                  : _directoryPath != null
-                                                      ? ListTile(
-                                                          title: const Text(
-                                                              'Directory path'),
-                                                          subtitle: Text(
-                                                              _directoryPath!),
+                                          // Builder(builder: (BuildContext context) =>_isLoading ?  ),
+                                          Container(
+                                            child: Builder(
+                                              builder: (BuildContext context) =>
+                                                  _isLoading
+                                                      ? Container(
+                                                          child:
+                                                              const CircularProgressIndicator(),
                                                         )
-                                                      : _paths != null
+                                                      : _userAborted
                                                           ? Container(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height *
-                                                                  0.20,
-                                                              child: Scrollbar(
-                                                                  child: ListView
-                                                                      .separated(
-                                                                itemCount: _paths !=
-                                                                            null &&
-                                                                        _paths!
-                                                                            .isNotEmpty
-                                                                    ? _paths!
-                                                                        .length
-                                                                    : 1,
-                                                                itemBuilder:
-                                                                    (BuildContext
-                                                                            context,
-                                                                        int index) {
-                                                                  final bool
-                                                                      isMultiPath =
-                                                                      _paths !=
-                                                                              null &&
-                                                                          _paths!
-                                                                              .isNotEmpty;
-                                                                  final String name = 'File $index: ' +
-                                                                      (isMultiPath
-                                                                          ? _paths!.map((e) => e.name).toList()[
-                                                                              index]
-                                                                          : _fileName ??
-                                                                              '...');
-                                                                  final path = kIsWeb
-                                                                      ? null
-                                                                      : _paths!
-                                                                          .map((e) => e
-                                                                              .path)
-                                                                          .toList()[
-                                                                              index]
-                                                                          .toString();
-
-                                                                  return ListTile(
-                                                                    title: Text(
-                                                                      name,
-                                                                    ),
-                                                                    subtitle: Text(
-                                                                        path ??
-                                                                            ''),
-                                                                  );
-                                                                },
-                                                                separatorBuilder:
-                                                                    (BuildContext
-                                                                                context,
-                                                                            int index) =>
-                                                                        const Divider(),
-                                                              )),
+                                                              child: const Text(
+                                                                'User has aborted the dialog',
+                                                              ),
                                                             )
-                                                          : _saveAsFileName !=
+                                                          : _directoryPath !=
                                                                   null
                                                               ? ListTile(
                                                                   title: const Text(
-                                                                      'Save file'),
+                                                                      'Directory path'),
                                                                   subtitle: Text(
-                                                                      _saveAsFileName!),
+                                                                      _directoryPath!),
                                                                 )
-                                                              : const SizedBox(),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.center,
-                                    child: Column(children: [
-                                      SizedBox(
-                                        height: 47,
-                                        width: 175,
-                                        child: ElevatedButton(
-                                          onPressed: () => _saveFile(),
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStatePropertyAll(
-                                                    Color.fromRGBO(
-                                                        89, 132, 62, 1)),
+                                                              : _paths != null
+                                                                  ? Container(
+                                                                      height: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.20,
+                                                                      child: Scrollbar(
+                                                                          child: ListView.separated(
+                                                                        itemCount: _paths != null &&
+                                                                                _paths!.isNotEmpty
+                                                                            ? _paths!.length
+                                                                            : 1,
+                                                                        itemBuilder:
+                                                                            (BuildContext context,
+                                                                                int index) {
+                                                                          final bool
+                                                                              isMultiPath =
+                                                                              _paths != null && _paths!.isNotEmpty;
+                                                                          final String
+                                                                              name =
+                                                                              'File $index: ${isMultiPath ? _paths!.map((e) => e.name).toList()[index] : _fileName ?? '...'}';
+                                                                          Iterable<File>
+                                                                              path =
+                                                                              _paths!.map((e) => e.path).cast<File>();
+                                                                          print(
+                                                                              path.runtimeType);
+                                                                          return Container(
+                                                                            child:
+                                                                                Text(name),
+                                                                          );
+                                                                          // return  ElevatedButton(
+                                                                          //     child: path == null ? null : _buildFileIcon(path),
+                                                                          //     onPressed: (() {}),
+                                                                          //   );
+                                                                        },
+                                                                        separatorBuilder:
+                                                                            (BuildContext context, int index) =>
+                                                                                const Divider(),
+                                                                      )),
+                                                                    )
+                                                                  : _saveAsFileName !=
+                                                                          null
+                                                                      ? ListTile(
+                                                                          title:
+                                                                              const Text('Save file'),
+                                                                          subtitle:
+                                                                              Text(_saveAsFileName!),
+                                                                        )
+                                                                      : const SizedBox(),
+                                            ),
                                           ),
-                                          child: const Text('Save',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700)),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      TextButton(
-                                        onPressed: () => _clearCachedFiles(),
-                                        child: const Text(
-                                          'Cancel',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ]),
-                                  )
-                                ],
-                              )),
-                            ],
+                                          SizedBox(
+                                            height: 25,
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            child: Column(children: [
+                                              SizedBox(
+                                                height: 47,
+                                                width: 175,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    if (_formKey.currentState!
+                                                        .validate()) {
+                                                      _formKey.currentState!
+                                                          .save();
+                                                      _saveFile();
+                                                      print(_price);
+                                                      print(_priceByString);
+                                                      print(_moTaNguonThu);
+                                                      print(_noiDungThu);
+                                                    } else {
+                                                      MyMessageHandler.showSnackBar(
+                                                          _scaffoldMessengerKey,
+                                                          "Hãy điền đầy đủ thông tin!");
+                                                    }
+                                                  },
+                                                  style: const ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStatePropertyAll(
+                                                            Color.fromRGBO(89,
+                                                                132, 62, 1)),
+                                                  ),
+                                                  child: const Text('Save',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w700)),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextButton(
+                                                onPressed: () =>
+                                                    _clearCachedFiles(),
+                                                child: const Text(
+                                                  'Cancel',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                              ),
+                                            ]),
+                                          )
+                                        ],
+                                      )),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         )
-                      ],
-                    ),
-                  )
-                ]),
-              )),
-            )
-          ],
+                      ]),
+                    )),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+extension PriceValidator on String {
+  bool isValidPrice() {
+    return RegExp(r'^((([1-9][0-9]*[\.]*)||([0][\.]*))([0-9]{1,2}))$')
+        .hasMatch(this);
+  }
+}
+
+Widget _buildFileIcon(Iterable<File> file) {
+  String fileExtension = path.extension(file.path);
+  Widget icon;
+
+  if (fileExtension == '.txt') {
+    icon = Icon(Icons.description);
+  } else if (fileExtension == '.pdf') {
+    icon = Icon(Icons.picture_as_pdf);
+  } else {
+    icon = Icon(Icons.insert_drive_file);
+  }
+
+  return icon;
 }

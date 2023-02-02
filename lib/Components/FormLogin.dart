@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_bee/Components/ForgotPassword.dart';
 import 'package:smart_bee/pages/WelcomePage.dart';
 import 'package:smart_bee/pages/RegisterPage.dart';
+import 'package:smart_bee/provider/google_sign_in.dart';
 
 import 'HeaderApp.dart';
 
@@ -195,25 +198,25 @@ class _FormLoginState extends State<FormLogin> {
                                       height: 12.0,
                                     ),
                                     OutlinedButton(
-                                        // ignore: sort_child_properties_last
-                                        child: const Text(
-                                            "Đăng nhập bằng Gmail",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color.fromARGB(
-                                                    190, 0, 0, 0))),
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                const Color.fromARGB(
-                                                    255, 255, 255, 255),
-                                            elevation: 3,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        32.0)),
-                                            minimumSize: const Size(400, 50)),
-                                        onPressed: () => null),
+                                      // ignore: sort_child_properties_last
+                                      child: const Text("Đăng nhập bằng Gmail",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color.fromARGB(
+                                                  190, 0, 0, 0))),
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          elevation: 3,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(32.0)),
+                                          minimumSize: const Size(400, 50)),
+                                      onPressed: () {
+                                        signInWithGoogle();
+                                      },
+                                    ),
                                     const SizedBox(
                                       height: 30.0,
                                     ),
@@ -298,6 +301,18 @@ class _FormLoginState extends State<FormLogin> {
       email: taiKhoanController.text.trim(),
       password: matKhauController.text.trim(),
     );
+    Navigator.pushReplacementNamed(context, '/welcome');
+  }
+
+  Future signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     Navigator.pushReplacementNamed(context, '/welcome');
   }
 }
