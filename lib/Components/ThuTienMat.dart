@@ -11,6 +11,7 @@ import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
 import 'package:smart_bee/widget/snackbar.dart';
 import 'package:path/path.dart' as path;
+import 'package:readmore/readmore.dart';
 
 import '../pages/TaiChinh.dart';
 
@@ -64,6 +65,10 @@ class _ThuTienMatState extends State<ThuTienMat> {
             : null,
       ))
           ?.files;
+      //  for (var file in _paths!) {
+      //   String fileExtension = file.path!.split('.').last;
+      //   print('File type: $fileExtension');
+      // }
     } on PlatformException catch (e) {
       _logException('Unsupported operation$e');
     } catch (e) {
@@ -979,45 +984,18 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                                       _directoryPath!),
                                                                 )
                                                               : _paths != null
-                                                                  ? Container(
+                                                                  ? SizedBox(
                                                                       height: MediaQuery.of(context)
                                                                               .size
                                                                               .height *
                                                                           0.20,
-                                                                      child: Scrollbar(
-                                                                          child: ListView.separated(
-                                                                        itemCount: _paths != null &&
-                                                                                _paths!.isNotEmpty
-                                                                            ? _paths!.length
-                                                                            : 1,
-                                                                        itemBuilder:
-                                                                            (BuildContext context,
-                                                                                int index) {
-                                                                          final bool
-                                                                              isMultiPath =
-                                                                              _paths != null && _paths!.isNotEmpty;
-                                                                          final String
-                                                                              name =
-                                                                              'File $index: ${isMultiPath ? _paths!.map((e) => e.name).toList()[index] : _fileName ?? '...'}';
-                                                                          Iterable<File>
-                                                                              path =
-                                                                              _paths!.map((e) => e.path).cast<File>();
-                                                                          print(
-                                                                              path.runtimeType);
-                                                                          return Container(
-                                                                            child:
-                                                                                Text(name),
-                                                                          );
-                                                                          // return  ElevatedButton(
-                                                                          //     child: path == null ? null : _buildFileIcon(path),
-                                                                          //     onPressed: (() {}),
-                                                                          //   );
-                                                                        },
-                                                                        separatorBuilder:
-                                                                            (BuildContext context, int index) =>
-                                                                                const Divider(),
-                                                                      )),
-                                                                    )
+                                                                      child:
+                                                                          Scrollbar(
+                                                                              child:
+                                                                                  Wrap(
+                                                                        children:
+                                                                            _buildList(_paths!),
+                                                                      )))
                                                                   : _saveAsFileName !=
                                                                           null
                                                                       ? ListTile(
@@ -1029,7 +1007,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                                       : const SizedBox(),
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 25,
                                           ),
                                           Align(
@@ -1046,10 +1024,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                       _formKey.currentState!
                                                           .save();
                                                       _saveFile();
-                                                      print(_price);
-                                                      print(_priceByString);
-                                                      print(_moTaNguonThu);
-                                                      print(_noiDungThu);
                                                     } else {
                                                       MyMessageHandler.showSnackBar(
                                                           _scaffoldMessengerKey,
@@ -1111,17 +1085,106 @@ extension PriceValidator on String {
   }
 }
 
-Widget _buildFileIcon(Iterable<File> file) {
-  String fileExtension = path.extension(file.path);
+List<Widget> _buildList(List<PlatformFile> items) {
   Widget icon;
 
-  if (fileExtension == '.txt') {
-    icon = Icon(Icons.description);
-  } else if (fileExtension == '.pdf') {
-    icon = Icon(Icons.picture_as_pdf);
-  } else {
-    icon = Icon(Icons.insert_drive_file);
-  }
-
-  return icon;
+  return items.map((item) {
+    String fileExtension = item!.path!.split('.').last;
+    if (fileExtension == 'txt') {
+      icon = Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: const Color.fromARGB(159, 184, 182, 182)),
+                child: const Icon(
+                  Icons.description,
+                  size: 40,
+                  color: Colors.black54,
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(item!.name.toString()),
+        ],
+      );
+    } else if (fileExtension == 'pdf') {
+      icon = Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: const Color.fromARGB(159, 184, 182, 182)),
+                child: const Icon(
+                  Icons.picture_as_pdf,
+                  size: 40,
+                  color: Colors.black54,
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(item!.name.toString()),
+        ],
+      );
+    } else if (fileExtension == 'png' || fileExtension == 'jpg') {
+      icon = Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Container(
+                height: 70,
+                width: 70,
+                child: Image(
+                  image: FileImage(File(item.path.toString())),
+                  fit: BoxFit.cover,
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(item!.name.toString()),
+        ],
+      );
+    } else {
+      icon = Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: const Color.fromARGB(159, 184, 182, 182)),
+                child: const Icon(
+                  Icons.insert_drive_file,
+                  size: 40,
+                  color: Colors.black54,
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ReadMoreText(
+            item!.name.toString(),
+            trimLines: 1,
+            trimMode: TrimMode.Line,
+            moreStyle:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+        ],
+      );
+    }
+    return icon;
+  }).toList();
 }
