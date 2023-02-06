@@ -1,21 +1,31 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:smart_bee/Components/FilePicker.dart';
+import 'package:intl/intl.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
 import 'package:smart_bee/widget/snackbar.dart';
 import 'package:path/path.dart' as path;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:readmore/readmore.dart';
+import 'package:uuid/uuid.dart';
+import 'package:smart_bee/utilities/categ_list.dart';
 
 import '../pages/TaiChinh.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+List<String> listNguoiDuyet = nguoiDuyet;
+List<String> listDonViNop = donViNop;
+List<String> listPhanLoai = phanLoai;
+List<String> listDuAn = tenDuAn;
 
 class ThuTienMat extends StatefulWidget {
   const ThuTienMat({super.key});
@@ -27,7 +37,12 @@ class ThuTienMat extends StatefulWidget {
 class _ThuTienMatState extends State<ThuTienMat> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-  String dropdownValue = list.first;
+
+  String dropdownNguoiDuyet = listNguoiDuyet.first;
+  String? dropdownDonViNop;
+  String? dropdownPhanLoai;
+  String? dropdownDuAn;
+
   String _fileText = "";
   String? _fileName;
   String? _saveAsFileName;
@@ -38,18 +53,102 @@ class _ThuTienMatState extends State<ThuTienMat> {
   bool _userAborted = false;
   final bool _multiPick = true;
   final FileType _pickingType = FileType.any;
-  final TextEditingController _controller = TextEditingController();
+  // final TextEditingController _controller = TextEditingController();
+  TextEditingController _soController = TextEditingController();
+  bool processing = false;
+  late String proId;
 
   late double _price;
-  late String _donVi;
+  late String _ngayChungTu;
   late String _noiDungThu;
   late String _moTaNguonThu;
   late String _priceByString;
 
   @override
+  void dispose() {
+    _soController.dispose();
+
+    super.dispose();
+  }
+
+  List<String> filesUrlList = [];
+  @override
   void initState() {
     super.initState();
-    _controller.addListener(() => _extension = _controller.text);
+    // _controller.addListener(() => _extension = _controller.text);
+  }
+
+  Future<void> uploadImages() async {
+    print(_soController.text);
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      if (_paths!.isNotEmpty) {
+        setState(() {
+          processing = true;
+        });
+        try {
+          for (var image in _paths!) {
+            firebase_storage.Reference ref = firebase_storage
+                .FirebaseStorage.instance
+                .ref('products/${path.basename(image.path!)}');
+
+            await ref.putFile(File(image.path!)).whenComplete(() async {
+              await ref.getDownloadURL().then((value) {
+                filesUrlList.add(value);
+                print("filesUrlList $filesUrlList");
+              });
+            });
+          }
+        } catch (e) {
+          print(e);
+        }
+      } else {
+        MyMessageHandler.showSnackBar(_scaffoldKey, 'Lỗi chưa chọn tệp!');
+      }
+    } else {
+      MyMessageHandler.showSnackBar(_scaffoldKey, 'Hãy điền đầy đủ thông tin');
+    }
+  }
+
+  void uploadData() async {
+    if (filesUrlList.isNotEmpty) {
+      CollectionReference productRef =
+          FirebaseFirestore.instance.collection('products');
+
+      proId = const Uuid().v4();
+
+      await productRef.doc(proId).set({
+        'proid': proId,
+        'giaTien': _price,
+        'ngayChungTu': _ngayChungTu,
+        'noiDungThu': _noiDungThu,
+        'moTaNguonThu': _moTaNguonThu,
+        'giaTienBangChu': _priceByString,
+        'sid': FirebaseAuth.instance.currentUser!.uid,
+        'relatedFiles': filesUrlList,
+        'NguoiDuyet': dropdownNguoiDuyet,
+        'DonViNop': dropdownDonViNop,
+        'PhanLoai': dropdownPhanLoai,
+        'DuAn': dropdownDuAn,
+        'So': _soController.text,
+      }).whenComplete(() {
+        setState(() {
+          processing = false;
+          _paths = [];
+          filesUrlList = [];
+        });
+        _formKey.currentState!.reset();
+      });
+    } else {
+      setState(() {
+        processing = false;
+      });
+      print('no images');
+    }
+  }
+
+  void uploadProduct() async {
+    await uploadImages().whenComplete(() => uploadData());
   }
 
   void _pickFiles() async {
@@ -65,10 +164,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             : null,
       ))
           ?.files;
-      //  for (var file in _paths!) {
-      //   String fileExtension = file.path!.split('.').last;
-      //   print('File type: $fileExtension');
-      // }
+      print("_paths  $_paths");
     } on PlatformException catch (e) {
       _logException('Unsupported operation$e');
     } catch (e) {
@@ -84,25 +180,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
   }
 
   void _clearCachedFiles() async {
-    // _resetState();
-    // try {
-    //   bool? result = await FilePicker.platform.clearTemporaryFiles();
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(
-    //       backgroundColor: result! ? Colors.green : Colors.red,
-    //       content: Text((result
-    //           ? 'Temporary files removed with success.'
-    //           : 'Failed to clean temporary files')),
-    //     ),
-    //   );
-    // } on PlatformException catch (e) {
-    //   _logException('Unsupported operation' + e.toString());
-    // } catch (e) {
-    //   _logException(e.toString());
-    // } finally {
-    //   setState(() => _isLoading = false);
-    // }
-
     QuickAlert.show(
       context: context,
       type: QuickAlertType.warning,
@@ -117,45 +194,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
     );
-  }
-
-  void _selectFolder() async {
-    _resetState();
-    try {
-      String? path = await FilePicker.platform.getDirectoryPath();
-      setState(() {
-        _directoryPath = path;
-        _userAborted = path == null;
-      });
-    } on PlatformException catch (e) {
-      _logException('Unsupported operation$e');
-    } catch (e) {
-      _logException(e.toString());
-    } finally {
-      setState(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _saveFile() async {
-    _resetState();
-    try {
-      String? fileName = await FilePicker.platform.saveFile(
-        allowedExtensions: (_extension?.isNotEmpty ?? false)
-            ? _extension?.replaceAll(' ', '').split(',')
-            : null,
-        type: _pickingType,
-      );
-      setState(() {
-        _saveAsFileName = fileName;
-        _userAborted = fileName == null;
-      });
-    } on PlatformException catch (e) {
-      _logException('Unsupported operation$e');
-    } catch (e) {
-      _logException('Lỗi chưa chọn tệp!');
-    } finally {
-      setState(() => _isLoading = false);
-    }
   }
 
   void _logException(String message) {
@@ -186,6 +224,8 @@ class _ThuTienMatState extends State<ThuTienMat> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('EEEE  MM/dd/yyyy  hh:mm a').format(now);
     return ScaffoldMessenger(
       key: _scaffoldMessengerKey,
       child: Scaffold(
@@ -259,36 +299,20 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "Today",
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              Color.fromRGBO(120, 116, 134, 1)),
-                                    ),
-                                    SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(
-                                      "02/02/2022",
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              Color.fromRGBO(120, 116, 134, 1)),
-                                    ),
-                                    SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(
-                                      "17h00",
-                                      style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500,
-                                          color:
-                                              Color.fromRGBO(120, 116, 134, 1)),
+                                  children: [
+                                    Center(
+                                      child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 5),
+                                        child: Text(
+                                          formattedDate,
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w500,
+                                              color: Color.fromRGBO(
+                                                  120, 116, 134, 1)),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -296,30 +320,31 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                   spacing: 4.0,
                                   direction: Axis.horizontal,
                                   children: [
-                                    const FractionallySizedBox(
+                                    FractionallySizedBox(
                                       widthFactor: 0.47,
                                       child: TextField(
-                                        decoration: InputDecoration(
+                                        controller: _soController,
+                                        decoration: const InputDecoration(
                                             filled: true,
                                             fillColor: Color.fromRGBO(
                                                 179, 179, 179, 1),
                                             contentPadding:
-                                                const EdgeInsets.symmetric(
+                                                EdgeInsets.symmetric(
                                                     vertical: 14.74,
-                                                    horizontal: 24.34),
+                                                    horizontal: 10.34),
                                             border: OutlineInputBorder(),
                                             hintText: 'Số:',
                                             hintStyle: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 255, 255, 255)),
                                             focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                   color: Color.fromRGBO(
                                                       179, 179, 179, 1),
                                                   width: 1),
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                   color: Color.fromRGBO(
                                                       179, 179, 179, 1),
                                                   width: 1),
@@ -341,7 +366,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                           contentPadding:
                                               const EdgeInsets.symmetric(
                                                   vertical: 14.74,
-                                                  horizontal: 24.34),
+                                                  horizontal: 10.34),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: const BorderSide(
                                                 color: Color.fromRGBO(
@@ -352,7 +377,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                           ),
                                           focusedBorder:
                                               const OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
                                                 width: 1),
@@ -371,13 +396,13 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                         ),
                                         dropdownColor: const Color.fromRGBO(
                                             72, 181, 69, 1),
-                                        value: dropdownValue,
+                                        value: dropdownNguoiDuyet,
                                         onChanged: (String? newValue) {
                                           setState(() {
-                                            dropdownValue = newValue!;
+                                            dropdownNguoiDuyet = newValue!;
                                           });
                                         },
-                                        items: list
+                                        items: listNguoiDuyet
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
                                           return DropdownMenuItem<String>(
@@ -420,8 +445,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -435,18 +461,18 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
-                                        dropdownColor:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        value: dropdownValue,
-                                        onChanged: (String? newValue) {
+                                        dropdownColor: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        value: dropdownDonViNop,
+                                        onChanged: (String? value) {
                                           setState(() {
-                                            dropdownValue = newValue!;
+                                            dropdownDonViNop = value!;
                                           });
                                         },
-                                        items: list
+                                        items: listDonViNop
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
                                           return DropdownMenuItem<String>(
@@ -473,14 +499,23 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                               color: Colors.black),
                                         ),
                                       ),
-                                      DropdownButtonFormField(
-                                        isExpanded: true,
+                                      TextFormField(
+                                        onSaved: (value) {
+                                          _ngayChungTu = value!;
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return 'Không được bỏ trống';
+                                          }
+                                          return null;
+                                        },
                                         decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: 'Dslalhlcas',
                                           contentPadding:
                                               const EdgeInsets.symmetric(
                                                   vertical: 16.74,
                                                   horizontal: 24.34),
-                                          isDense: true,
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: const BorderSide(
                                                 color: Color.fromARGB(
@@ -489,8 +524,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -504,25 +540,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
-                                        dropdownColor:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        value: dropdownValue,
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            dropdownValue = newValue!;
-                                          });
-                                        },
-                                        items: list
-                                            .map<DropdownMenuItem<String>>(
-                                                (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
                                       ),
                                     ],
                                   ),
@@ -558,8 +578,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -573,18 +594,18 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
-                                        dropdownColor:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        value: dropdownValue,
-                                        onChanged: (String? newValue) {
+                                        dropdownColor: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        value: dropdownPhanLoai,
+                                        onChanged: (String? value) {
                                           setState(() {
-                                            dropdownValue = newValue!;
+                                            dropdownPhanLoai = value!;
                                           });
                                         },
-                                        items: list
+                                        items: listPhanLoai
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
                                           return DropdownMenuItem<String>(
@@ -612,8 +633,8 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                         ),
                                       ),
                                       TextFormField(
-                                        onChanged: (value) {
-                                          _noiDungThu = value;
+                                        onSaved: (value) {
+                                          _noiDungThu = value!;
                                         },
                                         validator: (value) {
                                           if (value!.isEmpty) {
@@ -663,7 +684,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                       const EdgeInsets.symmetric(vertical: 5),
                                   child: Column(
                                     children: [
-                                      Align(
+                                      const Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           "Tên Dự Án:",
@@ -707,15 +728,15 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                           fillColor: Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
-                                        dropdownColor:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        value: dropdownValue,
-                                        onChanged: (String? newValue) {
+                                        dropdownColor: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        value: dropdownDuAn,
+                                        onChanged: (String? value) {
                                           setState(() {
-                                            dropdownValue = newValue!;
+                                            dropdownDuAn = value!;
                                           });
                                         },
-                                        items: list
+                                        items: listDuAn
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
                                           return DropdownMenuItem<String>(
@@ -732,7 +753,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                       const EdgeInsets.symmetric(vertical: 5),
                                   child: Column(
                                     children: [
-                                      Align(
+                                      const Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           "Mô tả nguồn thu (nếu có):",
@@ -743,8 +764,8 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                         ),
                                       ),
                                       TextFormField(
-                                        onChanged: (value) {
-                                          _moTaNguonThu = value;
+                                        onSaved: (value) {
+                                          _moTaNguonThu = value!;
                                         },
                                         validator: (value) {
                                           if (value!.isEmpty) {
@@ -767,8 +788,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -782,7 +804,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                       ),
@@ -794,7 +816,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                       const EdgeInsets.symmetric(vertical: 5),
                                   child: Column(
                                     children: [
-                                      Align(
+                                      const Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           "Số tiền:",
@@ -868,8 +890,8 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                         ),
                                       ),
                                       TextFormField(
-                                        onChanged: (value) {
-                                          _priceByString = value;
+                                        onSaved: (value) {
+                                          _priceByString = value!;
                                         },
                                         validator: (value) {
                                           if (value!.isEmpty) {
@@ -894,7 +916,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                           ),
                                           focusedBorder:
                                               const OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -930,8 +952,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                               color: Colors.black),
                                         ),
                                       ),
-                                      Container(
-                                          child: Column(
+                                      Column(
                                         children: [
                                           Align(
                                             alignment: AlignmentDirectional
@@ -984,18 +1005,13 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                                       _directoryPath!),
                                                                 )
                                                               : _paths != null
-                                                                  ? SizedBox(
-                                                                      height: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.20,
+                                                                  ? SingleChildScrollView(
                                                                       child:
-                                                                          Scrollbar(
-                                                                              child:
-                                                                                  Wrap(
+                                                                          Wrap(
                                                                         children:
                                                                             _buildList(_paths!),
-                                                                      )))
+                                                                      ),
+                                                                    )
                                                                   : _saveAsFileName !=
                                                                           null
                                                                       ? ListTile(
@@ -1014,34 +1030,36 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             alignment:
                                                 AlignmentDirectional.center,
                                             child: Column(children: [
-                                              SizedBox(
-                                                height: 47,
-                                                width: 175,
-                                                child: ElevatedButton(
-                                                  onPressed: () {
-                                                    if (_formKey.currentState!
-                                                        .validate()) {
-                                                      _formKey.currentState!
-                                                          .save();
-                                                      _saveFile();
-                                                    } else {
-                                                      MyMessageHandler.showSnackBar(
-                                                          _scaffoldMessengerKey,
-                                                          "Hãy điền đầy đủ thông tin!");
-                                                    }
-                                                  },
-                                                  style: const ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStatePropertyAll(
-                                                            Color.fromRGBO(89,
-                                                                132, 62, 1)),
-                                                  ),
-                                                  child: const Text('Save',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w700)),
-                                                ),
-                                              ),
+                                              processing == true
+                                                  ? const CircularProgressIndicator(
+                                                      color: Colors.purple,
+                                                    )
+                                                  : SizedBox(
+                                                      height: 47,
+                                                      width: 175,
+                                                      child: ElevatedButton(
+                                                        onPressed: () {
+                                                          uploadProduct();
+                                                        },
+                                                        style:
+                                                            const ButtonStyle(
+                                                          backgroundColor:
+                                                              MaterialStatePropertyAll(
+                                                                  Color
+                                                                      .fromRGBO(
+                                                                          89,
+                                                                          132,
+                                                                          62,
+                                                                          1)),
+                                                        ),
+                                                        child: const Text(
+                                                            'Save',
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700)),
+                                                      ),
+                                                    ),
                                               const SizedBox(
                                                 height: 10,
                                               ),
@@ -1059,7 +1077,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             ]),
                                           )
                                         ],
-                                      )),
+                                      ),
                                     ],
                                   ),
                                 )
@@ -1076,6 +1094,179 @@ class _ThuTienMatState extends State<ThuTienMat> {
       ),
     );
   }
+
+  List<Widget> _buildList(List<PlatformFile> items) {
+    Widget icon;
+
+    Future<void> deleteFile(File file) async {
+  try {
+    if (await file.exists()) {
+      await file.delete();
+    }
+  } catch (e) {
+    // Error in getting access to the file.
+  }
+}
+
+    return items.map((item) {
+      String fileExtension = item!.path!.split('.').last;
+      if (fileExtension == 'txt') {
+        icon = Column(
+          children: [
+            Stack(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          color: const Color.fromARGB(159, 184, 182, 182)),
+                      child: const Icon(
+                        Icons.description,
+                        size: 40,
+                        color: Colors.black54,
+                      )),
+                ),
+                Positioned(
+                    top: -10,
+                    right: -10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                      onPressed: ()  {
+                        deleteFile(File(_paths));
+                      },
+                    ))
+              ],
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Container(
+              width: 90,
+              child: ReadMoreText(
+                item!.name.toString(),
+                trimCollapsedText: '',
+                trimLines: 1,
+                textAlign: TextAlign.center,
+                trimMode: TrimMode.Line,
+                trimLength: 100,
+                moreStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      } else if (fileExtension == 'pdf') {
+        icon = Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Container(
+                  height: 70,
+                  width: 70,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: const Color.fromARGB(159, 184, 182, 182)),
+                  child: const Icon(
+                    Icons.picture_as_pdf,
+                    size: 40,
+                    color: Colors.black54,
+                  )),
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Container(
+              width: 90,
+              child: ReadMoreText(
+                item!.name.toString(),
+                trimCollapsedText: '',
+                trimLines: 1,
+                textAlign: TextAlign.center,
+                trimMode: TrimMode.Line,
+                trimLength: 100,
+                moreStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      } else if (fileExtension == 'png' || fileExtension == 'jpg') {
+        icon = Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Container(
+                  height: 70,
+                  width: 70,
+                  child: Image(
+                    image: FileImage(File(item.path.toString())),
+                    fit: BoxFit.cover,
+                  )),
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Container(
+              width: 90,
+              child: ReadMoreText(
+                item!.name.toString(),
+                trimCollapsedText: '',
+                trimLines: 1,
+                textAlign: TextAlign.center,
+                trimMode: TrimMode.Line,
+                trimLength: 100,
+                moreStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      } else {
+        icon = Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Container(
+                  height: 70,
+                  width: 70,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: const Color.fromARGB(159, 184, 182, 182)),
+                  child: const Icon(
+                    Icons.insert_drive_file,
+                    size: 40,
+                    color: Colors.black54,
+                  )),
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Container(
+              width: 90,
+              child: ReadMoreText(
+                item!.name.toString(),
+                trimCollapsedText: '',
+                trimLines: 1,
+                textAlign: TextAlign.center,
+                trimMode: TrimMode.Line,
+                trimLength: 100,
+                moreStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        );
+      }
+      return icon;
+    }).toList();
+  }
 }
 
 extension PriceValidator on String {
@@ -1083,108 +1274,4 @@ extension PriceValidator on String {
     return RegExp(r'^((([1-9][0-9]*[\.]*)||([0][\.]*))([0-9]{1,2}))$')
         .hasMatch(this);
   }
-}
-
-List<Widget> _buildList(List<PlatformFile> items) {
-  Widget icon;
-
-  return items.map((item) {
-    String fileExtension = item!.path!.split('.').last;
-    if (fileExtension == 'txt') {
-      icon = Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: const Color.fromARGB(159, 184, 182, 182)),
-                child: const Icon(
-                  Icons.description,
-                  size: 40,
-                  color: Colors.black54,
-                )),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(item!.name.toString()),
-        ],
-      );
-    } else if (fileExtension == 'pdf') {
-      icon = Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: const Color.fromARGB(159, 184, 182, 182)),
-                child: const Icon(
-                  Icons.picture_as_pdf,
-                  size: 40,
-                  color: Colors.black54,
-                )),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(item!.name.toString()),
-        ],
-      );
-    } else if (fileExtension == 'png' || fileExtension == 'jpg') {
-      icon = Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Container(
-                height: 70,
-                width: 70,
-                child: Image(
-                  image: FileImage(File(item.path.toString())),
-                  fit: BoxFit.cover,
-                )),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(item!.name.toString()),
-        ],
-      );
-    } else {
-      icon = Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            child: Container(
-                height: 70,
-                width: 70,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: const Color.fromARGB(159, 184, 182, 182)),
-                child: const Icon(
-                  Icons.insert_drive_file,
-                  size: 40,
-                  color: Colors.black54,
-                )),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ReadMoreText(
-            item!.name.toString(),
-            trimLines: 1,
-            trimMode: TrimMode.Line,
-            moreStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-        ],
-      );
-    }
-    return icon;
-  }).toList();
 }

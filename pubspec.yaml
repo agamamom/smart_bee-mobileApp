@@ -64,6 +64,7 @@ dependencies:
   firebase_core_platform_interface: ^4.5.2
   google_sign_in: ^5.4.4
   readmore: ^2.1.0
+  uuid: ^3.0.6
 
   flutter_localizations:
     sdk: flutter
