@@ -38,13 +38,14 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Do you want to exit app?'),
+          title: const Text('Bạn có chắc sẽ hủy đăng ký!'),
           actions: [
             ElevatedButton(
                 onPressed: () => Navigator.pop(context, false),
                 child: const Text('No')),
             ElevatedButton(
-                onPressed: () => Navigator.pop(context, true),
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, '/login_screen'),
                 child: const Text('Yes')),
           ],
         ),
@@ -463,11 +464,6 @@ class _RegisterPageState extends State<RegisterPage> {
         )),
       ),
       onWillPop: () async {
-        // final isEditedPage = editedUser != savedUser;
-        // if(isEditedPage){
-        //   final shouldPop = await showWarningDialog()
-        // }
-        print("Back Button pressed!");
         final shouldPop = await showWarning(context);
         return shouldPop ?? false;
       },

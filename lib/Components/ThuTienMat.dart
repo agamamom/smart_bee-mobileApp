@@ -53,7 +53,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
   bool _userAborted = false;
   final bool _multiPick = true;
   final FileType _pickingType = FileType.any;
-  // final TextEditingController _controller = TextEditingController();
   TextEditingController _soController = TextEditingController();
   bool processing = false;
   late String proId;
@@ -113,7 +112,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
   void uploadData() async {
     if (filesUrlList.isNotEmpty) {
       CollectionReference productRef =
-          FirebaseFirestore.instance.collection('products');
+          FirebaseFirestore.instance.collection('ThuTienMat');
 
       proId = const Uuid().v4();
 

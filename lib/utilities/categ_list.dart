@@ -26,3 +26,24 @@ List<String> tenDuAn = [
   'Tên dự án 3',
   'Tên dự án 4',
 ];
+
+List<String> taiKhoanNhanTien = [
+  'Tài khoản 1',
+  'Tài khoản 2',
+  'Tài khoản 3',
+  'Tài khoản 4',
+];
+
+List<String> taiKhoanChi = [
+  'Tài khoản 1',
+  'Tài khoản 2',
+  'Tài khoản 3',
+  'Tài khoản 4',
+];
+
+List<String> nguoiNhanTien = [
+  'Người A',
+  'Người B',
+  'Người C',
+  'Người D',
+];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:smart_bee/icon/curved_icon2_icons.dart';
 import 'package:smart_bee/icon/curved_icon4_icons.dart';
 import 'package:smart_bee/icon/curved_icon5_icons.dart';
@@ -50,27 +51,46 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
 
   int index = 0;
 
+  Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Do you want to exit app?'),
+          actions: [
+            ElevatedButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text('No')),
+            ElevatedButton(
+                onPressed: () => SystemNavigator.pop(), child: Text('Yes')),
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-            child: Container(
-          child: getSelectedWidget(index: index),
-        )),
-      ),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 60.0,
-        items: items,
-        index: index,
-        onTap: (selectedIndex) {
-          setState(() {
-            index = selectedIndex;
-          });
-        },
-        color: Color.fromRGBO(89, 132, 62, 1),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        animationDuration: const Duration(milliseconds: 300),
+    return WillPopScope(
+      onWillPop: () async {
+        final shouldPop = await showWarning(context);
+        return shouldPop ?? false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Container(
+            child: getSelectedWidget(index: index),
+          ),
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          height: 60.0,
+          items: items,
+          index: index,
+          onTap: (selectedIndex) {
+            setState(() {
+              index = selectedIndex;
+            });
+          },
+          color: Color.fromRGBO(89, 132, 62, 1),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          animationDuration: const Duration(milliseconds: 300),
+        ),
       ),
     );
   }
