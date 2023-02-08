@@ -1098,18 +1098,27 @@ class _ThuTienMatState extends State<ThuTienMat> {
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
 
-    Future<void> deleteFile(File file) async {
-  try {
-    if (await file.exists()) {
-      await file.delete();
-    }
-  } catch (e) {
-    // Error in getting access to the file.
-  }
-}
+    // Future<void> deleteFile(File file) async {
+    //   try {
+    //     if (await file.exists()) {
+    //       await file.delete();
+    //     }
+    //   } catch (e) {
+    //     // Error in getting access to the file.
+    //   }
+    // }
 
-    return items.map((item) {
-      String fileExtension = item!.path!.split('.').last;
+    void _delete(int ref) {
+      // remove the element at the passed index
+      _paths!.removeAt(ref);
+      setState(() {});
+    }
+
+    return items.asMap().entries.map((item) {
+      var value = item.value;
+      var key = item.key;
+      String? fileDelete = value.path;
+      String fileExtension = value!.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(
           children: [
@@ -1138,8 +1147,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                         Icons.close,
                         color: Colors.red,
                       ),
-                      onPressed: ()  {
-                        deleteFile(File(_paths));
+                      onPressed: () {
+                        _delete(key);
+                        setState(() {});
                       },
                     ))
               ],
@@ -1150,7 +1160,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                item!.name.toString(),
+                value!.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1165,19 +1175,37 @@ class _ThuTienMatState extends State<ThuTienMat> {
       } else if (fileExtension == 'pdf') {
         icon = Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color.fromARGB(159, 184, 182, 182)),
-                  child: const Icon(
-                    Icons.picture_as_pdf,
-                    size: 40,
-                    color: Colors.black54,
-                  )),
+            Stack(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          color: const Color.fromARGB(159, 184, 182, 182)),
+                      child: const Icon(
+                        Icons.description,
+                        size: 40,
+                        color: Colors.black54,
+                      )),
+                ),
+                Positioned(
+                    top: -10,
+                    right: -10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        _delete(key);
+                        setState(() {});
+                      },
+                    ))
+              ],
             ),
             const SizedBox(
               height: 2,
@@ -1185,7 +1213,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                item!.name.toString(),
+                value!.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1200,15 +1228,37 @@ class _ThuTienMatState extends State<ThuTienMat> {
       } else if (fileExtension == 'png' || fileExtension == 'jpg') {
         icon = Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Container(
-                  height: 70,
-                  width: 70,
-                  child: Image(
-                    image: FileImage(File(item.path.toString())),
-                    fit: BoxFit.cover,
-                  )),
+            Stack(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          color: const Color.fromARGB(159, 184, 182, 182)),
+                      child: const Icon(
+                        Icons.description,
+                        size: 40,
+                        color: Colors.black54,
+                      )),
+                ),
+                Positioned(
+                    top: -10,
+                    right: -10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        _delete(key);
+                        setState(() {});
+                      },
+                    ))
+              ],
             ),
             const SizedBox(
               height: 2,
@@ -1216,7 +1266,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                item!.name.toString(),
+                value!.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1231,19 +1281,37 @@ class _ThuTienMatState extends State<ThuTienMat> {
       } else {
         icon = Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color.fromARGB(159, 184, 182, 182)),
-                  child: const Icon(
-                    Icons.insert_drive_file,
-                    size: 40,
-                    color: Colors.black54,
-                  )),
+            Stack(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          color: const Color.fromARGB(159, 184, 182, 182)),
+                      child: const Icon(
+                        Icons.description,
+                        size: 40,
+                        color: Colors.black54,
+                      )),
+                ),
+                Positioned(
+                    top: -10,
+                    right: -10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        _delete(key);
+                        setState(() {});
+                      },
+                    ))
+              ],
             ),
             const SizedBox(
               height: 2,
@@ -1251,7 +1319,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                item!.name.toString(),
+                value!.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
