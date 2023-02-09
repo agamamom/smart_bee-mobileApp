@@ -76,35 +76,35 @@ class _SoQuyState extends State<SoQuy> {
           child: Stack(
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/background.png'),
                         fit: BoxFit.cover)),
                 child: SingleChildScrollView(
                     child: Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 20.0),
                   child: Column(children: [
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       Image.asset(
                         'assets/images/calendar-icon.png',
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       const SettingButton()
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 14.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Welcome, hienltt',
                           style: TextStyle(
                               fontSize: 15.0,
@@ -116,112 +116,110 @@ class _SoQuyState extends State<SoQuy> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white),
                       child: Column(
                         children: [
-                          Text(
+                          const Text(
                             "Sổ quỹ",
                             style: TextStyle(
                                 fontSize: 35, fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           Align(
                             alignment: AlignmentDirectional.centerStart,
-                            child: Container(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: const [
-                                      // Icon(
-                                      //   Icons.list,
-                                      //   size: 16,
-                                      //   color: Colors.yellow,
-                                      // ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          '1111 Tiền Việt Nam',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255),
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  items: items
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.white,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: selectedValue,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedValue = value as String;
-                                    });
-                                  },
-                                  // icon: const Icon(
-                                  //   Icons.arrow_forward_ios_outlined,
-                                  // ),
-                                  iconSize: 24,
-                                  iconEnabledColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  iconDisabledColor: Colors.grey,
-                                  buttonHeight: 31,
-                                  buttonWidth: double.infinity,
-                                  buttonPadding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  buttonDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    border: Border.all(
-                                      color: Color.fromRGBO(72, 181, 69, 1),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: const [
+                                    // Icon(
+                                    //   Icons.list,
+                                    //   size: 16,
+                                    //   color: Colors.yellow,
+                                    // ),
+                                    SizedBox(
+                                      width: 4,
                                     ),
-                                    color: Color.fromRGBO(72, 181, 69, 1),
-                                  ),
-                                  buttonElevation: 2,
-                                  itemHeight: 40,
-                                  itemPadding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  dropdownMaxHeight: 200,
-                                  dropdownWidth: 200,
-                                  dropdownPadding: null,
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    color: Color.fromRGBO(72, 181, 69, 1),
-                                  ),
-                                  dropdownElevation: 8,
-                                  scrollbarRadius: const Radius.circular(4),
-                                  scrollbarThickness: 6,
-                                  scrollbarAlwaysShow: true,
-                                  offset: const Offset(0, -7),
+                                    Expanded(
+                                      child: Text(
+                                        '1111 Tiền Việt Nam',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                                items: items
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ))
+                                    .toList(),
+                                value: selectedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue = value as String;
+                                  });
+                                },
+                                // icon: const Icon(
+                                //   Icons.arrow_forward_ios_outlined,
+                                // ),
+                                iconSize: 24,
+                                iconEnabledColor:
+                                    Color.fromARGB(255, 255, 255, 255),
+                                iconDisabledColor: Colors.grey,
+                                buttonHeight: 31,
+                                buttonWidth: double.infinity,
+                                buttonPadding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                buttonDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: const Color.fromRGBO(72, 181, 69, 1),
+                                  ),
+                                  color: const Color.fromRGBO(72, 181, 69, 1),
+                                ),
+                                buttonElevation: 2,
+                                itemHeight: 40,
+                                itemPadding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                dropdownMaxHeight: 200,
+                                dropdownWidth: 200,
+                                dropdownPadding: null,
+                                dropdownDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: const Color.fromRGBO(72, 181, 69, 1),
+                                ),
+                                dropdownElevation: 8,
+                                scrollbarRadius: const Radius.circular(4),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                                offset: const Offset(0, -7),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Align(
@@ -278,7 +276,7 @@ class _SoQuyState extends State<SoQuy> {
                                   // ),
                                   iconSize: 24,
                                   iconEnabledColor:
-                                      Color.fromARGB(255, 83, 81, 81),
+                                      const Color.fromARGB(255, 83, 81, 81),
                                   iconDisabledColor: Colors.grey,
                                   buttonHeight: 31,
                                   buttonWidth: double.infinity,
@@ -287,9 +285,11 @@ class _SoQuyState extends State<SoQuy> {
                                   buttonDecoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(4),
                                     border: Border.all(
-                                      color: Color.fromRGBO(238, 238, 238, 1),
+                                      color: const Color.fromRGBO(
+                                          238, 238, 238, 1),
                                     ),
-                                    color: Color.fromRGBO(238, 238, 238, 1),
+                                    color:
+                                        const Color.fromRGBO(238, 238, 238, 1),
                                   ),
                                   buttonElevation: 2,
                                   itemHeight: 40,
@@ -300,7 +300,8 @@ class _SoQuyState extends State<SoQuy> {
                                   dropdownPadding: null,
                                   dropdownDecoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(4),
-                                    color: Color.fromRGBO(238, 238, 238, 1),
+                                    color:
+                                        const Color.fromRGBO(238, 238, 238, 1),
                                   ),
                                   dropdownElevation: 8,
                                   scrollbarRadius: const Radius.circular(4),
@@ -311,7 +312,7 @@ class _SoQuyState extends State<SoQuy> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Wrap(
@@ -328,9 +329,9 @@ class _SoQuyState extends State<SoQuy> {
                                       //initialValue: _initialValue,
                                       firstDate: DateTime(2000),
                                       lastDate: DateTime(2100),
-                                      icon: Icon(Icons.event),
+                                      icon: const Icon(Icons.event),
 
-                                      locale: Locale('en', 'US'),
+                                      locale: const Locale('en', 'US'),
                                       onChanged: (val) =>
                                           setState(() => _valueChanged3 = val),
                                       validator: (val) {
@@ -353,9 +354,9 @@ class _SoQuyState extends State<SoQuy> {
                                       //initialValue: _initialValue,
                                       firstDate: DateTime(2000),
                                       lastDate: DateTime(2100),
-                                      icon: Icon(Icons.event),
+                                      icon: const Icon(Icons.event),
 
-                                      locale: Locale('en', 'US'),
+                                      locale: const Locale('en', 'US'),
                                       onChanged: (val) =>
                                           setState(() => _valueChanged3 = val),
                                       validator: (val) {
@@ -369,16 +370,16 @@ class _SoQuyState extends State<SoQuy> {
                                   ),
                                 )
                               ]),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Table(
-                            columnWidths: {
+                            columnWidths: const {
                               0: FractionColumnWidth(.33),
                               1: FractionColumnWidth(.33)
                             },
                             border: TableBorder.all(
-                                color: Color.fromARGB(255, 219, 216, 216),
+                                color: const Color.fromARGB(255, 219, 216, 216),
                                 style: BorderStyle.solid,
                                 width: 1),
                             children: [
@@ -391,7 +392,7 @@ class _SoQuyState extends State<SoQuy> {
                                       child: Container(
                                         height: 35.0,
                                         alignment: Alignment.center,
-                                        child: Text('Ngày tháng',
+                                        child: const Text('Ngày tháng',
                                             style: TextStyle(
                                                 fontSize: 14.0,
                                                 color: Color.fromRGBO(
@@ -402,7 +403,7 @@ class _SoQuyState extends State<SoQuy> {
                                     Container(
                                       height: 35.0,
                                       alignment: Alignment.center,
-                                      child: Text('Thu',
+                                      child: const Text('Thu',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -412,7 +413,7 @@ class _SoQuyState extends State<SoQuy> {
                                     Container(
                                       alignment: Alignment.center,
                                       height: 35.0,
-                                      child: Text('Chi',
+                                      child: const Text('Chi',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -424,7 +425,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('01/01/2022',
+                                  child: const Text('01/01/2022',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -433,7 +434,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('10.000.000.000',
+                                  child: const Text('10.000.000.000',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -442,7 +443,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('Giám đốc điều hành',
+                                  child: const Text('Giám đốc điều hành',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -453,7 +454,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -462,7 +463,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -471,7 +472,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('10.000.000',
+                                  child: const Text('10.000.000',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -482,7 +483,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -491,7 +492,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -500,7 +501,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -511,7 +512,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -520,7 +521,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -529,7 +530,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -540,7 +541,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -549,7 +550,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -558,7 +559,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -569,7 +570,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -578,7 +579,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -587,7 +588,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -598,7 +599,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -607,7 +608,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -616,7 +617,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -627,7 +628,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -636,7 +637,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -645,7 +646,7 @@ class _SoQuyState extends State<SoQuy> {
                                 Container(
                                   height: 50.0,
                                   alignment: Alignment.center,
-                                  child: Text('',
+                                  child: const Text('',
                                       style: TextStyle(
                                           fontSize: 12.0,
                                           color: Color.fromRGBO(80, 82, 89, 1),
@@ -658,15 +659,15 @@ class _SoQuyState extends State<SoQuy> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       child: Row(
                         children: [
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Color.fromRGBO(69, 114, 173, 1)),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 10),
-                            child: Text(
+                            child: const Text(
                               "TỐN QUỸ",
                               style: TextStyle(
                                   color: Colors.white,
@@ -676,11 +677,11 @@ class _SoQuyState extends State<SoQuy> {
                           ),
                           Expanded(
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color.fromRGBO(165, 213, 254, 1)),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 20, horizontal: 10),
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "9.990.000.000",
                                   style: TextStyle(

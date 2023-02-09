@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
         routes: {
           '/login_screen': (context) => const FormLogin(),
           '/welcome': (context) => const WelcomePage(),
+          '/main_screen': (context) => const Curved_navigation_page(),
         },
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'Poppins'),

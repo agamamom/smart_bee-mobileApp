@@ -192,7 +192,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => const Curved_navigation_page()))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -1170,16 +1170,6 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
 
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
-
-    // Future<void> deleteFile(File file) async {
-    //   try {
-    //     if (await file.exists()) {
-    //       await file.delete();
-    //     }
-    //   } catch (e) {
-    //     // Error in getting access to the file.
-    //   }
-    // }
 
     void _delete(int ref) {
       // remove the element at the passed index

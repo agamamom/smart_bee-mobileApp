@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -80,7 +78,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   }
 
   Future<void> uploadImages() async {
-    print(_soController.text);
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       if (_paths!.isNotEmpty) {
@@ -96,7 +93,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             await ref.putFile(File(image.path!)).whenComplete(() async {
               await ref.getDownloadURL().then((value) {
                 filesUrlList.add(value);
-                print("filesUrlList $filesUrlList");
               });
             });
           }
@@ -165,7 +161,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             : null,
       ))
           ?.files;
-      print("_paths  $_paths");
     } on PlatformException catch (e) {
       _logException('Unsupported operation$e');
     } catch (e) {
@@ -190,7 +185,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => const Curved_navigation_page()))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -728,8 +723,9 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -743,7 +739,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                       ),
@@ -781,8 +777,9 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -796,7 +793,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                         dropdownColor: const Color.fromARGB(
@@ -1053,46 +1050,36 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
                                           ),
 
                                           // Builder(builder: (BuildContext context) =>_isLoading ?  ),
-                                          Container(
-                                            child: Builder(
-                                              builder: (BuildContext context) =>
-                                                  _isLoading
-                                                      ? Container(
-                                                          child:
-                                                              const CircularProgressIndicator(),
-                                                        )
-                                                      : _userAborted
-                                                          ? Container(
-                                                              child: const Text(
-                                                                'User has aborted the dialog',
-                                                              ),
-                                                            )
-                                                          : _directoryPath !=
-                                                                  null
-                                                              ? ListTile(
-                                                                  title: const Text(
-                                                                      'Directory path'),
-                                                                  subtitle: Text(
-                                                                      _directoryPath!),
-                                                                )
-                                                              : _paths != null
-                                                                  ? SingleChildScrollView(
-                                                                      child:
-                                                                          Wrap(
-                                                                        children:
-                                                                            _buildList(_paths!),
-                                                                      ),
-                                                                    )
-                                                                  : _saveAsFileName !=
-                                                                          null
-                                                                      ? ListTile(
-                                                                          title:
-                                                                              const Text('Save file'),
-                                                                          subtitle:
-                                                                              Text(_saveAsFileName!),
-                                                                        )
-                                                                      : const SizedBox(),
-                                            ),
+                                          Builder(
+                                            builder: (BuildContext context) => _isLoading
+                                                ? const CircularProgressIndicator()
+                                                : _userAborted
+                                                    ? const Text(
+                                                        'User has aborted the dialog',
+                                                      )
+                                                    : _directoryPath != null
+                                                        ? ListTile(
+                                                            title: const Text(
+                                                                'Directory path'),
+                                                            subtitle: Text(
+                                                                _directoryPath!),
+                                                          )
+                                                        : _paths != null
+                                                            ? SingleChildScrollView(
+                                                                child: Wrap(
+                                                                  children:
+                                                                      _buildList(
+                                                                          _paths!),
+                                                                ),
+                                                              )
+                                                            : _saveAsFileName != null
+                                                                ? ListTile(
+                                                                    title: const Text(
+                                                                        'Save file'),
+                                                                    subtitle: Text(
+                                                                        _saveAsFileName!),
+                                                                  )
+                                                                : const SizedBox(),
                                           ),
                                           const SizedBox(
                                             height: 25,
@@ -1169,16 +1156,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
 
-    // Future<void> deleteFile(File file) async {
-    //   try {
-    //     if (await file.exists()) {
-    //       await file.delete();
-    //     }
-    //   } catch (e) {
-    //     // Error in getting access to the file.
-    //   }
-    // }
-
     void _delete(int ref) {
       // remove the element at the passed index
       _paths!.removeAt(ref);
@@ -1189,7 +1166,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
       var value = item.value;
       var key = item.key;
       String? fileDelete = value.path;
-      String fileExtension = value!.path!.split('.').last;
+      String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(
           children: [
@@ -1228,10 +1205,10 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1281,10 +1258,10 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1334,10 +1311,10 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1387,10 +1364,10 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,

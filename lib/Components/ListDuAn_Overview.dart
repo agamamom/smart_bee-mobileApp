@@ -6,7 +6,7 @@ class ListDuAnOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 0.0),
+        margin: const EdgeInsets.symmetric(vertical: 0.0),
         child: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -17,22 +17,22 @@ class ListDuAnOverview extends StatelessWidget {
                   height: 7.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Color.fromRGBO(68, 131, 247, 1)),
+                      color: const Color.fromRGBO(68, 131, 247, 1)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12.0,
                 ),
-                Text(
+                const Text(
                   "Dự án",
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Color.fromRGBO(68, 131, 247, 1)),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8.0,
                 ),
-                Text(
+                const Text(
                   "(50)",
                   style: TextStyle(
                       fontSize: 12,
@@ -42,22 +42,24 @@ class ListDuAnOverview extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
               child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12.0, vertical: 2.0),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 2.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             "CAT",
                             style: TextStyle(
@@ -78,7 +80,7 @@ class ListDuAnOverview extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Tên DA: Pm chỉ huy điều hành",
                             style: TextStyle(
                                 fontSize: 12.0,
@@ -86,7 +88,7 @@ class ListDuAnOverview extends StatelessWidget {
                                 color: Color.fromRGBO(167, 167, 167, 1)),
                           ),
                           Row(
-                            children: [
+                            children: const [
                               Text(
                                 "Nhóm DA:",
                                 style: TextStyle(
@@ -107,7 +109,7 @@ class ListDuAnOverview extends StatelessWidget {
                             ],
                           ),
                           Row(
-                            children: [
+                            children: const [
                               Text(
                                 "Từ ngày:",
                                 style: TextStyle(
@@ -136,7 +138,7 @@ class ListDuAnOverview extends StatelessWidget {
                             'assets/images/pencil.png',
                             fit: BoxFit.cover,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12.0,
                           ),
                           Image.asset(
@@ -149,74 +151,81 @@ class ListDuAnOverview extends StatelessWidget {
                   )),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 6.0),
+              margin: const EdgeInsets.symmetric(vertical: 6.0),
               width: double.infinity,
               height: 73.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   border: Border.all(
-                      width: 2.0, color: Color.fromRGBO(208, 208, 208, 1))),
+                      width: 2.0,
+                      color: const Color.fromRGBO(208, 208, 208, 1))),
             )
           ]),
         ));

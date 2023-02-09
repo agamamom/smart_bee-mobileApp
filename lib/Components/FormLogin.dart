@@ -296,7 +296,7 @@ class _FormLoginState extends State<FormLogin> {
       email: taiKhoanController.text.trim(),
       password: matKhauController.text.trim(),
     );
-    Navigator.pushReplacementNamed(context, '/welcome');
+    Navigator.pushReplacementNamed(context, '/main_screen');
   }
 
   Future signInWithGoogle() async {
@@ -308,6 +308,6 @@ class _FormLoginState extends State<FormLogin> {
 
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-    Navigator.pushReplacementNamed(context, '/welcome');
+    Navigator.pushReplacementNamed(context, '/main_screen');
   }
 }

@@ -656,8 +656,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -671,7 +672,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                       ),
@@ -709,8 +710,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -724,7 +726,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                         dropdownColor: const Color.fromARGB(
@@ -981,46 +983,41 @@ class _ChiTienMatState extends State<ChiTienMat> {
                                           ),
 
                                           // Builder(builder: (BuildContext context) =>_isLoading ?  ),
-                                          Container(
-                                            child: Builder(
-                                              builder: (BuildContext context) =>
-                                                  _isLoading
-                                                      ? Container(
-                                                          child:
-                                                              const CircularProgressIndicator(),
-                                                        )
-                                                      : _userAborted
-                                                          ? Container(
-                                                              child: const Text(
-                                                                'User has aborted the dialog',
-                                                              ),
-                                                            )
-                                                          : _directoryPath !=
-                                                                  null
-                                                              ? ListTile(
-                                                                  title: const Text(
-                                                                      'Directory path'),
-                                                                  subtitle: Text(
-                                                                      _directoryPath!),
-                                                                )
-                                                              : _paths != null
-                                                                  ? SingleChildScrollView(
-                                                                      child:
-                                                                          Wrap(
-                                                                        children:
-                                                                            _buildList(_paths!),
-                                                                      ),
-                                                                    )
-                                                                  : _saveAsFileName !=
-                                                                          null
-                                                                      ? ListTile(
-                                                                          title:
-                                                                              const Text('Save file'),
-                                                                          subtitle:
-                                                                              Text(_saveAsFileName!),
-                                                                        )
-                                                                      : const SizedBox(),
-                                            ),
+                                          Builder(
+                                            builder: (BuildContext context) =>
+                                                _isLoading
+                                                    ? Container(
+                                                        child:
+                                                            const CircularProgressIndicator(),
+                                                      )
+                                                    : _userAborted
+                                                        ? const Text(
+                                                            'User has aborted the dialog',
+                                                          )
+                                                        : _directoryPath != null
+                                                            ? ListTile(
+                                                                title: const Text(
+                                                                    'Directory path'),
+                                                                subtitle: Text(
+                                                                    _directoryPath!),
+                                                              )
+                                                            : _paths != null
+                                                                ? SingleChildScrollView(
+                                                                    child: Wrap(
+                                                                      children:
+                                                                          _buildList(
+                                                                              _paths!),
+                                                                    ),
+                                                                  )
+                                                                : _saveAsFileName !=
+                                                                        null
+                                                                    ? ListTile(
+                                                                        title: const Text(
+                                                                            'Save file'),
+                                                                        subtitle:
+                                                                            Text(_saveAsFileName!),
+                                                                      )
+                                                                    : const SizedBox(),
                                           ),
                                           const SizedBox(
                                             height: 25,
@@ -1097,16 +1094,6 @@ class _ChiTienMatState extends State<ChiTienMat> {
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
 
-    // Future<void> deleteFile(File file) async {
-    //   try {
-    //     if (await file.exists()) {
-    //       await file.delete();
-    //     }
-    //   } catch (e) {
-    //     // Error in getting access to the file.
-    //   }
-    // }
-
     void _delete(int ref) {
       // remove the element at the passed index
       _paths!.removeAt(ref);
@@ -1117,7 +1104,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
       var value = item.value;
       var key = item.key;
       String? fileDelete = value.path;
-      String fileExtension = value!.path!.split('.').last;
+      String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(
           children: [
@@ -1156,10 +1143,10 @@ class _ChiTienMatState extends State<ChiTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1209,10 +1196,10 @@ class _ChiTienMatState extends State<ChiTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1262,10 +1249,10 @@ class _ChiTienMatState extends State<ChiTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1315,10 +1302,10 @@ class _ChiTienMatState extends State<ChiTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,

@@ -14,14 +14,14 @@ class ListDuAnCardList extends StatelessWidget {
         GestureDetector(
           onTap: () => {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => ForgotPassword()))
+                builder: (BuildContext context) => const ForgotPassword()))
           },
           child: Container(
             width: 163,
             height: 134,
             decoration: BoxDecoration(
               border: Border.all(
-                  width: 1.0, color: Color.fromARGB(255, 48, 200, 73)),
+                  width: 1.0, color: const Color.fromARGB(255, 48, 200, 73)),
               borderRadius: BorderRadius.circular(15),
             ),
             child:
@@ -29,11 +29,12 @@ class ListDuAnCardList extends StatelessWidget {
               Container(
                 width: 67,
                 height: 67,
-                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Color.fromRGBO(72, 181, 69, 1)),
-                child: Icon(
+                    color: const Color.fromRGBO(72, 181, 69, 1)),
+                child: const Icon(
                   Icons.add_box_outlined,
                   color: Color.fromARGB(255, 255, 255, 255),
                   size: 50.0,
@@ -43,8 +44,8 @@ class ListDuAnCardList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Text(
                       "Dự án",
                       style: TextStyle(
                           fontSize: 17.0,
@@ -53,8 +54,8 @@ class ListDuAnCardList extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Icon(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Icon(
                       Icons.arrow_forward,
                       color: Color.fromRGBO(72, 181, 69, 1),
                     ),
@@ -67,14 +68,14 @@ class ListDuAnCardList extends StatelessWidget {
         GestureDetector(
           onTap: () => {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => ForgotPassword()))
+                builder: (BuildContext context) => const ForgotPassword()))
           },
           child: Container(
             width: 163,
             height: 134,
             decoration: BoxDecoration(
               border: Border.all(
-                  width: 1.0, color: Color.fromARGB(255, 48, 200, 73)),
+                  width: 1.0, color: const Color.fromARGB(255, 48, 200, 73)),
               borderRadius: BorderRadius.circular(15),
             ),
             child:
@@ -82,11 +83,12 @@ class ListDuAnCardList extends StatelessWidget {
               Container(
                 width: 67,
                 height: 67,
-                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Color.fromRGBO(72, 181, 69, 1)),
-                child: Icon(
+                    color: const Color.fromRGBO(72, 181, 69, 1)),
+                child: const Icon(
                   Icons.add_box_outlined,
                   color: Color.fromARGB(255, 255, 255, 255),
                   size: 50.0,
@@ -96,8 +98,8 @@ class ListDuAnCardList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Text(
                       "Dự án",
                       style: TextStyle(
                           fontSize: 17.0,
@@ -106,8 +108,8 @@ class ListDuAnCardList extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Icon(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Icon(
                       Icons.arrow_forward,
                       color: Color.fromRGBO(72, 181, 69, 1),
                     ),
@@ -120,14 +122,14 @@ class ListDuAnCardList extends StatelessWidget {
         GestureDetector(
           onTap: () => {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => ForgotPassword()))
+                builder: (BuildContext context) => const ForgotPassword()))
           },
           child: Container(
             width: 163,
             height: 134,
             decoration: BoxDecoration(
               border: Border.all(
-                  width: 1.0, color: Color.fromARGB(255, 48, 200, 73)),
+                  width: 1.0, color: const Color.fromARGB(255, 48, 200, 73)),
               borderRadius: BorderRadius.circular(15),
             ),
             child:
@@ -135,11 +137,12 @@ class ListDuAnCardList extends StatelessWidget {
               Container(
                 width: 67,
                 height: 67,
-                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: Color.fromRGBO(72, 181, 69, 1)),
-                child: Icon(
+                    color: const Color.fromRGBO(72, 181, 69, 1)),
+                child: const Icon(
                   Icons.add_box_outlined,
                   color: Color.fromARGB(255, 255, 255, 255),
                   size: 50.0,
@@ -149,8 +152,8 @@ class ListDuAnCardList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Text(
                       "Dự án",
                       style: TextStyle(
                           fontSize: 17.0,
@@ -159,8 +162,8 @@ class ListDuAnCardList extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 12),
-                    child: Icon(
+                    margin: const EdgeInsets.symmetric(horizontal: 12),
+                    child: const Icon(
                       Icons.arrow_forward,
                       color: Color.fromRGBO(72, 181, 69, 1),
                     ),
