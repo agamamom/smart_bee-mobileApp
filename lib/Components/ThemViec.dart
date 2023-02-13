@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:smart_bee/Components/FilePicker.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
-import 'package:smart_bee/pages/CongViec.dart';
 import 'package:custom_check_box/custom_check_box.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
-import '../pages/TaiChinh.dart';
 import 'package:intl/intl.dart';
 
 class ThemViec extends StatefulWidget {
@@ -1780,7 +1772,7 @@ class _ThemViecState extends State<ThemViec> {
                                                         border:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -1793,40 +1785,41 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         filled: true,
-                                                        fillColor:
-                                                            Color.fromARGB(255,
-                                                                255, 255, 255),
+                                                        fillColor: const Color
+                                                                .fromARGB(
+                                                            255, 255, 255, 255),
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     "Số lượng:",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.w500),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     width: 70,
                                                     child: TextFormField(
                                                       decoration:
                                                           InputDecoration(
                                                         isDense: true,
                                                         contentPadding:
-                                                            EdgeInsets.all(4),
+                                                            const EdgeInsets
+                                                                .all(4),
                                                         enabledBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -1839,7 +1832,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         focusedBorder:
-                                                            OutlineInputBorder(
+                                                            const OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
                                                                   color: Color
@@ -1853,7 +1846,7 @@ class _ThemViecState extends State<ThemViec> {
                                                         border:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -1866,15 +1859,15 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         filled: true,
-                                                        fillColor:
-                                                            Color.fromARGB(255,
-                                                                255, 255, 255),
+                                                        fillColor: const Color
+                                                                .fromARGB(
+                                                            255, 255, 255, 255),
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Expanded(
@@ -1882,7 +1875,7 @@ class _ThemViecState extends State<ThemViec> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    const Text(
                                                       "Giờ công:",
                                                       style: TextStyle(
                                                           fontSize: 14,
@@ -1890,18 +1883,19 @@ class _ThemViecState extends State<ThemViec> {
                                                               FontWeight.w500,
                                                           color: Colors.black),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       height: 31,
                                                       child: TextFormField(
                                                         decoration:
                                                             InputDecoration(
                                                           isDense: true,
                                                           contentPadding:
-                                                              EdgeInsets.all(4),
+                                                              const EdgeInsets
+                                                                  .all(4),
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                                     color: Color
                                                                         .fromARGB(
                                                                             130,
@@ -1915,7 +1909,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                         4),
                                                           ),
                                                           focusedBorder:
-                                                              OutlineInputBorder(
+                                                              const OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
                                                                     color: Color
@@ -1929,7 +1923,7 @@ class _ThemViecState extends State<ThemViec> {
                                                           border:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                                     color: Color
                                                                         .fromARGB(
                                                                             130,
@@ -1943,12 +1937,9 @@ class _ThemViecState extends State<ThemViec> {
                                                                         4),
                                                           ),
                                                           filled: true,
-                                                          fillColor:
-                                                              Color.fromARGB(
-                                                                  255,
-                                                                  255,
-                                                                  255,
-                                                                  255),
+                                                          fillColor: const Color
+                                                                  .fromARGB(255,
+                                                              255, 255, 255),
                                                         ),
                                                       ),
                                                     ),
@@ -1958,7 +1949,7 @@ class _ThemViecState extends State<ThemViec> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 6,
                                         ),
                                         Row(
@@ -1969,7 +1960,7 @@ class _ThemViecState extends State<ThemViec> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   "Hạn hoàn thành:",
                                                   style: TextStyle(
                                                       fontSize: 14,
@@ -1977,30 +1968,32 @@ class _ThemViecState extends State<ThemViec> {
                                                           FontWeight.w500,
                                                       color: Colors.black),
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   height: 31,
                                                   width: 162,
                                                   child: TextFormField(
                                                     decoration: InputDecoration(
                                                       isDense: true,
                                                       contentPadding:
-                                                          EdgeInsets.all(4),
+                                                          const EdgeInsets.all(
+                                                              4),
                                                       enabledBorder:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    130,
-                                                                    79,
-                                                                    82,
-                                                                    78),
-                                                            width: 1),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        130,
+                                                                        79,
+                                                                        82,
+                                                                        78),
+                                                                width: 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4),
                                                       ),
                                                       focusedBorder:
-                                                          OutlineInputBorder(
+                                                          const OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                             color:
                                                                 Color.fromARGB(
@@ -2012,21 +2005,26 @@ class _ThemViecState extends State<ThemViec> {
                                                       ),
                                                       border:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    130,
-                                                                    79,
-                                                                    82,
-                                                                    78),
-                                                            width: 1),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        130,
+                                                                        79,
+                                                                        82,
+                                                                        78),
+                                                                width: 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4),
                                                       ),
                                                       filled: true,
-                                                      fillColor: Color.fromARGB(
-                                                          255, 255, 255, 255),
+                                                      fillColor:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
                                                     ),
                                                   ),
                                                 ),
@@ -2034,24 +2032,24 @@ class _ThemViecState extends State<ThemViec> {
                                             )
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         Row(
                                           children: [
-                                            Icon(Icons.add,
+                                            const Icon(Icons.add,
                                                 size: 16,
                                                 color: Color.fromRGBO(
                                                     125, 125, 125, 1)),
-                                            Text("Thêm nhân sự hỗ trợ:",
+                                            const Text("Thêm nhân sự hỗ trợ:",
                                                 style: TextStyle(
                                                     color: Color.fromRGBO(
                                                         125, 125, 125, 1))),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 6,
                                             ),
                                             Wrap(
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   "tuanbv, truongpv",
                                                   style: TextStyle(
@@ -2062,17 +2060,17 @@ class _ThemViecState extends State<ThemViec> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         Container(
                                           height: 230,
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8, vertical: 15),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 228, 250, 214, 1),
                                           ),
                                           child: ListView(
@@ -2080,23 +2078,26 @@ class _ThemViecState extends State<ThemViec> {
                                               Column(children: [
                                                 Row(
                                                   children: [
-                                                    Text(
+                                                    const Text(
                                                       "Đăng ký làm ngoài giờ",
                                                       style: TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.black),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 4,
                                                     ),
                                                     CustomCheckBox(
                                                       value: shouldCheck,
                                                       shouldShowBorder: true,
                                                       borderColor:
-                                                          Color.fromARGB(255,
-                                                              132, 130, 130),
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              132,
+                                                              130,
+                                                              130),
                                                       checkedFillColor:
-                                                          Color.fromRGBO(
+                                                          const Color.fromRGBO(
                                                               72, 181, 69, 1),
                                                       borderRadius: 4,
                                                       borderWidth: 1,
@@ -2110,67 +2111,62 @@ class _ThemViecState extends State<ThemViec> {
                                                     ),
                                                   ],
                                                 ),
-                                                Container(
-                                                  child: Row(
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "Ngày-tháng:",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          Container(
-                                                            width: 280,
-                                                            child:
-                                                                DateTimePicker(
-                                                              type:
-                                                                  DateTimePickerType
-                                                                      .date,
-                                                              //dateMask: 'yyyy/MM/dd',
-                                                              controller:
-                                                                  _controller3,
-                                                              //initialValue: _initialValue,
-                                                              firstDate:
-                                                                  DateTime(
-                                                                      2000),
-                                                              lastDate:
-                                                                  DateTime(
-                                                                      2100),
-                                                              icon: Icon(
-                                                                  Icons.event),
+                                                Row(
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          "Ngày-tháng:",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        Container(
+                                                          width: 280,
+                                                          child: DateTimePicker(
+                                                            type:
+                                                                DateTimePickerType
+                                                                    .date,
+                                                            //dateMask: 'yyyy/MM/dd',
+                                                            controller:
+                                                                _controller3,
+                                                            //initialValue: _initialValue,
+                                                            firstDate:
+                                                                DateTime(2000),
+                                                            lastDate:
+                                                                DateTime(2100),
+                                                            icon: Icon(
+                                                                Icons.event),
 
-                                                              locale: Locale(
-                                                                  'en', 'US'),
-                                                              onChanged: (val) =>
-                                                                  setState(() =>
-                                                                      _valueChanged3 =
-                                                                          val),
-                                                              validator: (val) {
+                                                            locale: Locale(
+                                                                'en', 'US'),
+                                                            onChanged: (val) =>
                                                                 setState(() =>
-                                                                    _valueToValidate3 =
+                                                                    _valueChanged3 =
+                                                                        val),
+                                                            validator: (val) {
+                                                              setState(() =>
+                                                                  _valueToValidate3 =
+                                                                      val ??
+                                                                          '');
+                                                              return null;
+                                                            },
+                                                            onSaved: (val) =>
+                                                                setState(() =>
+                                                                    _valueSaved3 =
                                                                         val ??
-                                                                            '');
-                                                                return null;
-                                                              },
-                                                              onSaved: (val) =>
-                                                                  setState(() =>
-                                                                      _valueSaved3 =
-                                                                          val ??
-                                                                              ''),
-                                                            ),
+                                                                            ''),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
                                                 ),
                                                 SizedBox(
                                                   height: 20,

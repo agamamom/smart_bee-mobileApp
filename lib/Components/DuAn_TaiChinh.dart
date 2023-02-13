@@ -28,7 +28,7 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Tài chính",
                 style: TextStyle(
                     fontSize: 28.0,
@@ -77,22 +77,22 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                           yValueMapper: (ChartData data, _) => data.y3)
                     ]),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Tháng này",
                 style: TextStyle(
                     color: Color.fromRGBO(7, 98, 65, 1),
                     fontWeight: FontWeight.w700),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 height: 41,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  boxShadow: [
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  boxShadow: const [
                     BoxShadow(
                         color: Color.fromARGB(127, 123, 120, 120),
                         blurRadius: 1.0,
@@ -101,10 +101,10 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                   ],
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "Thu:",
                         style: TextStyle(

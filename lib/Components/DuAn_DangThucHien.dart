@@ -7,12 +7,12 @@ class DuAnDangThucHien extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 0.0),
+        margin: const EdgeInsets.symmetric(vertical: 0.0),
         child: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-              Text(
+              const Text(
                 "Dự án",
                 style: TextStyle(
                     fontSize: 28.0,
@@ -26,12 +26,12 @@ class DuAnDangThucHien extends StatelessWidget {
                     height: 7.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromRGBO(68, 131, 247, 1)),
+                        color: const Color.fromRGBO(68, 131, 247, 1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12.0,
                   ),
-                  Text(
+                  const Text(
                     "Đang thực hiện",
                     style: TextStyle(
                         fontSize: 14,
@@ -41,10 +41,11 @@ class DuAnDangThucHien extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 12),
-                padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 11.0),
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 11.0),
                 decoration: BoxDecoration(
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 183, 180, 180),
                           blurRadius: 1.0,
@@ -52,43 +53,41 @@ class DuAnDangThucHien extends StatelessWidget {
                           offset: Offset(0, 6)),
                     ],
                     borderRadius: BorderRadius.circular(8.0),
-                    color: Color.fromARGB(255, 252, 252, 252)),
+                    color: const Color.fromARGB(255, 252, 252, 252)),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Pm Quản lý vi bằng",
                         style: TextStyle(
                             color: Color.fromRGBO(60, 85, 122, 1),
                             fontWeight: FontWeight.w500,
                             fontSize: 18.0),
                       ),
-                      Container(
-                        child: Row(children: [
-                          Image.asset(
-                            'assets/images/pencil.png',
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(
-                            width: 28.0,
-                          ),
-                          Image.asset(
-                            'assets/images/three-dot.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ]),
-                      )
+                      Row(children: [
+                        Image.asset(
+                          'assets/images/pencil.png',
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(
+                          width: 28.0,
+                        ),
+                        Image.asset(
+                          'assets/images/three-dot.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ])
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Start date',
                             style: TextStyle(
@@ -105,12 +104,12 @@ class DuAnDangThucHien extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Stop date",
                             style: TextStyle(
@@ -129,7 +128,7 @@ class DuAnDangThucHien extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
@@ -138,61 +137,64 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Thành viên",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.0,
                                 color: Color.fromRGBO(113, 121, 134, 1)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 3.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 5.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 4.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Container(
@@ -202,9 +204,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(48),
                                     border: Border.all(
                                         width: 1,
-                                        color:
-                                            Color.fromARGB(253, 63, 62, 62))),
-                                child: Icon(Icons.add_sharp),
+                                        color: const Color.fromARGB(
+                                            253, 63, 62, 62))),
+                                child: const Icon(Icons.add_sharp),
                               ),
                             ],
                           )
@@ -213,22 +215,22 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Leader",
                             style: TextStyle(
                                 color: Color.fromRGBO(68, 131, 247, 1),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
-                          Container(
+                          SizedBox(
                             width: 28,
                             height: 29,
                             child: ClipOval(
                               child: SizedBox.fromSize(
-                                size: Size.fromRadius(48), // Image radius
+                                size: const Size.fromRadius(48), // Image radius
                                 child: Image.asset(
                                     'assets/images/Ellipse 5.png',
                                     fit: BoxFit.cover),
@@ -239,12 +241,12 @@ class DuAnDangThucHien extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "60/72 chức năng",
                         style: TextStyle(
@@ -262,12 +264,12 @@ class DuAnDangThucHien extends StatelessWidget {
                               top: 1,
                               left: -10,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 12.0),
                                 child: LinearPercentIndicator(
                                   width: MediaQuery.of(context).size.width - 60,
                                   animation: true,
                                   lineHeight: 15.36,
-                                  center: Text(
+                                  center: const Text(
                                     "83%",
                                     style: TextStyle(
                                         fontSize: 11.0,
@@ -278,9 +280,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                   percent: 0.8,
                                   barRadius: const Radius.circular(16),
                                   backgroundColor:
-                                      Color.fromARGB(126, 220, 217, 217),
+                                      const Color.fromARGB(126, 220, 217, 217),
                                   progressColor:
-                                      Color.fromRGBO(68, 131, 247, 1),
+                                      const Color.fromRGBO(68, 131, 247, 1),
                                 ),
                               ))
                         ],
@@ -294,12 +296,12 @@ class DuAnDangThucHien extends StatelessWidget {
                     height: 7.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromRGBO(255, 165, 0, 1)),
+                        color: const Color.fromRGBO(255, 165, 0, 1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12.0,
                   ),
-                  Text(
+                  const Text(
                     "Đang thực hiện",
                     style: TextStyle(
                         fontSize: 14,
@@ -309,10 +311,11 @@ class DuAnDangThucHien extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 12),
-                padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 11.0),
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 11.0),
                 decoration: BoxDecoration(
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 183, 180, 180),
                           blurRadius: 1.0,
@@ -320,43 +323,41 @@ class DuAnDangThucHien extends StatelessWidget {
                           offset: Offset(0, 6)),
                     ],
                     borderRadius: BorderRadius.circular(8.0),
-                    color: Color.fromARGB(255, 252, 252, 252)),
+                    color: const Color.fromARGB(255, 252, 252, 252)),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Pm Quản lý vi bằng",
                         style: TextStyle(
                             color: Color.fromRGBO(60, 85, 122, 1),
                             fontWeight: FontWeight.w500,
                             fontSize: 18.0),
                       ),
-                      Container(
-                        child: Row(children: [
-                          Image.asset(
-                            'assets/images/pencil.png',
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(
-                            width: 28.0,
-                          ),
-                          Image.asset(
-                            'assets/images/three-dot.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ]),
-                      )
+                      Row(children: [
+                        Image.asset(
+                          'assets/images/pencil.png',
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(
+                          width: 28.0,
+                        ),
+                        Image.asset(
+                          'assets/images/three-dot.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ])
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Start date',
                             style: TextStyle(
@@ -373,12 +374,12 @@ class DuAnDangThucHien extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Stop date",
                             style: TextStyle(
@@ -397,7 +398,7 @@ class DuAnDangThucHien extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
@@ -406,61 +407,64 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Thành viên",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.0,
                                 color: Color.fromRGBO(113, 121, 134, 1)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 3.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 5.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 4.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Container(
@@ -470,9 +474,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(48),
                                     border: Border.all(
                                         width: 1,
-                                        color:
-                                            Color.fromARGB(253, 63, 62, 62))),
-                                child: Icon(Icons.add_sharp),
+                                        color: const Color.fromARGB(
+                                            253, 63, 62, 62))),
+                                child: const Icon(Icons.add_sharp),
                               ),
                             ],
                           )
@@ -481,22 +485,22 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Leader",
                             style: TextStyle(
                                 color: Color.fromRGBO(255, 165, 0, 1),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
-                          Container(
+                          SizedBox(
                             width: 28,
                             height: 29,
                             child: ClipOval(
                               child: SizedBox.fromSize(
-                                size: Size.fromRadius(48), // Image radius
+                                size: const Size.fromRadius(48), // Image radius
                                 child: Image.asset(
                                     'assets/images/Ellipse 5.png',
                                     fit: BoxFit.cover),
@@ -507,12 +511,12 @@ class DuAnDangThucHien extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "60/72 chức năng",
                         style: TextStyle(
@@ -530,12 +534,12 @@ class DuAnDangThucHien extends StatelessWidget {
                               top: 1,
                               left: -10,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 12.0),
                                 child: LinearPercentIndicator(
                                   width: MediaQuery.of(context).size.width - 60,
                                   animation: true,
                                   lineHeight: 15.36,
-                                  center: Text(
+                                  center: const Text(
                                     "83%",
                                     style: TextStyle(
                                         fontSize: 11.0,
@@ -546,8 +550,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                   percent: 0.8,
                                   barRadius: const Radius.circular(16),
                                   backgroundColor:
-                                      Color.fromARGB(126, 220, 217, 217),
-                                  progressColor: Color.fromRGBO(255, 165, 0, 1),
+                                      const Color.fromARGB(126, 220, 217, 217),
+                                  progressColor:
+                                      const Color.fromRGBO(255, 165, 0, 1),
                                 ),
                               ))
                         ],
@@ -555,10 +560,11 @@ class DuAnDangThucHien extends StatelessWidget {
                 ]),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 12),
-                padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 11.0),
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 11.0),
                 decoration: BoxDecoration(
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 183, 180, 180),
                           blurRadius: 1.0,
@@ -566,43 +572,41 @@ class DuAnDangThucHien extends StatelessWidget {
                           offset: Offset(0, 6)),
                     ],
                     borderRadius: BorderRadius.circular(8.0),
-                    color: Color.fromARGB(255, 252, 252, 252)),
+                    color: const Color.fromARGB(255, 252, 252, 252)),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Pm Quản lý vi bằng",
                         style: TextStyle(
                             color: Color.fromRGBO(60, 85, 122, 1),
                             fontWeight: FontWeight.w500,
                             fontSize: 18.0),
                       ),
-                      Container(
-                        child: Row(children: [
-                          Image.asset(
-                            'assets/images/pencil.png',
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(
-                            width: 28.0,
-                          ),
-                          Image.asset(
-                            'assets/images/three-dot.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ]),
-                      )
+                      Row(children: [
+                        Image.asset(
+                          'assets/images/pencil.png',
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(
+                          width: 28.0,
+                        ),
+                        Image.asset(
+                          'assets/images/three-dot.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ])
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Start date',
                             style: TextStyle(
@@ -619,12 +623,12 @@ class DuAnDangThucHien extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Stop date",
                             style: TextStyle(
@@ -643,7 +647,7 @@ class DuAnDangThucHien extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
@@ -652,61 +656,64 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Thành viên",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.0,
                                 color: Color.fromRGBO(113, 121, 134, 1)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 3.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 5.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 4.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Container(
@@ -716,9 +723,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(48),
                                     border: Border.all(
                                         width: 1,
-                                        color:
-                                            Color.fromARGB(253, 63, 62, 62))),
-                                child: Icon(Icons.add_sharp),
+                                        color: const Color.fromARGB(
+                                            253, 63, 62, 62))),
+                                child: const Icon(Icons.add_sharp),
                               ),
                             ],
                           )
@@ -727,22 +734,22 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Leader",
                             style: TextStyle(
                                 color: Color.fromRGBO(255, 165, 0, 1),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
-                          Container(
+                          SizedBox(
                             width: 28,
                             height: 29,
                             child: ClipOval(
                               child: SizedBox.fromSize(
-                                size: Size.fromRadius(48), // Image radius
+                                size: const Size.fromRadius(48), // Image radius
                                 child: Image.asset(
                                     'assets/images/Ellipse 5.png',
                                     fit: BoxFit.cover),
@@ -753,12 +760,12 @@ class DuAnDangThucHien extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "60/72 chức năng",
                         style: TextStyle(
@@ -776,12 +783,12 @@ class DuAnDangThucHien extends StatelessWidget {
                               top: 1,
                               left: -10,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 12.0),
                                 child: LinearPercentIndicator(
                                   width: MediaQuery.of(context).size.width - 60,
                                   animation: true,
                                   lineHeight: 15.36,
-                                  center: Text(
+                                  center: const Text(
                                     "83%",
                                     style: TextStyle(
                                         fontSize: 11.0,
@@ -792,8 +799,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                   percent: 0.8,
                                   barRadius: const Radius.circular(16),
                                   backgroundColor:
-                                      Color.fromARGB(126, 220, 217, 217),
-                                  progressColor: Color.fromRGBO(255, 165, 0, 1),
+                                      const Color.fromARGB(126, 220, 217, 217),
+                                  progressColor:
+                                      const Color.fromRGBO(255, 165, 0, 1),
                                 ),
                               ))
                         ],
@@ -807,12 +815,12 @@ class DuAnDangThucHien extends StatelessWidget {
                     height: 7.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromRGBO(214, 7, 7, 1)),
+                        color: const Color.fromRGBO(214, 7, 7, 1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12.0,
                   ),
-                  Text(
+                  const Text(
                     "Hoàn thành",
                     style: TextStyle(
                         fontSize: 14,
@@ -822,10 +830,11 @@ class DuAnDangThucHien extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 12),
-                padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 11.0),
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 18.0, vertical: 11.0),
                 decoration: BoxDecoration(
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: Color.fromARGB(255, 183, 180, 180),
                           blurRadius: 1.0,
@@ -833,43 +842,41 @@ class DuAnDangThucHien extends StatelessWidget {
                           offset: Offset(0, 6)),
                     ],
                     borderRadius: BorderRadius.circular(8.0),
-                    color: Color.fromARGB(255, 252, 252, 252)),
+                    color: const Color.fromARGB(255, 252, 252, 252)),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Pm Quản lý vi bằng",
                         style: TextStyle(
                             color: Color.fromRGBO(60, 85, 122, 1),
                             fontWeight: FontWeight.w500,
                             fontSize: 18.0),
                       ),
-                      Container(
-                        child: Row(children: [
-                          Image.asset(
-                            'assets/images/pencil.png',
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(
-                            width: 28.0,
-                          ),
-                          Image.asset(
-                            'assets/images/three-dot.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ]),
-                      )
+                      Row(children: [
+                        Image.asset(
+                          'assets/images/pencil.png',
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(
+                          width: 28.0,
+                        ),
+                        Image.asset(
+                          'assets/images/three-dot.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ])
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Start date',
                             style: TextStyle(
@@ -886,12 +893,12 @@ class DuAnDangThucHien extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Stop date",
                             style: TextStyle(
@@ -910,7 +917,7 @@ class DuAnDangThucHien extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
@@ -919,49 +926,51 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Thành viên",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.0,
                                 color: Color.fromRGBO(113, 121, 134, 1)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 3.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 5.png',
                                         fit: BoxFit.cover),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
-                              Container(
+                              SizedBox(
                                 width: 28,
                                 height: 29,
                                 child: ClipOval(
@@ -973,7 +982,7 @@ class DuAnDangThucHien extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 4,
                               ),
                               Container(
@@ -983,8 +992,8 @@ class DuAnDangThucHien extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(48),
                                     border: Border.all(
                                         width: 1,
-                                        color:
-                                            Color.fromARGB(253, 63, 62, 62))),
+                                        color: const Color.fromARGB(
+                                            253, 63, 62, 62))),
                                 child: Icon(Icons.add_sharp),
                               ),
                             ],
@@ -994,22 +1003,22 @@ class DuAnDangThucHien extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Leader",
                             style: TextStyle(
                                 color: Color.fromRGBO(214, 7, 7, 1),
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
-                          Container(
+                          SizedBox(
                             width: 28,
                             height: 29,
                             child: ClipOval(
                               child: SizedBox.fromSize(
-                                size: Size.fromRadius(48), // Image radius
+                                size: const Size.fromRadius(48), // Image radius
                                 child: Image.asset(
                                     'assets/images/Ellipse 5.png',
                                     fit: BoxFit.cover),
@@ -1020,12 +1029,12 @@ class DuAnDangThucHien extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "60/72 chức năng",
                         style: TextStyle(
@@ -1043,12 +1052,12 @@ class DuAnDangThucHien extends StatelessWidget {
                               top: 1,
                               left: -10,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 12.0),
                                 child: LinearPercentIndicator(
                                   width: MediaQuery.of(context).size.width - 60,
                                   animation: true,
                                   lineHeight: 15.36,
-                                  center: Text(
+                                  center: const Text(
                                     "83%",
                                     style: TextStyle(
                                         fontSize: 11.0,
@@ -1059,8 +1068,9 @@ class DuAnDangThucHien extends StatelessWidget {
                                   percent: 0.8,
                                   barRadius: const Radius.circular(16),
                                   backgroundColor:
-                                      Color.fromARGB(126, 220, 217, 217),
-                                  progressColor: Color.fromRGBO(214, 7, 7, 1),
+                                      const Color.fromARGB(126, 220, 217, 217),
+                                  progressColor:
+                                      const Color.fromRGBO(214, 7, 7, 1),
                                 ),
                               ))
                         ],

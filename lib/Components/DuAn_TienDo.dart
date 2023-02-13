@@ -455,7 +455,7 @@ class DuAn_TienDo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -465,7 +465,45 @@ class DuAn_TienDo extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Column(children: [
+                    Transform.translate(
+                      offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
+                      child: Image.asset(
+                        'assets/images/Polygon15.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    LinearPercentIndicator(
+                      padding: EdgeInsets.zero,
+                      lineHeight: 9,
+                      barRadius: const Radius.circular(16),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
+                      percent: 0.9,
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
+                    ),
+                  ]),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  width: 70,
+                  height: 14,
+                  child: const Text(
+                    'àHkasfhhA',
+                    style: TextStyle(
+                        fontSize: 12, color: Color.fromRGBO(167, 167, 167, 1)),
+                  )),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
@@ -479,16 +517,16 @@ class DuAn_TienDo extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
@@ -497,78 +535,38 @@ class DuAn_TienDo extends StatelessWidget {
               Container(
                   width: 70,
                   height: 14,
-                  child: Text(
+                  child: const Text(
                     'àHkasfhhA',
                     style: TextStyle(
                         fontSize: 12, color: Color.fromRGBO(167, 167, 167, 1)),
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
-                  child: Column(children: [
-                    Transform.translate(
-                      offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
-                        'assets/images/Polygon15.png',
-                        fit: BoxFit.cover,
-                      )),
-                    ),
-                    LinearPercentIndicator(
-                      padding: EdgeInsets.zero,
-                      lineHeight: 9,
-                      barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
-                      percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
-                    ),
-                  ]),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                  width: 70,
-                  height: 14,
-                  child: Text(
-                    'àHkasfhhA',
-                    style: TextStyle(
-                        fontSize: 12, color: Color.fromRGBO(167, 167, 167, 1)),
-                  )),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 12,
                   ),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
         ],
