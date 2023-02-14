@@ -11,7 +11,7 @@ class TaiKhoanNhanTienModel {
     if (json['result'] != null) {
       result = <Result>[];
       json['result'].forEach((v) {
-        result!.add(Result.fromJson(v));
+        result!.add(new Result.fromJson(v));
       });
     }
     success = json['success'];
@@ -20,7 +20,7 @@ class TaiKhoanNhanTienModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
       data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
@@ -66,7 +66,7 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['soTaiKhoanCapTren'] = this.soTaiKhoanCapTren;
     data['soTaiKhoan'] = this.soTaiKhoan;

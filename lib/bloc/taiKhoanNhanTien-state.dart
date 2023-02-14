@@ -12,8 +12,8 @@ class TaiKhoanNhanTienInitial extends TaiKhoanNhanTienState {}
 class TaiKhoanNhanTienLoading extends TaiKhoanNhanTienState {}
 
 class TaiKhoanNhanTienLoaded extends TaiKhoanNhanTienState {
-  final TaiKhoanNhanTienModel covidModel;
-  const TaiKhoanNhanTienLoaded(this.covidModel);
+  final TaiKhoanNhanTienModel taiKhoanNhanTienModel;
+  const TaiKhoanNhanTienLoaded(this.taiKhoanNhanTienModel);
 }
 
 class TaiKhoanNhanTienError extends TaiKhoanNhanTienState {

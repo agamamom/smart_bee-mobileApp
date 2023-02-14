@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
@@ -14,6 +15,9 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:readmore/readmore.dart';
 import 'package:uuid/uuid.dart';
 import 'package:smart_bee/utilities/categ_list.dart';
+
+import '../bloc/taiKhoanNhanTien-bloc.dart';
+import 'package:smart_bee/model/taiKhoanNhanTien-model.dart';
 
 List<String> listNguoiDuyet = nguoiDuyet;
 List<String> listDonViNop = donViNop;
@@ -59,6 +63,8 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   late String _moTaNguonThu;
   late String _priceByString;
 
+  final TaiKhoanNhanTienBloc _taiKhoanNhanTienBloc = TaiKhoanNhanTienBloc();
+
   @override
   void dispose() {
     _soController.dispose();
@@ -69,8 +75,8 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   List<String> filesUrlList = [];
   @override
   void initState() {
+    _taiKhoanNhanTienBloc.add(GetTaiKhoanNhanTienList());
     super.initState();
-    // _controller.addListener(() => _extension = _controller.text);
   }
 
   Future<void> uploadImages() async {
@@ -628,58 +634,59 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                               color: Colors.black),
                                         ),
                                       ),
-                                      DropdownButtonFormField(
-                                        isExpanded: true,
-                                        decoration: InputDecoration(
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                                  vertical: 16.74,
-                                                  horizontal: 24.34),
-                                          isDense: true,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Color.fromARGB(
-                                                    130, 79, 82, 78),
-                                                width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          focusedBorder:
-                                              const OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Color.fromARGB(
-                                                    130, 79, 82, 78),
-                                                width: 1),
-                                          ),
-                                          border: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                                color: Color.fromARGB(
-                                                    130, 79, 82, 78),
-                                                width: 1),
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                          filled: true,
-                                          fillColor: const Color.fromARGB(
-                                              255, 255, 255, 255),
-                                        ),
-                                        dropdownColor: const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                        value: dropdownTaiKhoan,
-                                        onChanged: (String? value) {
-                                          setState(() {
-                                            dropdownTaiKhoan = value!;
-                                          });
-                                        },
-                                        items: listTaiKhoan
-                                            .map<DropdownMenuItem<String>>(
-                                                (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                      ),
+                                      _buildDropdownTaiKhoanNhanTien(),
+                                      // DropdownButtonFormField(
+                                      //   isExpanded: true,
+                                      //   decoration: InputDecoration(
+                                      //     contentPadding:
+                                      //         const EdgeInsets.symmetric(
+                                      //             vertical: 16.74,
+                                      //             horizontal: 24.34),
+                                      //     isDense: true,
+                                      //     enabledBorder: OutlineInputBorder(
+                                      //       borderSide: const BorderSide(
+                                      //           color: Color.fromARGB(
+                                      //               130, 79, 82, 78),
+                                      //           width: 1),
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(4),
+                                      //     ),
+                                      //     focusedBorder:
+                                      //         const OutlineInputBorder(
+                                      //       borderSide: BorderSide(
+                                      //           color: Color.fromARGB(
+                                      //               130, 79, 82, 78),
+                                      //           width: 1),
+                                      //     ),
+                                      //     border: OutlineInputBorder(
+                                      //       borderSide: const BorderSide(
+                                      //           color: Color.fromARGB(
+                                      //               130, 79, 82, 78),
+                                      //           width: 1),
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(4),
+                                      //     ),
+                                      //     filled: true,
+                                      //     fillColor: const Color.fromARGB(
+                                      //         255, 255, 255, 255),
+                                      //   ),
+                                      //   dropdownColor: const Color.fromARGB(
+                                      //       255, 255, 255, 255),
+                                      //   value: dropdownTaiKhoan,
+                                      //   onChanged: (String? value) {
+                                      //     setState(() {
+                                      //       dropdownTaiKhoan = value!;
+                                      //     });
+                                      //   },
+                                      //   items: listTaiKhoan
+                                      //       .map<DropdownMenuItem<String>>(
+                                      //           (String value) {
+                                      //     return DropdownMenuItem<String>(
+                                      //       value: value,
+                                      //       child: Text(value),
+                                      //     );
+                                      //   }).toList(),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -1161,6 +1168,55 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
     );
   }
 
+  Widget _buildDropdownTaiKhoanNhanTien() {
+    return BlocProvider(
+      create: (_) => _taiKhoanNhanTienBloc,
+      child: BlocListener<TaiKhoanNhanTienBloc, TaiKhoanNhanTienState>(
+        listener: (context, state) {
+          if (state is TaiKhoanNhanTienError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.message!),
+              ),
+            );
+          }
+        },
+        child: BlocBuilder<TaiKhoanNhanTienBloc, TaiKhoanNhanTienState>(
+            builder: (context, state) {
+          if (state is TaiKhoanNhanTienInitial) {
+            return _buildLoading();
+          } else if (state is TaiKhoanNhanTienLoading) {
+            return _buildLoading();
+          } else if (state is TaiKhoanNhanTienLoaded) {
+            return _buildCard(context, state.taiKhoanNhanTienModel);
+          } else if (state is TaiKhoanNhanTienError) {
+            return Container();
+          } else {
+            return Container();
+          }
+        }),
+      ),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, TaiKhoanNhanTienModel model) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: model.result!.length,
+      itemBuilder: (context, index) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Country: ${model.result![index].ten}",
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
 
@@ -1391,6 +1447,8 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
       return icon;
     }).toList();
   }
+
+  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
 }
 
 extension PriceValidator on String {

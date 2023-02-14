@@ -5,14 +5,16 @@ import 'package:smart_bee/resources/api-repository.dart';
 part 'taiKhoanNhanTien-event.dart';
 part 'taiKhoanNhanTien-state.dart';
 
-class CovidBloc extends Bloc<TaiKhoanNhanTienEvent, TaiKhoanNhanTienState> {
-  CovidBloc() : super(TaiKhoanNhanTienInitial()) {
+class TaiKhoanNhanTienBloc
+    extends Bloc<TaiKhoanNhanTienEvent, TaiKhoanNhanTienState> {
+  TaiKhoanNhanTienBloc() : super(TaiKhoanNhanTienInitial()) {
     final ApiRepository _apiRepository = ApiRepository();
 
     on<GetTaiKhoanNhanTienList>((event, emit) async {
       emit(TaiKhoanNhanTienLoading());
       try {
         final mList = await _apiRepository.fetchTaiKhoanNhanTien();
+
         emit(TaiKhoanNhanTienLoaded(mList));
       } on NetworkError {
         emit(const TaiKhoanNhanTienError(
