@@ -1,12 +1,14 @@
+import 'dart:convert';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
-import '../pages/TaiChinh.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_bee/model/soQuy-model.dart';
+import 'package:http/http.dart' as http;
 
 class SoQuy extends StatefulWidget {
   const SoQuy({super.key});
@@ -20,6 +22,23 @@ class _SoQuyState extends State<SoQuy> {
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;
   String? selectedValue2;
+
+  // void myFunction() {
+  //   futureCongViec
+  // }
+
+  Future<SoQuyModel> fetchSectionData() async {
+    String dataUrl =
+        'http://115.75.13.14:2603/api/SmartBee?PageIndex=0&PageSize=10';
+    var response = await http.get(Uri.parse(dataUrl));
+    if (response.statusCode == 200) {
+      return SoQuyModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to get the data');
+    }
+  }
+
+  late Future<SoQuyModel> futureCongViec;
 
   void _returnTaiChinhPage() {
     QuickAlert.show(
@@ -44,8 +63,10 @@ class _SoQuyState extends State<SoQuy> {
   String _valueToValidate3 = '';
   String _valueSaved3 = '';
 
+  @override
   void initState() {
     super.initState();
+    futureCongViec = fetchSectionData();
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
@@ -63,6 +84,9 @@ class _SoQuyState extends State<SoQuy> {
       });
     });
   }
+
+  NumberFormat vnCurrencyFormat =
+      NumberFormat.currency(locale: 'vi_VN', symbol: '₫', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -373,288 +397,88 @@ class _SoQuyState extends State<SoQuy> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Table(
-                            columnWidths: const {
-                              0: FractionColumnWidth(.33),
-                              1: FractionColumnWidth(.33)
-                            },
-                            border: TableBorder.all(
-                                color: const Color.fromARGB(255, 219, 216, 216),
-                                style: BorderStyle.solid,
-                                width: 1),
-                            children: [
-                              TableRow(
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromARGB(169, 207, 205, 205),
+                          FutureBuilder<SoQuyModel>(
+                            future: futureCongViec,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: FittedBox(
+                                        child: DataTable(
+                                          columnSpacing: 10.0,
+                                          headingRowHeight: 32.0,
+                                          dataRowHeight: 70,
+                                          horizontalMargin: 10.0,
+                                          headingRowColor:
+                                              MaterialStateColor.resolveWith(
+                                                  (states) =>
+                                                      const Color.fromRGBO(
+                                                          238, 238, 238, 1)),
+                                          border: TableBorder.all(
+                                              color: const Color.fromARGB(
+                                                  174, 238, 233, 233)),
+                                          columns: const [
+                                            DataColumn(
+                                                label: SizedBox(
+                                                    width: 100,
+                                                    child: Text("Ngày tháng"))),
+                                            DataColumn(
+                                                label: SizedBox(
+                                                    width: 90,
+                                                    child: Text("Thu"))),
+                                            DataColumn(
+                                                label: SizedBox(
+                                                    width: 90,
+                                                    child: Text("Chi"))),
+                                          ],
+                                          rows: snapshot.data!.result!
+                                              .map((e) => DataRow(cells: [
+                                                    DataCell(Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                            '${e.ngay!.substring(0, 10).toString()}'))),
+                                                    DataCell(e.loai == "1"
+                                                        ? Container(
+                                                            width: 90,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                                '${vnCurrencyFormat.format(int.parse(e.soTien ?? ""))}'))
+                                                        : Container(
+                                                            width: 90,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(" "))),
+                                                    DataCell(e.loai == "2"
+                                                        ? Container(
+                                                            width: 90,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                                '${vnCurrencyFormat.format(int.parse(e.soTien ?? ""))}'))
+                                                        : Container(
+                                                            width: 90,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(" "))),
+                                                  ]))
+                                              .toList(),
+                                        ),
+                                      )),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.black,
                                   ),
-                                  children: [
-                                    TableCell(
-                                      child: Container(
-                                        height: 35.0,
-                                        alignment: Alignment.center,
-                                        child: const Text('Ngày tháng',
-                                            style: TextStyle(
-                                                fontSize: 14.0,
-                                                color: Color.fromRGBO(
-                                                    112, 112, 112, 1),
-                                                fontWeight: FontWeight.w500)),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 35.0,
-                                      alignment: Alignment.center,
-                                      child: const Text('Thu',
-                                          style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Color.fromRGBO(
-                                                  112, 112, 112, 1),
-                                              fontWeight: FontWeight.w500)),
-                                    ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      height: 35.0,
-                                      child: const Text('Chi',
-                                          style: TextStyle(
-                                              fontSize: 14.0,
-                                              color: Color.fromRGBO(
-                                                  112, 112, 112, 1),
-                                              fontWeight: FontWeight.w500)),
-                                    )
-                                  ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('01/01/2022',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('10.000.000.000',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('Giám đốc điều hành',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('10.000.000',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                              TableRow(children: [
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                                Container(
-                                  height: 50.0,
-                                  alignment: Alignment.center,
-                                  child: const Text('',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          color: Color.fromRGBO(80, 82, 89, 1),
-                                          fontWeight: FontWeight.w400)),
-                                )
-                              ]),
-                            ],
-                          ),
+                                );
+                              }
+                            },
+                          )
                         ],
                       ),
                     ),

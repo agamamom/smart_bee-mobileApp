@@ -635,58 +635,6 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                         ),
                                       ),
                                       _buildDropdownTaiKhoanNhanTien(),
-                                      // DropdownButtonFormField(
-                                      //   isExpanded: true,
-                                      //   decoration: InputDecoration(
-                                      //     contentPadding:
-                                      //         const EdgeInsets.symmetric(
-                                      //             vertical: 16.74,
-                                      //             horizontal: 24.34),
-                                      //     isDense: true,
-                                      //     enabledBorder: OutlineInputBorder(
-                                      //       borderSide: const BorderSide(
-                                      //           color: Color.fromARGB(
-                                      //               130, 79, 82, 78),
-                                      //           width: 1),
-                                      //       borderRadius:
-                                      //           BorderRadius.circular(4),
-                                      //     ),
-                                      //     focusedBorder:
-                                      //         const OutlineInputBorder(
-                                      //       borderSide: BorderSide(
-                                      //           color: Color.fromARGB(
-                                      //               130, 79, 82, 78),
-                                      //           width: 1),
-                                      //     ),
-                                      //     border: OutlineInputBorder(
-                                      //       borderSide: const BorderSide(
-                                      //           color: Color.fromARGB(
-                                      //               130, 79, 82, 78),
-                                      //           width: 1),
-                                      //       borderRadius:
-                                      //           BorderRadius.circular(4),
-                                      //     ),
-                                      //     filled: true,
-                                      //     fillColor: const Color.fromARGB(
-                                      //         255, 255, 255, 255),
-                                      //   ),
-                                      //   dropdownColor: const Color.fromARGB(
-                                      //       255, 255, 255, 255),
-                                      //   value: dropdownTaiKhoan,
-                                      //   onChanged: (String? value) {
-                                      //     setState(() {
-                                      //       dropdownTaiKhoan = value!;
-                                      //     });
-                                      //   },
-                                      //   items: listTaiKhoan
-                                      //       .map<DropdownMenuItem<String>>(
-                                      //           (String value) {
-                                      //     return DropdownMenuItem<String>(
-                                      //       value: value,
-                                      //       child: Text(value),
-                                      //     );
-                                      //   }).toList(),
-                                      // ),
                                     ],
                                   ),
                                 ),
@@ -1200,21 +1148,47 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
   }
 
   Widget _buildCard(BuildContext context, TaiKhoanNhanTienModel model) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: model.result!.length,
-      itemBuilder: (context, index) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "Country: ${model.result![index].ten}",
-            ),
-          ],
-        );
-      },
-    );
+    List<String?> myItems = [];
+    model.result!.forEach((element) {
+      myItems.add(element.soTenTaiKhoan);
+    });
+    return DropdownButtonFormField(
+        isExpanded: true,
+        decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 16.74, horizontal: 24.34),
+          isDense: true,
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(130, 79, 82, 78), width: 1),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Color.fromARGB(130, 79, 82, 78), width: 1),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color: Color.fromARGB(130, 79, 82, 78), width: 1),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          filled: true,
+          fillColor: const Color.fromARGB(255, 255, 255, 255),
+        ),
+        dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+        value: dropdownTaiKhoan,
+        elevation: 19,
+        onChanged: (String? value) {
+          setState(() {
+            dropdownTaiKhoan = value as String;
+          });
+        },
+        items: myItems.map((String? value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value ?? ''),
+          );
+        }).toList());
   }
 
   List<Widget> _buildList(List<PlatformFile> items) {
@@ -1322,7 +1296,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value!.name.toString(),

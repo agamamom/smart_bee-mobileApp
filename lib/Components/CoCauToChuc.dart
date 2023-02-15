@@ -72,35 +72,37 @@ class _CoCauToChucState extends State<CoCauToChuc> {
                     scrollDirection: Axis.vertical,
                     child: FittedBox(
                       child: DataTable(
-                        dataRowHeight: 60,
+                        columnSpacing: 10.0,
+                        headingRowHeight: 32.0,
+                        dataRowHeight: 70,
+                        horizontalMargin: 10.0,
                         headingRowColor: MaterialStateColor.resolveWith(
                             (states) => const Color.fromRGBO(238, 238, 238, 1)),
                         border: TableBorder.all(
                             color: const Color.fromARGB(174, 238, 233, 233)),
                         columns: const [
                           DataColumn(
-                              label: SizedBox(width: 30, child: Text("STT"))),
-                          DataColumn(
-                              label:
-                                  SizedBox(width: 60, child: Text("Mã phòng"))),
+                              label: SizedBox(width: 40, child: Text("STT"))),
                           DataColumn(
                               label: SizedBox(
-                                  width: 100, child: Text("Tên phòng"))),
+                                  width: 120, child: Text("Mã phòng"))),
+                          DataColumn(
+                              label: SizedBox(
+                                  width: 150, child: Text("Tên phòng"))),
                         ],
                         rows: snapshot.data!.result!
                             .map((e) => DataRow(cells: [
                                   DataCell(Container(
                                       alignment: Alignment.center,
-                                      width: 30,
                                       child: Text(
                                           '${snapshot.data!.result!.indexOf(e) + 1}'))),
                                   DataCell(Container(
+                                      width: 120,
                                       alignment: Alignment.center,
-                                      width: 60,
                                       child: Text('${e.idNguoichutri}'))),
                                   DataCell(Container(
+                                      width: 150,
                                       alignment: Alignment.center,
-                                      width: 100,
                                       child: Text('${e.idNguoichutri}'))),
                                 ]))
                             .toList(),
