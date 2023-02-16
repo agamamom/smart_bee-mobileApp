@@ -14,15 +14,14 @@ class TienDoChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double totalWidth = ((MediaQuery.of(context).size.width / 2) - 59);
-    return Container(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Stack(
               children: [
-                Center(
+                const Center(
                   child: Text(
                     "Tiến độ",
                     style: TextStyle(
@@ -37,16 +36,17 @@ class TienDoChart extends StatelessWidget {
                   child: InkResponse(
                     onTap: () => {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => BaoCaoViec()))
+                          builder: (BuildContext context) =>
+                              const BaoCaoViec()))
                     },
-                    child: new Container(
+                    child: Container(
                       width: 30,
                       height: 30,
-                      decoration: new BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color.fromRGBO(72, 181, 69, 1),
                         shape: BoxShape.circle,
                       ),
-                      child: new Icon(
+                      child: const Icon(
                         Icons.add,
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
@@ -57,10 +57,10 @@ class TienDoChart extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 12),
+            margin: const EdgeInsets.only(top: 20, bottom: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "DA đang thực hiện",
                   style: TextStyle(
@@ -74,7 +74,7 @@ class TienDoChart extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -84,36 +84,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -123,36 +122,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -162,36 +160,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(240, 187, 0, 1),
+                      backgroundColor: const Color.fromRGBO(240, 187, 0, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -201,36 +198,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(133, 245, 212, 1),
+                      backgroundColor: const Color.fromRGBO(133, 245, 212, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -240,23 +236,22 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(133, 245, 212, 1),
+                      backgroundColor: const Color.fromRGBO(133, 245, 212, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
@@ -264,10 +259,10 @@ class TienDoChart extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 12),
+            margin: const EdgeInsets.only(top: 20, bottom: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "DA đang duy trì",
                   style: TextStyle(
@@ -281,7 +276,7 @@ class TienDoChart extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -291,36 +286,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(167, 167, 167, 1),
+                      progressColor: const Color.fromRGBO(167, 167, 167, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -330,7 +324,7 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
@@ -344,22 +338,22 @@ class TienDoChart extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(167, 167, 167, 1),
+                      progressColor: const Color.fromRGBO(167, 167, 167, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -369,36 +363,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(240, 187, 0, 1),
+                      backgroundColor: const Color.fromRGBO(240, 187, 0, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(167, 167, 167, 1),
+                      progressColor: const Color.fromRGBO(167, 167, 167, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -408,36 +401,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(133, 245, 212, 1),
+                      backgroundColor: const Color.fromRGBO(133, 245, 212, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(167, 167, 167, 1),
+                      progressColor: const Color.fromRGBO(167, 167, 167, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -447,23 +439,22 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromRGBO(133, 245, 212, 1),
+                      backgroundColor: const Color.fromRGBO(133, 245, 212, 1),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(167, 167, 167, 1),
+                      progressColor: const Color.fromRGBO(167, 167, 167, 1),
                     ),
                   ]),
                 ),
@@ -471,10 +462,10 @@ class TienDoChart extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 12),
+            margin: const EdgeInsets.only(top: 20, bottom: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "Cá nhân",
                   style: TextStyle(
@@ -488,7 +479,7 @@ class TienDoChart extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -498,36 +489,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -537,36 +527,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 12),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              const SizedBox(
                   width: 70,
                   height: 14,
                   child: Text(
@@ -576,36 +565,35 @@ class TienDoChart extends StatelessWidget {
                   )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 12,
                   ),
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
                       lineHeight: 9,
                       barRadius: const Radius.circular(16),
-                      backgroundColor: Color.fromARGB(255, 205, 53, 53),
+                      backgroundColor: const Color.fromARGB(255, 205, 53, 53),
                       percent: 0.9,
-                      progressColor: Color.fromRGBO(0, 219, 153, 1),
+                      progressColor: const Color.fromRGBO(0, 219, 153, 1),
                     ),
                   ]),
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
         ],
       ),
-    ));
+    );
   }
 }

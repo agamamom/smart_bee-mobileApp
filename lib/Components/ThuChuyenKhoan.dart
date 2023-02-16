@@ -678,8 +678,9 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -693,7 +694,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                       ),
@@ -731,8 +732,9 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -1204,7 +1206,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
       var value = item.value;
       var key = item.key;
       String? fileDelete = value.path;
-      String fileExtension = value!.path!.split('.').last;
+      String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(
           children: [
@@ -1246,7 +1248,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1299,7 +1301,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1352,7 +1354,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1405,7 +1407,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,

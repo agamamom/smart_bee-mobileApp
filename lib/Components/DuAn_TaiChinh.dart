@@ -38,8 +38,8 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  boxShadow: [
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  boxShadow: const [
                     BoxShadow(
                         color: Color.fromARGB(127, 123, 120, 120),
                         blurRadius: 1.0,
@@ -49,7 +49,7 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                 ),
                 child: SfCartesianChart(
                     primaryXAxis: CategoryAxis(),
-                    palette: <Color>[
+                    palette: const <Color>[
                       Color.fromARGB(255, 1, 83, 53),
                       Color.fromRGBO(0, 183, 117, 1),
                       Color.fromARGB(255, 213, 27, 3)
@@ -72,7 +72,7 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                       LineSeries<ChartData, String>(
                           name: 'Chi phí',
                           dataSource: chartData,
-                          markerSettings: MarkerSettings(isVisible: true),
+                          markerSettings: const MarkerSettings(isVisible: true),
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y3)
                     ]),
@@ -122,12 +122,12 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 height: 41,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  boxShadow: [
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  boxShadow: const [
                     BoxShadow(
                         color: Color.fromARGB(127, 123, 120, 120),
                         blurRadius: 1.0,
@@ -136,10 +136,10 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                   ],
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "Chi:",
                         style: TextStyle(
@@ -157,12 +157,12 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 height: 41,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  boxShadow: [
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  boxShadow: const [
                     BoxShadow(
                         color: Color.fromARGB(127, 123, 120, 120),
                         blurRadius: 1.0,
@@ -171,10 +171,10 @@ class _DuAn_TaiChinhState extends State<DuAn_TaiChinh> {
                   ],
                 ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "Chênh lệch:",
                         style: TextStyle(

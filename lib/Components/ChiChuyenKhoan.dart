@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:quickalert/quickalert.dart';
@@ -17,8 +14,6 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:readmore/readmore.dart';
 import 'package:uuid/uuid.dart';
 import 'package:smart_bee/utilities/categ_list.dart';
-
-import '../pages/TaiChinh.dart';
 
 List<String> listNguoiDuyet = nguoiDuyet;
 List<String> listNguoiNhanTien = nguoiNhanTien;

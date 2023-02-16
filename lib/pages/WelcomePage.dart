@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smart_bee/pages/ListDuAn.dart';
 
 import '../Components/HeaderApp.dart';
 import 'Curved_navigation_page.dart';
@@ -12,42 +11,39 @@ class WelcomePage extends StatelessWidget {
     return WillPopScope(
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/background.png'),
                   fit: BoxFit.cover)),
           child: Column(children: [
             Container(
-              color: Color.fromARGB(255, 89, 132, 62),
+              color: const Color.fromARGB(255, 89, 132, 62),
               height: 130,
-              child: HeaderApp(),
+              child: const HeaderApp(),
             ),
             Expanded(
-                child: Container(
-              child: Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/images/bee.png',
-                  fit: BoxFit.contain,
-                ),
+                child: Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                'assets/images/bee.png',
+                fit: BoxFit.contain,
               ),
             )),
             Expanded(
                 child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                            child: Text(
+                        const Text(
                           'Chào Hiền Tài khoản của bạn đã được tạo',
                           style: TextStyle(
                               color: Color.fromRGBO(89, 132, 62, 1),
                               fontSize: 34.0,
                               fontWeight: FontWeight.w700),
-                        )),
-                        SizedBox(
+                        ),
+                        const SizedBox(
                           height: 20.0,
                         ),
                         SizedBox(
@@ -55,8 +51,10 @@ class WelcomePage extends StatelessWidget {
                           height: 50.0,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Color.fromRGBO(250, 181, 18, 1),
-                              shadowColor: Color.fromARGB(255, 125, 130, 128),
+                              backgroundColor:
+                                  const Color.fromRGBO(250, 181, 18, 1),
+                              shadowColor:
+                                  const Color.fromARGB(255, 125, 130, 128),
                               elevation: 3,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12.0)),
@@ -71,7 +69,7 @@ class WelcomePage extends StatelessWidget {
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: const [
                                 Text(
                                   'Bắt đầu',
                                   style: TextStyle(

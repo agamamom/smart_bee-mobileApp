@@ -62,6 +62,10 @@ class _SoQuyState extends State<SoQuy> {
   String _valueChanged3 = '';
   String _valueToValidate3 = '';
   String _valueSaved3 = '';
+  late TextEditingController _controller4;
+  String _valueChanged4 = '';
+  String _valueToValidate4 = '';
+  String _valueSaved4 = '';
 
   @override
   void initState() {
@@ -70,6 +74,7 @@ class _SoQuyState extends State<SoQuy> {
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
+    _controller4 = TextEditingController(text: DateTime.now().toString());
 
     String lsHour = TimeOfDay.now().hour.toString().padLeft(2, '0');
     String lsMinute = TimeOfDay.now().minute.toString().padLeft(2, '0');
@@ -80,7 +85,8 @@ class _SoQuyState extends State<SoQuy> {
   Future<void> _getValue() async {
     await Future.delayed(const Duration(seconds: 3), () {
       setState(() {
-        _controller3.text = '2002-11-22';
+        _controller3.text = '2022-11-22';
+        _controller4.text = '2022-11-22';
       });
     });
   }
@@ -211,7 +217,7 @@ class _SoQuyState extends State<SoQuy> {
                                 // ),
                                 iconSize: 24,
                                 iconEnabledColor:
-                                    Color.fromARGB(255, 255, 255, 255),
+                                    const Color.fromARGB(255, 255, 255, 255),
                                 iconDisabledColor: Colors.grey,
                                 buttonHeight: 31,
                                 buttonWidth: double.infinity,
@@ -248,91 +254,87 @@ class _SoQuyState extends State<SoQuy> {
                           ),
                           Align(
                             alignment: AlignmentDirectional.centerStart,
-                            child: Container(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: const [
-                                      // Icon(
-                                      //   Icons.list,
-                                      //   size: 16,
-                                      //   color: Colors.yellow,
-                                      // ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          'Từ ngày - Đến ngày',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color:
-                                                Color.fromARGB(255, 83, 81, 81),
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  items: items
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                                color: Color.fromARGB(
-                                                    255, 83, 81, 81),
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: selectedValue,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedValue = value as String;
-                                    });
-                                  },
-                                  // icon: const Icon(
-                                  //   Icons.arrow_forward_ios_outlined,
-                                  // ),
-                                  iconSize: 24,
-                                  iconEnabledColor:
-                                      const Color.fromARGB(255, 83, 81, 81),
-                                  iconDisabledColor: Colors.grey,
-                                  buttonHeight: 31,
-                                  buttonWidth: double.infinity,
-                                  buttonPadding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  buttonDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    border: Border.all(
-                                      color: const Color.fromRGBO(
-                                          238, 238, 238, 1),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: const [
+                                    // Icon(
+                                    //   Icons.list,
+                                    //   size: 16,
+                                    //   color: Colors.yellow,
+                                    // ),
+                                    SizedBox(
+                                      width: 4,
                                     ),
-                                    color:
-                                        const Color.fromRGBO(238, 238, 238, 1),
-                                  ),
-                                  buttonElevation: 2,
-                                  itemHeight: 40,
-                                  itemPadding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  dropdownMaxHeight: 200,
-                                  dropdownWidth: 200,
-                                  dropdownPadding: null,
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    color:
-                                        const Color.fromRGBO(238, 238, 238, 1),
-                                  ),
-                                  dropdownElevation: 8,
-                                  scrollbarRadius: const Radius.circular(4),
-                                  scrollbarThickness: 6,
-                                  scrollbarAlwaysShow: true,
-                                  offset: const Offset(0, -7),
+                                    Expanded(
+                                      child: Text(
+                                        'Từ ngày - Đến ngày',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color:
+                                              Color.fromARGB(255, 83, 81, 81),
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                                items: items
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Color.fromARGB(
+                                                  255, 83, 81, 81),
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ))
+                                    .toList(),
+                                value: selectedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedValue = value as String;
+                                  });
+                                },
+                                // icon: const Icon(
+                                //   Icons.arrow_forward_ios_outlined,
+                                // ),
+                                iconSize: 24,
+                                iconEnabledColor:
+                                    const Color.fromARGB(255, 83, 81, 81),
+                                iconDisabledColor: Colors.grey,
+                                buttonHeight: 31,
+                                buttonWidth: double.infinity,
+                                buttonPadding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                buttonDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(238, 238, 238, 1),
+                                  ),
+                                  color: const Color.fromRGBO(238, 238, 238, 1),
+                                ),
+                                buttonElevation: 2,
+                                itemHeight: 40,
+                                itemPadding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                dropdownMaxHeight: 200,
+                                dropdownWidth: 200,
+                                dropdownPadding: null,
+                                dropdownDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: const Color.fromRGBO(238, 238, 238, 1),
+                                ),
+                                dropdownElevation: 8,
+                                scrollbarRadius: const Radius.circular(4),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                                offset: const Offset(0, -7),
                               ),
                             ),
                           ),
@@ -374,7 +376,7 @@ class _SoQuyState extends State<SoQuy> {
                                     child: DateTimePicker(
                                       type: DateTimePickerType.date,
                                       //dateMask: 'yyyy/MM/dd',
-                                      controller: _controller3,
+                                      controller: _controller4,
                                       //initialValue: _initialValue,
                                       firstDate: DateTime(2000),
                                       lastDate: DateTime(2100),
@@ -382,14 +384,14 @@ class _SoQuyState extends State<SoQuy> {
 
                                       locale: const Locale('en', 'US'),
                                       onChanged: (val) =>
-                                          setState(() => _valueChanged3 = val),
+                                          setState(() => _valueChanged4 = val),
                                       validator: (val) {
                                         setState(() =>
-                                            _valueToValidate3 = val ?? '');
+                                            _valueToValidate4 = val ?? '');
                                         return null;
                                       },
                                       onSaved: (val) => setState(
-                                          () => _valueSaved3 = val ?? ''),
+                                          () => _valueSaved4 = val ?? ''),
                                     ),
                                   ),
                                 )
@@ -452,7 +454,8 @@ class _SoQuyState extends State<SoQuy> {
                                                             width: 90,
                                                             alignment: Alignment
                                                                 .center,
-                                                            child: Text(" "))),
+                                                            child: const Text(
+                                                                " "))),
                                                     DataCell(e.loai == "2"
                                                         ? Container(
                                                             width: 90,
@@ -464,7 +467,8 @@ class _SoQuyState extends State<SoQuy> {
                                                             width: 90,
                                                             alignment: Alignment
                                                                 .center,
-                                                            child: Text(" "))),
+                                                            child: const Text(
+                                                                " "))),
                                                   ]))
                                               .toList(),
                                         ),
