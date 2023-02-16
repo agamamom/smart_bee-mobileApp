@@ -60,7 +60,10 @@ class _ThemViecState extends State<ThemViec> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 5,
+                  index: 4,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},

@@ -181,7 +181,10 @@ class _ChiTienMatState extends State<ChiTienMat> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 2,
+                  index: 2,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},

@@ -84,9 +84,10 @@ class _TaiChinhState extends State<TaiChinh> {
                               bottom: 10,
                               child: InkResponse(
                                 onTap: () => {
-                                  Navigator.of(context).pushReplacement(
+                                  Navigator.pushReplacement(
+                                      context,
                                       MaterialPageRoute(
-                                          builder: (BuildContext context) =>
+                                          builder: (context) =>
                                               const ThuongDuAn()))
                                 },
                                 child: Container(

@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import '../Components/HeaderApp.dart';
 import 'Curved_navigation_page.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -64,7 +69,9 @@ class WelcomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const Curved_navigation_page()),
+                                        Curved_navigation_page(
+                                          indexOfScreen: 0,
+                                        )),
                               )
                             },
                             child: Row(

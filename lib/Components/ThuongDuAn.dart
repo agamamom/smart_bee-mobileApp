@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
+import 'package:smart_bee/pages/Curved_navigation_page.dart';
 import '../pages/TaiChinh.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
@@ -29,8 +30,13 @@ class _SoQuyState extends State<ThuongDuAn> {
       cancelBtnText: 'Không',
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const TaiChinh()))
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Curved_navigation_page(
+                      indexOfScreen: 2,
+                      index: 2,
+                    )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -46,7 +52,7 @@ class _SoQuyState extends State<ThuongDuAn> {
   String _valueChanged4 = '';
   String _valueToValidate4 = '';
   String _valueSaved4 = '';
-
+  @override
   void initState() {
     super.initState();
     Intl.defaultLocale = 'pt_BR';

@@ -9,12 +9,12 @@ import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 import 'package:smart_bee/pages/TaiChinh.dart';
 import 'package:smart_bee/pages/TienDoBaoCaoTuan.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Curved_navigation_page extends StatefulWidget {
-  const Curved_navigation_page({super.key});
+  final int? indexOfScreen;
+  int? index;
+  Curved_navigation_page({super.key, required this.indexOfScreen, this.index});
 
   @override
   State<Curved_navigation_page> createState() => _Curved_navigation_pageState();
@@ -49,18 +49,17 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
     )
   ];
 
-  int index = 0;
-
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Do you want to exit app?'),
+          title: const Text('Do you want to exit app?'),
           actions: [
             ElevatedButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: Text('No')),
+                child: const Text('No')),
             ElevatedButton(
-                onPressed: () => SystemNavigator.pop(), child: Text('Yes')),
+                onPressed: () => SystemNavigator.pop(),
+                child: const Text('Yes')),
           ],
         ),
       );
@@ -75,27 +74,28 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
       child: Scaffold(
         body: SafeArea(
           child: Container(
-            child: getSelectedWidget(index: index),
+            child:
+                getSelectedWidget(index: widget.index ?? widget.indexOfScreen),
           ),
         ),
         bottomNavigationBar: CurvedNavigationBar(
           height: 60.0,
           items: items,
-          index: index,
+          index: widget.index ?? 0,
           onTap: (selectedIndex) {
             setState(() {
-              index = selectedIndex;
+              widget.index = selectedIndex;
             });
           },
-          color: Color.fromRGBO(89, 132, 62, 1),
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromRGBO(89, 132, 62, 1),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           animationDuration: const Duration(milliseconds: 300),
         ),
       ),
     );
   }
 
-  Widget getSelectedWidget({required int index}) {
+  Widget getSelectedWidget({required int? index}) {
     Widget widget;
     switch (index) {
       case 0:

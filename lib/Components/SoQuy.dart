@@ -23,10 +23,6 @@ class _SoQuyState extends State<SoQuy> {
   String? selectedValue;
   String? selectedValue2;
 
-  // void myFunction() {
-  //   futureCongViec
-  // }
-
   Future<SoQuyModel> fetchSectionData() async {
     String dataUrl =
         'http://115.75.13.14:2603/api/SmartBee?PageIndex=0&PageSize=10';
@@ -50,7 +46,10 @@ class _SoQuyState extends State<SoQuy> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 2,
+                  index: 2,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -172,11 +171,6 @@ class _SoQuyState extends State<SoQuy> {
                                 isExpanded: true,
                                 hint: Row(
                                   children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
                                     SizedBox(
                                       width: 4,
                                     ),
@@ -259,11 +253,6 @@ class _SoQuyState extends State<SoQuy> {
                                 isExpanded: true,
                                 hint: Row(
                                   children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
                                     SizedBox(
                                       width: 4,
                                     ),
@@ -300,9 +289,6 @@ class _SoQuyState extends State<SoQuy> {
                                     selectedValue = value as String;
                                   });
                                 },
-                                // icon: const Icon(
-                                //   Icons.arrow_forward_ios_outlined,
-                                // ),
                                 iconSize: 24,
                                 iconEnabledColor:
                                     const Color.fromARGB(255, 83, 81, 81),

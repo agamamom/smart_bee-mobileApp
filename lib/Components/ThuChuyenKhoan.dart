@@ -191,7 +191,10 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 2,
+                  index: 2,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -1014,10 +1017,8 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                                               const CircularProgressIndicator(),
                                                         )
                                                       : _userAborted
-                                                          ? Container(
-                                                              child: const Text(
-                                                                'User has aborted the dialog',
-                                                              ),
+                                                          ? const Text(
+                                                              'User has aborted the dialog',
                                                             )
                                                           : _directoryPath !=
                                                                   null
@@ -1245,7 +1246,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),

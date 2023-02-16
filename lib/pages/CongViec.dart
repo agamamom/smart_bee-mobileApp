@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smart_bee/Components/ChiChuyenKhoan.dart';
-import 'package:smart_bee/Components/ChiTienMat.dart';
-import 'package:smart_bee/Components/CoCauToChuc.dart';
-import 'package:smart_bee/Components/GhiSo.dart';
-import 'package:smart_bee/Components/HeSoPhuCapChucVu.dart';
-import 'package:smart_bee/Components/NhomMuc.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/Components/SoQuy.dart';
 import 'package:smart_bee/Components/ThemViec.dart';
-import 'package:smart_bee/Components/ThuChuyenKhoan.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
-import 'package:smart_bee/Components/ThuongDuAn.dart';
-import 'package:smart_bee/Components/TongHopViecTheoND.dart';
 import 'package:smart_bee/Components/TongHopViecTheoCaNhan.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import 'package:smart_bee/Components/DuyetViec.dart';
-import '../Components/ForgotPassword.dart';
 
 class CongViec extends StatefulWidget {
   const CongViec({super.key});
@@ -32,36 +21,36 @@ class _TaiChinhState extends State<CongViec> {
       body: Stack(
         children: [
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/background.png'),
                       fit: BoxFit.cover)),
               child: SingleChildScrollView(
                 child: Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 20.0),
                   child: Column(
                     children: [
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 15.0,
                         ),
                         Image.asset(
                           'assets/images/calendar-icon.png',
                           fit: BoxFit.contain,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15.0,
                         ),
                         const SettingButton()
                       ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 14.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Welcome, hienltt',
                             style: TextStyle(
                                 fontSize: 15.0,
@@ -73,10 +62,10 @@ class _TaiChinhState extends State<CongViec> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Center(
+                      const Center(
                         child: Text(
                           "Công việc",
                           style: TextStyle(
@@ -85,11 +74,10 @@ class _TaiChinhState extends State<CongViec> {
                               color: Color.fromRGBO(99, 99, 100, 1)),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Container(
-                          child: Align(
+                      Align(
                         alignment: AlignmentDirectional.topStart,
                         child: Column(
                           children: [
@@ -99,7 +87,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ThuTienMat()))
+                                              const ThuTienMat()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -107,8 +95,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -118,15 +106,15 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                           width: 67,
                                           height: 67,
-                                          margin: EdgeInsets.symmetric(
+                                          margin: const EdgeInsets.symmetric(
                                               horizontal: 12, vertical: 12),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(12),
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   72, 181, 69, 1)),
                                           child: Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 18, vertical: 18),
                                             child: Image.asset(
                                               "assets/images/ViecGap.png",
@@ -139,9 +127,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Việc gấp",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -151,9 +140,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -169,7 +159,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              TongHopViecTheoCaNhan()))
+                                              const TongHopViecTheoCaNhan()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -177,8 +167,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -188,18 +178,20 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                             width: 67,
                                             height: 67,
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 10),
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     72, 181, 69, 1)),
                                             child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 8, vertical: 8),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 8),
                                               child: Image.asset(
                                                 "assets/images/DangLam.png",
                                                 fit: BoxFit.contain,
@@ -210,9 +202,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Đang làm",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -222,9 +215,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -240,7 +234,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              DuyetViec()))
+                                              const DuyetViec()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -248,8 +242,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -259,18 +253,20 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                             width: 67,
                                             height: 67,
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 10, vertical: 10),
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 12),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     72, 181, 69, 1)),
                                             child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 5, vertical: 5),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 5,
+                                                      vertical: 5),
                                               child: Image.asset(
                                                 "assets/images/ChoDuyet.png",
                                                 fit: BoxFit.cover,
@@ -281,9 +277,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Chờ duyệt",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -293,9 +290,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -311,7 +309,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ChiChuyenKhoan()))
+                                              const ChiChuyenKhoan()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -319,8 +317,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -330,17 +328,17 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                           width: 67,
                                           height: 67,
-                                          margin: EdgeInsets.symmetric(
+                                          margin: const EdgeInsets.symmetric(
                                               horizontal: 12, vertical: 12),
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 10, vertical: 10),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(12),
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   72, 181, 69, 1)),
                                           child: Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 5, vertical: 5),
                                             child: Image.asset(
                                               "assets/images/TreHan.png",
@@ -353,9 +351,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Trễ hạn",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -365,9 +364,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -379,7 +379,7 @@ class _TaiChinhState extends State<CongViec> {
                                 ),
                               ),
                             ]),
-                            SizedBox(
+                            const SizedBox(
                               height: 50,
                             ),
                             Wrap(spacing: 10.0, runSpacing: 10.0, children: [
@@ -388,7 +388,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              ThemViec()))
+                                              const ThemViec()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -396,8 +396,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -407,12 +407,12 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                             width: 67,
                                             height: 67,
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 12),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     255, 199, 39, 1)),
                                             child: Image.asset(
                                                 "assets/images/ThemViec.png")),
@@ -421,9 +421,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Thêm việc",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -433,9 +434,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -451,7 +453,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              SoQuy()))
+                                              const SoQuy()))
                                 },
                                 child: Container(
                                   width: 163,
@@ -459,8 +461,8 @@ class _TaiChinhState extends State<CongViec> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 1.0,
-                                        color:
-                                            Color.fromARGB(255, 48, 200, 73)),
+                                        color: const Color.fromARGB(
+                                            255, 48, 200, 73)),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Column(
@@ -470,18 +472,20 @@ class _TaiChinhState extends State<CongViec> {
                                         Container(
                                             width: 67,
                                             height: 67,
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 10),
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 horizontal: 12, vertical: 10),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12),
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     255, 199, 39, 1)),
                                             child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 5, vertical: 5),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 5,
+                                                      vertical: 5),
                                               child: Image.asset(
                                                 "assets/images/DiCongTac.png",
                                                 fit: BoxFit.cover,
@@ -492,9 +496,10 @@ class _TaiChinhState extends State<CongViec> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 12),
-                                              child: Text(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: const Text(
                                                 "Đi công tác",
                                                 style: TextStyle(
                                                     fontSize: 17.0,
@@ -504,9 +509,10 @@ class _TaiChinhState extends State<CongViec> {
                                               ),
                                             ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 6),
-                                              child: Icon(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 6),
+                                              child: const Icon(
                                                 Icons.arrow_forward,
                                                 color: Color.fromRGBO(
                                                     72, 181, 69, 1),
@@ -520,7 +526,7 @@ class _TaiChinhState extends State<CongViec> {
                             ]),
                           ],
                         ),
-                      )),
+                      ),
                     ],
                   ),
                 ),

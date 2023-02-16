@@ -5,7 +5,6 @@ import 'package:smart_bee/Components/ListDuAn_CardList.dart';
 import 'package:smart_bee/Components/ListDuAn_Overview.dart';
 import 'package:smart_bee/Components/NhomMuc.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ListDuAn extends StatefulWidget {
   const ListDuAn({super.key});
@@ -18,12 +17,12 @@ class _ListDuAnState extends State<ListDuAn> {
   int _currentPage = 0;
   PageController _controller = PageController();
 
-  List<Widget> _pages = [
-    ListDuAnCardList(),
-    ListDuAnOverview(),
-    NhomMuc(),
-    CoCauToChuc(),
-    HeSoPhuCapChucVu()
+  final List<Widget> _pages = [
+    const ListDuAnCardList(),
+    const ListDuAnOverview(),
+    const NhomMuc(),
+    const CoCauToChuc(),
+    const HeSoPhuCapChucVu()
   ];
 
   _onchanged(int index) {
@@ -38,34 +37,35 @@ class _ListDuAnState extends State<ListDuAn> {
       body: Stack(
         children: [
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/background.png'),
                       fit: BoxFit.cover)),
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 20.0),
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       Image.asset(
                         'assets/images/calendar-icon.png',
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       const SettingButton(),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 14.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Welcome, hienltt',
                           style: TextStyle(
                               fontSize: 15.0,
@@ -77,8 +77,7 @@ class _ListDuAnState extends State<ListDuAn> {
                         ),
                       ],
                     ),
-                    Container(
-                        child: Expanded(
+                    Expanded(
                       child: Stack(
                         children: [
                           Align(
@@ -88,29 +87,30 @@ class _ListDuAnState extends State<ListDuAn> {
                                 children: List<Widget>.generate(_pages.length,
                                     (int index) {
                                   return AnimatedContainer(
-                                      duration: Duration(milliseconds: 300),
+                                      duration:
+                                          const Duration(milliseconds: 300),
                                       height: (index == _currentPage) ? 10 : 6,
                                       width: (index == _currentPage) ? 10 : 6,
-                                      margin: EdgeInsets.symmetric(
+                                      margin: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 30),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           border: Border.all(
                                               width: 1,
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   99, 99, 100, 1)),
                                           color: (index == _currentPage)
-                                              ? Color.fromARGB(
+                                              ? const Color.fromARGB(
                                                   30, 255, 255, 255)
-                                              : Color.fromRGBO(
+                                              : const Color.fromRGBO(
                                                   99, 99, 100, 1)));
                                 })),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10.0,
                           ),
-                          Positioned(
+                          const Positioned(
                             left: 0,
                             top: 50,
                             child: Text(
@@ -122,6 +122,7 @@ class _ListDuAnState extends State<ListDuAn> {
                             ),
                           ),
                           Container(
+                            margin: const EdgeInsets.only(top: 120),
                             child: PageView.builder(
                               scrollDirection: Axis.horizontal,
                               onPageChanged: _onchanged,
@@ -131,11 +132,10 @@ class _ListDuAnState extends State<ListDuAn> {
                                 return _pages[index];
                               },
                             ),
-                            margin: EdgeInsets.only(top: 120),
                           )
                         ],
                       ),
-                    )),
+                    ),
                   ],
                 ),
               )),

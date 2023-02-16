@@ -5,8 +5,6 @@ import 'package:smart_bee/Components/DuAn_DangThucHien.dart';
 import 'package:smart_bee/Components/DuAn_TaiChinh.dart';
 import 'package:smart_bee/Components/DuAn_TienDo.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 
 class DuAn extends StatefulWidget {
   const DuAn({super.key});
@@ -19,11 +17,11 @@ class _DuAnState extends State<DuAn> {
   int _currentPage = 0;
   PageController _controller = PageController();
 
-  List<Widget> _pages = [
+  final List<Widget> _pages = [
     const DuAnDangThucHien(),
     DuAn_TaiChinh(),
-    DuAn_CongViec(),
-    DuAn_TienDo(
+    const DuAn_CongViec(),
+    const DuAn_TienDo(
       color: Color.fromRGBO(0, 219, 153, 1),
     )
   ];
@@ -40,34 +38,35 @@ class _DuAnState extends State<DuAn> {
       body: Stack(
         children: [
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/background.png'),
                       fit: BoxFit.cover)),
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 20.0),
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       Image.asset(
                         'assets/images/calendar-icon.png',
                         fit: BoxFit.contain,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15.0,
                       ),
                       const SettingButton(),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 14.0,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Welcome, hienltt',
                           style: TextStyle(
                               fontSize: 15.0,
@@ -79,8 +78,7 @@ class _DuAnState extends State<DuAn> {
                         ),
                       ],
                     ),
-                    Container(
-                        child: Expanded(
+                    Expanded(
                       child: Stack(
                         children: [
                           Align(
@@ -90,26 +88,28 @@ class _DuAnState extends State<DuAn> {
                                 children: List<Widget>.generate(_pages.length,
                                     (int index) {
                                   return AnimatedContainer(
-                                      duration: Duration(milliseconds: 300),
+                                      duration:
+                                          const Duration(milliseconds: 300),
                                       height: (index == _currentPage) ? 10 : 6,
                                       width: (index == _currentPage) ? 10 : 6,
-                                      margin: EdgeInsets.symmetric(
+                                      margin: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 30),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           border: Border.all(
                                               width: 1,
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   99, 99, 100, 1)),
                                           color: (index == _currentPage)
-                                              ? Color.fromARGB(
+                                              ? const Color.fromARGB(
                                                   30, 255, 255, 255)
-                                              : Color.fromRGBO(
+                                              : const Color.fromRGBO(
                                                   99, 99, 100, 1)));
                                 })),
                           ),
                           Container(
+                            margin: const EdgeInsets.only(top: 70),
                             child: PageView.builder(
                               scrollDirection: Axis.horizontal,
                               onPageChanged: _onchanged,
@@ -119,11 +119,10 @@ class _DuAnState extends State<DuAn> {
                                 return _pages[index];
                               },
                             ),
-                            margin: EdgeInsets.only(top: 70),
                           )
                         ],
                       ),
-                    )),
+                    ),
                   ],
                 ),
               )),

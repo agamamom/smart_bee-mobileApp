@@ -16,7 +16,7 @@ class DuAn_TienDo extends StatelessWidget {
       child: Column(
         children: [
           const Text(
-            "Tiến độ",
+            "Tiến độ ",
             style: TextStyle(
                 fontSize: 28.0,
                 fontWeight: FontWeight.w700,

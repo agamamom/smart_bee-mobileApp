@@ -1,11 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/pages/Curved_navigation_page.dart';
-
-import '../pages/TaiChinh.dart';
 
 class GhiSo extends StatefulWidget {
   const GhiSo({super.key});
@@ -31,7 +28,10 @@ class _GhiSoState extends State<GhiSo> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 2,
+                  index: 2,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -44,34 +44,35 @@ class _GhiSoState extends State<GhiSo> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/images/background.png'),
                     fit: BoxFit.cover)),
             child: SingleChildScrollView(
                 child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
               child: Column(children: [
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 15.0,
                   ),
                   Image.asset(
                     'assets/images/calendar-icon.png',
                     fit: BoxFit.contain,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15.0,
                   ),
                   const SettingButton()
                 ]),
-                SizedBox(
+                const SizedBox(
                   height: 14.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome, hienltt',
                       style: TextStyle(
                           fontSize: 15.0,
@@ -83,25 +84,25 @@ class _GhiSoState extends State<GhiSo> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.white),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         "Ghi sổ",
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.w500),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
                             "Today",
                             style: TextStyle(
@@ -134,7 +135,7 @@ class _GhiSoState extends State<GhiSo> {
                       Wrap(
                         spacing: 4.0,
                         direction: Axis.horizontal,
-                        children: [
+                        children: const [
                           FractionallySizedBox(
                             widthFactor: 0.47,
                             child: TextField(
@@ -189,100 +190,89 @@ class _GhiSoState extends State<GhiSo> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Align(
                         alignment: AlignmentDirectional.centerStart,
-                        child: Container(
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton2(
-                              isExpanded: true,
-                              hint: Row(
-                                children: const [
-                                  // Icon(
-                                  //   Icons.list,
-                                  //   size: 16,
-                                  //   color: Colors.yellow,
-                                  // ),
-                                  SizedBox(
-                                    width: 4,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      'Select Item',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              items: items
-                                  .map((item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
-                                  .toList(),
-                              value: selectedValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedValue = value as String;
-                                });
-                              },
-                              // icon: const Icon(
-                              //   Icons.arrow_forward_ios_outlined,
-                              // ),
-                              iconSize: 24,
-                              iconEnabledColor:
-                                  Color.fromARGB(255, 255, 255, 255),
-                              iconDisabledColor: Colors.grey,
-                              buttonHeight: 31,
-                              buttonWidth: 150,
-                              buttonPadding:
-                                  const EdgeInsets.only(left: 10, right: 10),
-                              buttonDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(
-                                  color: Color.fromRGBO(191, 107, 123, 1),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2(
+                            isExpanded: true,
+                            hint: Row(
+                              children: const [
+                                SizedBox(
+                                  width: 4,
                                 ),
-                                color: Color.fromRGBO(191, 107, 123, 1),
-                              ),
-                              buttonElevation: 2,
-                              itemHeight: 40,
-                              itemPadding:
-                                  const EdgeInsets.only(left: 10, right: 10),
-                              dropdownMaxHeight: 200,
-                              dropdownWidth: 200,
-                              dropdownPadding: null,
-                              dropdownDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: Color.fromRGBO(191, 107, 123, 1),
-                              ),
-                              dropdownElevation: 8,
-                              scrollbarRadius: const Radius.circular(4),
-                              scrollbarThickness: 6,
-                              scrollbarAlwaysShow: true,
-                              offset: const Offset(0, -7),
+                                Expanded(
+                                  child: Text(
+                                    'Select Item',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
                             ),
+                            items: items
+                                .map((item) => DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ))
+                                .toList(),
+                            value: selectedValue,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedValue = value as String;
+                              });
+                            },
+                            iconSize: 24,
+                            iconEnabledColor:
+                                const Color.fromARGB(255, 255, 255, 255),
+                            iconDisabledColor: Colors.grey,
+                            buttonHeight: 31,
+                            buttonWidth: 150,
+                            buttonPadding:
+                                const EdgeInsets.only(left: 10, right: 10),
+                            buttonDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                color: const Color.fromRGBO(191, 107, 123, 1),
+                              ),
+                              color: const Color.fromRGBO(191, 107, 123, 1),
+                            ),
+                            buttonElevation: 2,
+                            itemHeight: 40,
+                            itemPadding:
+                                const EdgeInsets.only(left: 10, right: 10),
+                            dropdownMaxHeight: 200,
+                            dropdownWidth: 200,
+                            dropdownPadding: null,
+                            dropdownDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: const Color.fromRGBO(191, 107, 123, 1),
+                            ),
+                            dropdownElevation: 8,
+                            scrollbarRadius: const Radius.circular(4),
+                            scrollbarThickness: 6,
+                            scrollbarAlwaysShow: true,
+                            offset: const Offset(0, -7),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
-                        children: [
+                        children: const [
                           SizedBox(
                             width: 80,
                             child: Text(
@@ -306,11 +296,11 @@ class _GhiSoState extends State<GhiSo> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Row(
-                        children: [
+                        children: const [
                           SizedBox(
                             width: 80,
                             child: Text(
@@ -336,7 +326,7 @@ class _GhiSoState extends State<GhiSo> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       Row(
@@ -344,448 +334,412 @@ class _GhiSoState extends State<GhiSo> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "TK Nợ:",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500),
                               ),
-                              Container(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    isExpanded: true,
-                                    hint: Row(
-                                      children: const [
-                                        // Icon(
-                                        //   Icons.list,
-                                        //   size: 16,
-                                        //   color: Colors.yellow,
-                                        // ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    items: itemsTK
-                                        .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(
-                                                item,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ))
-                                        .toList(),
-                                    value: selectedValue2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        selectedValue2 = value as String;
-                                      });
-                                    },
-                                    // icon: const Icon(
-                                    //   Icons.arrow_forward_ios_outlined,
-                                    // ),
-                                    iconSize: 24,
-                                    iconEnabledColor:
-                                        Color.fromARGB(255, 0, 0, 0),
-                                    iconDisabledColor: Colors.grey,
-                                    buttonHeight: 31,
-                                    buttonWidth: 84,
-                                    buttonPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    buttonDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.black26,
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  isExpanded: true,
+                                  hint: Row(
+                                    children: const [
+                                      SizedBox(
+                                        width: 4,
                                       ),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    buttonElevation: 2,
-                                    itemHeight: 40,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    dropdownMaxHeight: 200,
-                                    dropdownWidth: 200,
-                                    dropdownPadding: null,
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    dropdownElevation: 8,
-                                    scrollbarRadius: const Radius.circular(4),
-                                    scrollbarThickness: 6,
-                                    scrollbarAlwaysShow: true,
-                                    offset: const Offset(0, -7),
+                                      Expanded(
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  items: itemsTK
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue2 = value as String;
+                                    });
+                                  },
+                                  iconSize: 24,
+                                  iconEnabledColor:
+                                      const Color.fromARGB(255, 0, 0, 0),
+                                  iconDisabledColor: Colors.grey,
+                                  buttonHeight: 31,
+                                  buttonWidth: 84,
+                                  buttonPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  buttonDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  buttonElevation: 2,
+                                  itemHeight: 40,
+                                  itemPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  dropdownMaxHeight: 200,
+                                  dropdownWidth: 200,
+                                  dropdownPadding: null,
+                                  dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  dropdownElevation: 8,
+                                  scrollbarRadius: const Radius.circular(4),
+                                  scrollbarThickness: 6,
+                                  scrollbarAlwaysShow: true,
+                                  offset: const Offset(0, -7),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Container(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    isExpanded: true,
-                                    hint: Row(
-                                      children: const [
-                                        // Icon(
-                                        //   Icons.list,
-                                        //   size: 16,
-                                        //   color: Colors.yellow,
-                                        // ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    items: itemsTK
-                                        .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(
-                                                item,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ))
-                                        .toList(),
-                                    value: selectedValue2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        selectedValue2 = value as String;
-                                      });
-                                    },
-                                    // icon: const Icon(
-                                    //   Icons.arrow_forward_ios_outlined,
-                                    // ),
-                                    iconSize: 24,
-                                    iconEnabledColor:
-                                        Color.fromARGB(255, 0, 0, 0),
-                                    iconDisabledColor: Colors.grey,
-                                    buttonHeight: 31,
-                                    buttonWidth: 84,
-                                    buttonPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    buttonDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.black26,
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  isExpanded: true,
+                                  hint: Row(
+                                    children: const [
+                                      SizedBox(
+                                        width: 4,
                                       ),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    buttonElevation: 2,
-                                    itemHeight: 40,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    dropdownMaxHeight: 200,
-                                    dropdownWidth: 200,
-                                    dropdownPadding: null,
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    dropdownElevation: 8,
-                                    scrollbarRadius: const Radius.circular(4),
-                                    scrollbarThickness: 6,
-                                    scrollbarAlwaysShow: true,
-                                    offset: const Offset(0, -7),
+                                      Expanded(
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  items: itemsTK
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue2 = value as String;
+                                    });
+                                  },
+                                  iconSize: 24,
+                                  iconEnabledColor:
+                                      const Color.fromARGB(255, 0, 0, 0),
+                                  iconDisabledColor: Colors.grey,
+                                  buttonHeight: 31,
+                                  buttonWidth: 84,
+                                  buttonPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  buttonDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  buttonElevation: 2,
+                                  itemHeight: 40,
+                                  itemPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  dropdownMaxHeight: 200,
+                                  dropdownWidth: 200,
+                                  dropdownPadding: null,
+                                  dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  dropdownElevation: 8,
+                                  scrollbarRadius: const Radius.circular(4),
+                                  scrollbarThickness: 6,
+                                  scrollbarAlwaysShow: true,
+                                  offset: const Offset(0, -7),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "TK Có:",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500),
                               ),
-                              Container(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    isExpanded: true,
-                                    hint: Row(
-                                      children: const [
-                                        // Icon(
-                                        //   Icons.list,
-                                        //   size: 16,
-                                        //   color: Colors.yellow,
-                                        // ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    items: itemsTK
-                                        .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(
-                                                item,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ))
-                                        .toList(),
-                                    value: selectedValue2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        selectedValue2 = value as String;
-                                      });
-                                    },
-                                    // icon: const Icon(
-                                    //   Icons.arrow_forward_ios_outlined,
-                                    // ),
-                                    iconSize: 24,
-                                    iconEnabledColor:
-                                        Color.fromARGB(255, 0, 0, 0),
-                                    iconDisabledColor: Colors.grey,
-                                    buttonHeight: 31,
-                                    buttonWidth: 84,
-                                    buttonPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    buttonDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.black26,
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  isExpanded: true,
+                                  hint: Row(
+                                    children: const [
+                                      SizedBox(
+                                        width: 4,
                                       ),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    buttonElevation: 2,
-                                    itemHeight: 40,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    dropdownMaxHeight: 200,
-                                    dropdownWidth: 200,
-                                    dropdownPadding: null,
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    dropdownElevation: 8,
-                                    scrollbarRadius: const Radius.circular(4),
-                                    scrollbarThickness: 6,
-                                    scrollbarAlwaysShow: true,
-                                    offset: const Offset(0, -7),
+                                      Expanded(
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  items: itemsTK
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue2 = value as String;
+                                    });
+                                  },
+                                  iconSize: 24,
+                                  iconEnabledColor:
+                                      const Color.fromARGB(255, 0, 0, 0),
+                                  iconDisabledColor: Colors.grey,
+                                  buttonHeight: 31,
+                                  buttonWidth: 84,
+                                  buttonPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  buttonDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  buttonElevation: 2,
+                                  itemHeight: 40,
+                                  itemPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  dropdownMaxHeight: 200,
+                                  dropdownWidth: 200,
+                                  dropdownPadding: null,
+                                  dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  dropdownElevation: 8,
+                                  scrollbarRadius: const Radius.circular(4),
+                                  scrollbarThickness: 6,
+                                  scrollbarAlwaysShow: true,
+                                  offset: const Offset(0, -7),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Container(
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    isExpanded: true,
-                                    hint: Row(
-                                      children: const [
-                                        // Icon(
-                                        //   Icons.list,
-                                        //   size: 16,
-                                        //   color: Colors.yellow,
-                                        // ),
-                                        SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    items: itemsTK
-                                        .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(
-                                                item,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0),
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ))
-                                        .toList(),
-                                    value: selectedValue2,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        selectedValue2 = value as String;
-                                      });
-                                    },
-                                    // icon: const Icon(
-                                    //   Icons.arrow_forward_ios_outlined,
-                                    // ),
-                                    iconSize: 24,
-                                    iconEnabledColor:
-                                        Color.fromARGB(255, 0, 0, 0),
-                                    iconDisabledColor: Colors.grey,
-                                    buttonHeight: 31,
-                                    buttonWidth: 84,
-                                    buttonPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    buttonDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.black26,
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  isExpanded: true,
+                                  hint: Row(
+                                    children: const [
+                                      SizedBox(
+                                        width: 4,
                                       ),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    buttonElevation: 2,
-                                    itemHeight: 40,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    dropdownMaxHeight: 200,
-                                    dropdownWidth: 200,
-                                    dropdownPadding: null,
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                    dropdownElevation: 8,
-                                    scrollbarRadius: const Radius.circular(4),
-                                    scrollbarThickness: 6,
-                                    scrollbarAlwaysShow: true,
-                                    offset: const Offset(0, -7),
+                                      Expanded(
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color.fromARGB(255, 0, 0, 0),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                  items: itemsTK
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue2,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue2 = value as String;
+                                    });
+                                  },
+                                  iconSize: 24,
+                                  iconEnabledColor:
+                                      const Color.fromARGB(255, 0, 0, 0),
+                                  iconDisabledColor: Colors.grey,
+                                  buttonHeight: 31,
+                                  buttonWidth: 84,
+                                  buttonPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  buttonDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: Colors.black26,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  buttonElevation: 2,
+                                  itemHeight: 40,
+                                  itemPadding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  dropdownMaxHeight: 200,
+                                  dropdownWidth: 200,
+                                  dropdownPadding: null,
+                                  dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                  ),
+                                  dropdownElevation: 8,
+                                  scrollbarRadius: const Radius.circular(4),
+                                  scrollbarThickness: 6,
+                                  scrollbarAlwaysShow: true,
+                                  offset: const Offset(0, -7),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Số tiền",
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black),
                                 ),
-                                Container(
+                                SizedBox(
                                   height: 31,
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       isDense: true,
-                                      contentPadding: EdgeInsets.all(4),
+                                      contentPadding: const EdgeInsets.all(4),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                       ),
                                       border: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
-                                      fillColor:
-                                          Color.fromARGB(255, 255, 255, 255),
+                                      fillColor: const Color.fromARGB(
+                                          255, 255, 255, 255),
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
-                                Container(
+                                SizedBox(
                                   height: 31,
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                       isDense: true,
-                                      contentPadding: EdgeInsets.all(4),
+                                      contentPadding: const EdgeInsets.all(4),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                       ),
                                       border: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color:
                                                 Color.fromARGB(130, 79, 82, 78),
                                             width: 1),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                       filled: true,
-                                      fillColor:
-                                          Color.fromARGB(255, 255, 255, 255),
+                                      fillColor: const Color.fromARGB(
+                                          255, 255, 255, 255),
                                     ),
                                   ),
                                 ),
@@ -794,61 +748,58 @@ class _GhiSoState extends State<GhiSo> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  "TỔNG CỘNG:",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  height: 31,
-                                  width: 135,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      contentPadding: EdgeInsets.all(4),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromARGB(130, 79, 82, 78),
-                                            width: 1),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromARGB(130, 79, 82, 78),
-                                            width: 1),
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color:
-                                                Color.fromARGB(130, 79, 82, 78),
-                                            width: 1),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      filled: true,
-                                      fillColor:
-                                          Color.fromARGB(255, 255, 255, 255),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Text(
+                                "TỔNG CỘNG:",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 14),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              SizedBox(
+                                height: 31,
+                                width: 135,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    contentPadding: const EdgeInsets.all(4),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color:
+                                              Color.fromARGB(130, 79, 82, 78),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(4),
                                     ),
+                                    focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color:
+                                              Color.fromARGB(130, 79, 82, 78),
+                                          width: 1),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color:
+                                              Color.fromARGB(130, 79, 82, 78),
+                                          width: 1),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    filled: true,
+                                    fillColor: const Color.fromARGB(
+                                        255, 255, 255, 255),
                                   ),
                                 ),
-                              ]),
-                        ),
+                              ),
+                            ]),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Align(
@@ -859,7 +810,7 @@ class _GhiSoState extends State<GhiSo> {
                             width: 175,
                             child: ElevatedButton(
                               onPressed: () => ({}),
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                 backgroundColor: MaterialStatePropertyAll(
                                     Color.fromRGBO(89, 132, 62, 1)),
                               ),
@@ -868,7 +819,7 @@ class _GhiSoState extends State<GhiSo> {
                                       TextStyle(fontWeight: FontWeight.w700)),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextButton(

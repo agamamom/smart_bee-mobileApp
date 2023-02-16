@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:quickalert/quickalert.dart';
@@ -19,8 +15,6 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:readmore/readmore.dart';
 import 'package:uuid/uuid.dart';
 import 'package:smart_bee/utilities/categ_list.dart';
-
-import '../pages/TaiChinh.dart';
 
 List<String> listNguoiDuyet = nguoiDuyet;
 List<String> listDonViNop = donViNop;
@@ -74,7 +68,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
   @override
   void initState() {
     super.initState();
-    // _controller.addListener(() => _extension = _controller.text);
   }
 
   Future<void> uploadImages() async {
@@ -188,7 +181,10 @@ class _ThuTienMatState extends State<ThuTienMat> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page()))
+            builder: (BuildContext context) => Curved_navigation_page(
+                  indexOfScreen: 2,
+                  index: 2,
+                )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -656,8 +652,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -671,7 +668,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                       ),
@@ -709,8 +706,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                             borderRadius:
                                                 BorderRadius.circular(4),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
                                                 color: Color.fromARGB(
                                                     130, 79, 82, 78),
                                                 width: 1),
@@ -724,7 +722,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                                 BorderRadius.circular(4),
                                           ),
                                           filled: true,
-                                          fillColor: Color.fromARGB(
+                                          fillColor: const Color.fromARGB(
                                               255, 255, 255, 255),
                                         ),
                                         dropdownColor: const Color.fromARGB(
@@ -979,48 +977,36 @@ class _ThuTienMatState extends State<ThuTienMat> {
                                               ),
                                             ),
                                           ),
-
-                                          // Builder(builder: (BuildContext context) =>_isLoading ?  ),
-                                          Container(
-                                            child: Builder(
-                                              builder: (BuildContext context) =>
-                                                  _isLoading
-                                                      ? Container(
-                                                          child:
-                                                              const CircularProgressIndicator(),
-                                                        )
-                                                      : _userAborted
-                                                          ? Container(
-                                                              child: const Text(
-                                                                'User has aborted the dialog',
-                                                              ),
-                                                            )
-                                                          : _directoryPath !=
-                                                                  null
-                                                              ? ListTile(
-                                                                  title: const Text(
-                                                                      'Directory path'),
-                                                                  subtitle: Text(
-                                                                      _directoryPath!),
-                                                                )
-                                                              : _paths != null
-                                                                  ? SingleChildScrollView(
-                                                                      child:
-                                                                          Wrap(
-                                                                        children:
-                                                                            _buildList(_paths!),
-                                                                      ),
-                                                                    )
-                                                                  : _saveAsFileName !=
-                                                                          null
-                                                                      ? ListTile(
-                                                                          title:
-                                                                              const Text('Save file'),
-                                                                          subtitle:
-                                                                              Text(_saveAsFileName!),
-                                                                        )
-                                                                      : const SizedBox(),
-                                            ),
+                                          Builder(
+                                            builder: (BuildContext context) => _isLoading
+                                                ? const CircularProgressIndicator()
+                                                : _userAborted
+                                                    ? const Text(
+                                                        'User has aborted the dialog',
+                                                      )
+                                                    : _directoryPath != null
+                                                        ? ListTile(
+                                                            title: const Text(
+                                                                'Directory path'),
+                                                            subtitle: Text(
+                                                                _directoryPath!),
+                                                          )
+                                                        : _paths != null
+                                                            ? SingleChildScrollView(
+                                                                child: Wrap(
+                                                                  children:
+                                                                      _buildList(
+                                                                          _paths!),
+                                                                ),
+                                                              )
+                                                            : _saveAsFileName != null
+                                                                ? ListTile(
+                                                                    title: const Text(
+                                                                        'Save file'),
+                                                                    subtitle: Text(
+                                                                        _saveAsFileName!),
+                                                                  )
+                                                                : const SizedBox(),
                                           ),
                                           const SizedBox(
                                             height: 25,
@@ -1117,7 +1103,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
       var value = item.value;
       var key = item.key;
       String? fileDelete = value.path;
-      String fileExtension = value!.path!.split('.').last;
+      String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(
           children: [
@@ -1159,7 +1145,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1209,10 +1195,10 @@ class _ThuTienMatState extends State<ThuTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1265,7 +1251,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,
@@ -1318,7 +1304,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             Container(
               width: 90,
               child: ReadMoreText(
-                value!.name.toString(),
+                value.name.toString(),
                 trimCollapsedText: '',
                 trimLines: 1,
                 textAlign: TextAlign.center,

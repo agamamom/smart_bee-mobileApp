@@ -35,9 +35,10 @@ class TienDoChart extends StatelessWidget {
                   bottom: 10,
                   child: InkResponse(
                     onTap: () => {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const BaoCaoViec()))
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BaoCaoViec()))
                     },
                     child: Container(
                       width: 30,
