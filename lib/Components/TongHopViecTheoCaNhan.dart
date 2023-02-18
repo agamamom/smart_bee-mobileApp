@@ -192,87 +192,80 @@ class _TongHopViecTheoCaNhanState extends State<TongHopViecTheoCaNhan> {
                         ),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
-                          child: Container(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        '1111 Tiền Việt Nam',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                items: items
-                                    .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                    .toList(),
-                                value: selectedValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue = value as String;
-                                  });
-                                },
-                                // icon: const Icon(
-                                //   Icons.arrow_forward_ios_outlined,
-                                // ),
-                                iconSize: 24,
-                                iconEnabledColor:
-                                    const Color.fromARGB(255, 255, 255, 255),
-                                iconDisabledColor: Colors.grey,
-                                buttonHeight: 31,
-                                buttonWidth: double.infinity,
-                                buttonPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                buttonDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(72, 181, 69, 1),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              isExpanded: true,
+                              hint: Row(
+                                children: const [
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                  color: const Color.fromRGBO(72, 181, 69, 1),
-                                ),
-                                buttonElevation: 2,
-                                itemHeight: 40,
-                                itemPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                dropdownMaxHeight: 200,
-                                dropdownWidth: 200,
-                                dropdownPadding: null,
-                                dropdownDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: const Color.fromRGBO(72, 181, 69, 1),
-                                ),
-                                dropdownElevation: 8,
-                                scrollbarRadius: const Radius.circular(4),
-                                scrollbarThickness: 6,
-                                scrollbarAlwaysShow: true,
-                                offset: const Offset(0, -7),
+                                  Expanded(
+                                    child: Text(
+                                      '1111 Tiền Việt Nam',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
                               ),
+                              items: items
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.white,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value as String;
+                                });
+                              },
+                              // icon: const Icon(
+                              //   Icons.arrow_forward_ios_outlined,
+                              // ),
+                              iconSize: 24,
+                              iconEnabledColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                              iconDisabledColor: Colors.grey,
+                              buttonHeight: 31,
+                              buttonWidth: double.infinity,
+                              buttonPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              buttonDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(72, 181, 69, 1),
+                                ),
+                                color: const Color.fromRGBO(72, 181, 69, 1),
+                              ),
+                              buttonElevation: 2,
+                              itemHeight: 40,
+                              itemPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              dropdownMaxHeight: 200,
+                              dropdownWidth: 200,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: const Color.fromRGBO(72, 181, 69, 1),
+                              ),
+                              dropdownElevation: 8,
+                              scrollbarRadius: const Radius.circular(4),
+                              scrollbarThickness: 6,
+                              scrollbarAlwaysShow: true,
+                              offset: const Offset(0, -7),
                             ),
                           ),
                         ),
@@ -372,7 +365,7 @@ class _TongHopViecTheoCaNhanState extends State<TongHopViecTheoCaNhan> {
                                     //initialValue: _initialValue,
                                     firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
-                                    icon: Icon(Icons.event),
+                                    icon: const Icon(Icons.event),
 
                                     locale: const Locale('en', 'US'),
                                     onChanged: (val) =>

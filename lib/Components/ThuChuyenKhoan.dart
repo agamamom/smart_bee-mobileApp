@@ -1006,46 +1006,41 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
                                               ),
                                             ),
                                           ),
-
-                                          // Builder(builder: (BuildContext context) =>_isLoading ?  ),
-                                          Container(
-                                            child: Builder(
-                                              builder: (BuildContext context) =>
-                                                  _isLoading
-                                                      ? Container(
-                                                          child:
-                                                              const CircularProgressIndicator(),
-                                                        )
-                                                      : _userAborted
-                                                          ? const Text(
-                                                              'User has aborted the dialog',
-                                                            )
-                                                          : _directoryPath !=
-                                                                  null
-                                                              ? ListTile(
-                                                                  title: const Text(
-                                                                      'Directory path'),
-                                                                  subtitle: Text(
-                                                                      _directoryPath!),
-                                                                )
-                                                              : _paths != null
-                                                                  ? SingleChildScrollView(
-                                                                      child:
-                                                                          Wrap(
-                                                                        children:
-                                                                            _buildList(_paths!),
-                                                                      ),
-                                                                    )
-                                                                  : _saveAsFileName !=
-                                                                          null
-                                                                      ? ListTile(
-                                                                          title:
-                                                                              const Text('Save file'),
-                                                                          subtitle:
-                                                                              Text(_saveAsFileName!),
-                                                                        )
-                                                                      : const SizedBox(),
-                                            ),
+                                          Builder(
+                                            builder: (BuildContext context) =>
+                                                _isLoading
+                                                    ? Container(
+                                                        child:
+                                                            const CircularProgressIndicator(),
+                                                      )
+                                                    : _userAborted
+                                                        ? const Text(
+                                                            'User has aborted the dialog',
+                                                          )
+                                                        : _directoryPath != null
+                                                            ? ListTile(
+                                                                title: const Text(
+                                                                    'Directory path'),
+                                                                subtitle: Text(
+                                                                    _directoryPath!),
+                                                              )
+                                                            : _paths != null
+                                                                ? SingleChildScrollView(
+                                                                    child: Wrap(
+                                                                      children:
+                                                                          _buildList(
+                                                                              _paths!),
+                                                                    ),
+                                                                  )
+                                                                : _saveAsFileName !=
+                                                                        null
+                                                                    ? ListTile(
+                                                                        title: const Text(
+                                                                            'Save file'),
+                                                                        subtitle:
+                                                                            Text(_saveAsFileName!),
+                                                                      )
+                                                                    : const SizedBox(),
                                           ),
                                           const SizedBox(
                                             height: 25,
@@ -1352,7 +1347,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),
@@ -1405,7 +1400,7 @@ class _ThuChuyenKhoanState extends State<ThuChuyenKhoan> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),
