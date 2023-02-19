@@ -6,6 +6,7 @@ import 'package:smart_bee/Components/ThemViec.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
 import 'package:smart_bee/Components/TongHopViecTheoCaNhan.dart';
 import 'package:smart_bee/Components/DuyetViec.dart';
+import 'package:smart_bee/Components/TongHopViecTheoND.dart';
 
 class CongViec extends StatefulWidget {
   const CongViec({super.key});
@@ -159,7 +160,7 @@ class _TaiChinhState extends State<CongViec> {
                                   Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              const TongHopViecTheoCaNhan()))
+                                              const TongHopViecTheoND()))
                                 },
                                 child: Container(
                                   width: 163,
