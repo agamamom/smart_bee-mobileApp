@@ -1142,7 +1142,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),
@@ -1248,7 +1248,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),
@@ -1301,7 +1301,7 @@ class _ThuTienMatState extends State<ThuTienMat> {
             const SizedBox(
               height: 2,
             ),
-            Container(
+            SizedBox(
               width: 90,
               child: ReadMoreText(
                 value.name.toString(),

@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:smart_bee/widget/snackbar.dart';
 import '../Components/HeaderApp.dart';
 import 'package:intl/intl.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool processing = false;
   @override
   void initState() {
-    dateinput.text = ""; //set the initial value of text field
+    dateinput.text = "";
     super.initState();
   }
 
@@ -268,20 +268,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                               lastDate: DateTime(2100));
 
                                       if (pickedDate != null) {
-                                        print(
-                                            pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                        if (kDebugMode) {
+                                          print(pickedDate);
+                                        } //
                                         String formattedDate =
                                             DateFormat('yyyy-MM-dd')
                                                 .format(pickedDate);
-                                        print(
-                                            formattedDate); //formatted date output using intl package =>  2021-03-16
-                                        //you can implement different kind of Date Format here according to your requirement
+                                        if (kDebugMode) {
+                                          print(formattedDate);
+                                        } //
                                         setState(() {
-                                          dateinput.text =
-                                              formattedDate; //set output date to TextField value.
+                                          dateinput.text = formattedDate;
                                         });
                                       } else {
-                                        print("Date is not selected");
+                                        if (kDebugMode) {
+                                          print("Date is not selected");
+                                        }
                                       }
                                     },
                                   ),
@@ -309,20 +311,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                     lastDate: DateTime(2100));
 
                                 if (pickedDate != null) {
-                                  print(
-                                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                  if (kDebugMode) {
+                                    print(pickedDate);
+                                  } //pickedDate output format => 2021-03-10 00:00:00.000
                                   String formattedDate =
                                       DateFormat('yyyy-MM-dd')
                                           .format(pickedDate);
-                                  print(
-                                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                                  //you can implement different kind of Date Format here according to your requirement
+                                  if (kDebugMode) {
+                                    print(formattedDate);
+                                  } //formatted date output
                                   setState(() {
-                                    dateinput.text =
-                                        formattedDate; //set output date to TextField value.
+                                    dateinput.text = formattedDate;
                                   });
                                 } else {
-                                  print("Date is not selected");
+                                  if (kDebugMode) {
+                                    print("Date is not selected");
+                                  }
                                 }
                               },
                             ),
@@ -369,7 +373,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.symmetric(
                                       vertical: 16.74, horizontal: 24.34),
-                                  border: OutlineInputBorder(),
+                                  border: const OutlineInputBorder(),
                                   hintText: 'Mật khẩu',
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius:
@@ -437,7 +441,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   )
                                 : GestureDetector(
                                     child: ElevatedButton(
-                                      child: Text("Đăng ký",
+                                      child: const Text("Đăng ký",
                                           style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w600)),

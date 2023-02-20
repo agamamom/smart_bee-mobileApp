@@ -46,6 +46,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
   String _valueToValidate3 = '';
   String _valueSaved3 = '';
 
+  @override
   void initState() {
     super.initState();
     Intl.defaultLocale = 'pt_BR';
@@ -73,34 +74,35 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
         child: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/background.png'),
                       fit: BoxFit.cover)),
               child: SingleChildScrollView(
                   child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 20.0),
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 15.0,
                     ),
                     Image.asset(
                       'assets/images/calendar-icon.png',
                       fit: BoxFit.contain,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15.0,
                     ),
                     const SettingButton()
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Welcome, hienltt',
                         style: TextStyle(
                             fontSize: 15.0,
@@ -112,12 +114,12 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white),
@@ -125,7 +127,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                       children: [
                         Container(
                           height: 40,
-                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: ClipRRect(
@@ -134,15 +136,15 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               child: Container(
                                 width: 38,
                                 height: 38,
-                                color: Color.fromARGB(90, 120, 116, 134),
+                                color: const Color.fromARGB(90, 120, 116, 134),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: IconButton(
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.close,
                                       size: 18,
                                     ),
-                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    color: const Color.fromARGB(255, 0, 0, 0),
                                     onPressed: () => _returnTaiChinhPage(),
                                   ),
                                 ),
@@ -150,14 +152,14 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "Tổng hợp việc",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Text(
                               "Today",
                               style: TextStyle(
@@ -187,186 +189,168 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
-                          child: Container(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        '1111 Tiền Việt Nam',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color.fromARGB(
-                                              255, 255, 255, 255),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                items: items
-                                    .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                    .toList(),
-                                value: selectedValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue = value as String;
-                                  });
-                                },
-                                // icon: const Icon(
-                                //   Icons.arrow_forward_ios_outlined,
-                                // ),
-                                iconSize: 24,
-                                iconEnabledColor:
-                                    Color.fromARGB(255, 255, 255, 255),
-                                iconDisabledColor: Colors.grey,
-                                buttonHeight: 31,
-                                buttonWidth: double.infinity,
-                                buttonPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                buttonDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(
-                                    color: Color.fromRGBO(72, 181, 69, 1),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              isExpanded: true,
+                              hint: Row(
+                                children: const [
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                  color: Color.fromRGBO(72, 181, 69, 1),
-                                ),
-                                buttonElevation: 2,
-                                itemHeight: 40,
-                                itemPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                dropdownMaxHeight: 200,
-                                dropdownWidth: 200,
-                                dropdownPadding: null,
-                                dropdownDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Color.fromRGBO(72, 181, 69, 1),
-                                ),
-                                dropdownElevation: 8,
-                                scrollbarRadius: const Radius.circular(4),
-                                scrollbarThickness: 6,
-                                scrollbarAlwaysShow: true,
-                                offset: const Offset(0, -7),
+                                  Expanded(
+                                    child: Text(
+                                      '1111 Tiền Việt Nam',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
                               ),
+                              items: items
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.white,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value as String;
+                                });
+                              },
+                              iconSize: 24,
+                              iconEnabledColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                              iconDisabledColor: Colors.grey,
+                              buttonHeight: 31,
+                              buttonWidth: double.infinity,
+                              buttonPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              buttonDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(72, 181, 69, 1),
+                                ),
+                                color: const Color.fromRGBO(72, 181, 69, 1),
+                              ),
+                              buttonElevation: 2,
+                              itemHeight: 40,
+                              itemPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              dropdownMaxHeight: 200,
+                              dropdownWidth: 200,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: const Color.fromRGBO(72, 181, 69, 1),
+                              ),
+                              dropdownElevation: 8,
+                              scrollbarRadius: const Radius.circular(4),
+                              scrollbarThickness: 6,
+                              scrollbarAlwaysShow: true,
+                              offset: const Offset(0, -7),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
-                          child: Container(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: const [
-                                    // Icon(
-                                    //   Icons.list,
-                                    //   size: 16,
-                                    //   color: Colors.yellow,
-                                    // ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        'Từ ngày - Đến ngày',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color:
-                                              Color.fromARGB(255, 83, 81, 81),
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                items: items
-                                    .map((item) => DropdownMenuItem<String>(
-                                          value: item,
-                                          child: Text(
-                                            item,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Color.fromARGB(
-                                                  255, 83, 81, 81),
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ))
-                                    .toList(),
-                                value: selectedValue,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedValue = value as String;
-                                  });
-                                },
-                                // icon: const Icon(
-                                //   Icons.arrow_forward_ios_outlined,
-                                // ),
-                                iconSize: 24,
-                                iconEnabledColor:
-                                    Color.fromARGB(255, 83, 81, 81),
-                                iconDisabledColor: Colors.grey,
-                                buttonHeight: 31,
-                                buttonWidth: double.infinity,
-                                buttonPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                buttonDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  border: Border.all(
-                                    color: Color.fromRGBO(238, 238, 238, 1),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              isExpanded: true,
+                              hint: Row(
+                                children: const [
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                  color: Color.fromRGBO(238, 238, 238, 1),
-                                ),
-                                buttonElevation: 2,
-                                itemHeight: 40,
-                                itemPadding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                dropdownMaxHeight: 200,
-                                dropdownWidth: 200,
-                                dropdownPadding: null,
-                                dropdownDecoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Color.fromRGBO(238, 238, 238, 1),
-                                ),
-                                dropdownElevation: 8,
-                                scrollbarRadius: const Radius.circular(4),
-                                scrollbarThickness: 6,
-                                scrollbarAlwaysShow: true,
-                                offset: const Offset(0, -7),
+                                  Expanded(
+                                    child: Text(
+                                      'Từ ngày - Đến ngày',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Color.fromARGB(255, 83, 81, 81),
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
                               ),
+                              items: items
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color:
+                                                Color.fromARGB(255, 83, 81, 81),
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value as String;
+                                });
+                              },
+                              // icon: const Icon(
+                              //   Icons.arrow_forward_ios_outlined,
+                              // ),
+                              iconSize: 24,
+                              iconEnabledColor:
+                                  const Color.fromARGB(255, 83, 81, 81),
+                              iconDisabledColor: Colors.grey,
+                              buttonHeight: 31,
+                              buttonWidth: double.infinity,
+                              buttonPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              buttonDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(238, 238, 238, 1),
+                                ),
+                                color: const Color.fromRGBO(238, 238, 238, 1),
+                              ),
+                              buttonElevation: 2,
+                              itemHeight: 40,
+                              itemPadding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              dropdownMaxHeight: 200,
+                              dropdownWidth: 200,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: const Color.fromRGBO(238, 238, 238, 1),
+                              ),
+                              dropdownElevation: 8,
+                              scrollbarRadius: const Radius.circular(4),
+                              scrollbarThickness: 6,
+                              scrollbarAlwaysShow: true,
+                              offset: const Offset(0, -7),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Wrap(
@@ -383,9 +367,9 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                     //initialValue: _initialValue,
                                     firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
-                                    icon: Icon(Icons.event),
+                                    icon: const Icon(Icons.event),
 
-                                    locale: Locale('en', 'US'),
+                                    locale: const Locale('en', 'US'),
                                     onChanged: (val) =>
                                         setState(() => _valueChanged3 = val),
                                     validator: (val) {
@@ -408,9 +392,9 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                     //initialValue: _initialValue,
                                     firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
-                                    icon: Icon(Icons.event),
+                                    icon: const Icon(Icons.event),
 
-                                    locale: Locale('en', 'US'),
+                                    locale: const Locale('en', 'US'),
                                     onChanged: (val) =>
                                         setState(() => _valueChanged3 = val),
                                     validator: (val) {
@@ -424,16 +408,16 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                 ),
                               )
                             ]),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Table(
-                          columnWidths: {
+                          columnWidths: const {
                             0: FractionColumnWidth(.53),
                             1: FractionColumnWidth(.23)
                           },
                           border: TableBorder.all(
-                              color: Color.fromARGB(255, 219, 216, 216),
+                              color: const Color.fromARGB(255, 219, 216, 216),
                               style: BorderStyle.solid,
                               width: 1),
                           children: [
@@ -446,7 +430,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                     child: Container(
                                       height: 35.0,
                                       alignment: Alignment.center,
-                                      child: Text('Nhóm việc',
+                                      child: const Text('Nhóm việc',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -457,7 +441,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                   Container(
                                     height: 35.0,
                                     alignment: Alignment.center,
-                                    child: Text('Giờ công',
+                                    child: const Text('Giờ công',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -467,7 +451,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                   Container(
                                     alignment: Alignment.center,
                                     height: 35.0,
-                                    child: Text('%',
+                                    child: const Text('%',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -477,10 +461,11 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                                 ]),
                             TableRow(children: [
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('ádadadasdadasdasdzxczxczxc',
+                                child: const Text('ádadadasdadasdasdzxczxczxc',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -490,7 +475,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('10h',
+                                child: const Text('10h',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -499,7 +484,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('10%',
+                                child: const Text('10%',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -510,7 +495,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -519,7 +504,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -528,7 +513,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -539,7 +524,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -548,7 +533,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -557,7 +542,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -568,7 +553,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -577,7 +562,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -586,7 +571,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -597,7 +582,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -606,7 +591,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -615,7 +600,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -626,7 +611,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -635,7 +620,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -644,7 +629,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -655,7 +640,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -664,7 +649,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -673,7 +658,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -684,7 +669,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -693,7 +678,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -702,7 +687,7 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: Text('',
+                                child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),

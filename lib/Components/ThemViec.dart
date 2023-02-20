@@ -128,14 +128,14 @@ class _ThemViecState extends State<ThemViec> {
                         color: Colors.white),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Thêm việc",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Text(
                               "Today",
                               style: TextStyle(
@@ -165,7 +165,7 @@ class _ThemViecState extends State<ThemViec> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
                         Container(
@@ -176,16 +176,17 @@ class _ThemViecState extends State<ThemViec> {
                               Container(
                                 height: 48,
                                 decoration: BoxDecoration(
-                                    color: Color.fromRGBO(179, 179, 179, 1),
+                                    color:
+                                        const Color.fromRGBO(179, 179, 179, 1),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: TabBar(
                                     labelColor: Colors.white,
-                                    unselectedLabelColor:
-                                        Color.fromARGB(255, 255, 255, 255),
+                                    unselectedLabelColor: const Color.fromARGB(
+                                        255, 255, 255, 255),
                                     indicator: BoxDecoration(
                                         color: Color.fromRGBO(72, 181, 89, 1),
                                         borderRadius: BorderRadius.circular(8)),
-                                    tabs: [
+                                    tabs: const [
                                       Tab(
                                         text: "Việc dự án",
                                       ),
@@ -198,21 +199,23 @@ class _ThemViecState extends State<ThemViec> {
                                 height: 500,
                                 child: TabBarView(children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 30),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 30),
                                     child: ListView(
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -221,11 +224,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -277,12 +275,9 @@ class _ThemViecState extends State<ThemViec> {
                                                           value as String;
                                                     });
                                                   },
-                                                  // icon: const Icon(
-                                                  //   Icons.arrow_forward_ios_outlined,
-                                                  // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -297,10 +292,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -316,7 +312,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -331,10 +327,11 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
@@ -350,11 +347,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -406,9 +398,6 @@ class _ThemViecState extends State<ThemViec> {
                                                           value as String;
                                                     });
                                                   },
-                                                  // icon: const Icon(
-                                                  //   Icons.arrow_forward_ios_outlined,
-                                                  // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
                                                       Color.fromARGB(
@@ -426,10 +415,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -445,7 +435,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -463,14 +453,14 @@ class _ThemViecState extends State<ThemViec> {
                                           margin: EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -479,11 +469,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -540,7 +525,7 @@ class _ThemViecState extends State<ThemViec> {
                                                   // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -555,10 +540,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -574,7 +560,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -589,17 +575,18 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -608,11 +595,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -664,12 +646,9 @@ class _ThemViecState extends State<ThemViec> {
                                                           value as String;
                                                     });
                                                   },
-                                                  // icon: const Icon(
-                                                  //   Icons.arrow_forward_ios_outlined,
-                                                  // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -684,10 +663,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -703,7 +683,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -718,7 +698,8 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          decoration: BoxDecoration(boxShadow: [
+                                          decoration:
+                                              const BoxDecoration(boxShadow: [
                                             BoxShadow(
                                                 color:
                                                     Color.fromARGB(76, 0, 0, 0),
@@ -730,24 +711,25 @@ class _ThemViecState extends State<ThemViec> {
                                             decoration: InputDecoration(
                                               isDense: true,
                                               contentPadding:
-                                                  EdgeInsets.all(15),
+                                                  const EdgeInsets.all(15),
                                               hintText: 'Mô tả việc',
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
                                                 borderRadius:
                                                     BorderRadius.circular(4),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
                                               ),
                                               border: OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
@@ -755,15 +737,15 @@ class _ThemViecState extends State<ThemViec> {
                                                     BorderRadius.circular(4),
                                               ),
                                               filled: true,
-                                              fillColor: Color.fromARGB(
+                                              fillColor: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 12,
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: double.infinity,
                                           child: Row(
                                             children: [
@@ -771,25 +753,26 @@ class _ThemViecState extends State<ThemViec> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     "ĐVT:",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.w500),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     width: 70,
                                                     child: TextFormField(
                                                       decoration:
                                                           InputDecoration(
                                                         isDense: true,
                                                         contentPadding:
-                                                            EdgeInsets.all(4),
+                                                            const EdgeInsets
+                                                                .all(4),
                                                         enabledBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -802,7 +785,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         focusedBorder:
-                                                            OutlineInputBorder(
+                                                            const OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
                                                                   color: Color
@@ -816,7 +799,7 @@ class _ThemViecState extends State<ThemViec> {
                                                         border:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -829,40 +812,41 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         filled: true,
-                                                        fillColor:
-                                                            Color.fromARGB(255,
-                                                                255, 255, 255),
+                                                        fillColor: const Color
+                                                                .fromARGB(
+                                                            255, 255, 255, 255),
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     "Số lượng:",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.w500),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     width: 70,
                                                     child: TextFormField(
                                                       decoration:
                                                           InputDecoration(
                                                         isDense: true,
                                                         contentPadding:
-                                                            EdgeInsets.all(4),
+                                                            const EdgeInsets
+                                                                .all(4),
                                                         enabledBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -875,7 +859,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         focusedBorder:
-                                                            OutlineInputBorder(
+                                                            const OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
                                                                   color: Color
@@ -889,7 +873,7 @@ class _ThemViecState extends State<ThemViec> {
                                                         border:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -902,15 +886,15 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         filled: true,
-                                                        fillColor:
-                                                            Color.fromARGB(255,
-                                                                255, 255, 255),
+                                                        fillColor: const Color
+                                                                .fromARGB(
+                                                            255, 255, 255, 255),
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Expanded(
@@ -918,7 +902,7 @@ class _ThemViecState extends State<ThemViec> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    const Text(
                                                       "Giờ công:",
                                                       style: TextStyle(
                                                           fontSize: 14,
@@ -926,18 +910,19 @@ class _ThemViecState extends State<ThemViec> {
                                                               FontWeight.w500,
                                                           color: Colors.black),
                                                     ),
-                                                    Container(
+                                                    SizedBox(
                                                       height: 31,
                                                       child: TextFormField(
                                                         decoration:
                                                             InputDecoration(
                                                           isDense: true,
                                                           contentPadding:
-                                                              EdgeInsets.all(4),
+                                                              const EdgeInsets
+                                                                  .all(4),
                                                           enabledBorder:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                                     color: Color
                                                                         .fromARGB(
                                                                             130,
@@ -951,7 +936,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                         4),
                                                           ),
                                                           focusedBorder:
-                                                              OutlineInputBorder(
+                                                              const OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
                                                                     color: Color
@@ -965,7 +950,7 @@ class _ThemViecState extends State<ThemViec> {
                                                           border:
                                                               OutlineInputBorder(
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                                     color: Color
                                                                         .fromARGB(
                                                                             130,
@@ -979,12 +964,9 @@ class _ThemViecState extends State<ThemViec> {
                                                                         4),
                                                           ),
                                                           filled: true,
-                                                          fillColor:
-                                                              Color.fromARGB(
-                                                                  255,
-                                                                  255,
-                                                                  255,
-                                                                  255),
+                                                          fillColor: const Color
+                                                                  .fromARGB(255,
+                                                              255, 255, 255),
                                                         ),
                                                       ),
                                                     ),
@@ -994,7 +976,7 @@ class _ThemViecState extends State<ThemViec> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 6,
                                         ),
                                         Row(
@@ -1005,7 +987,7 @@ class _ThemViecState extends State<ThemViec> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
+                                                const Text(
                                                   "Hạn hoàn thành:",
                                                   style: TextStyle(
                                                       fontSize: 14,
@@ -1013,30 +995,32 @@ class _ThemViecState extends State<ThemViec> {
                                                           FontWeight.w500,
                                                       color: Colors.black),
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   height: 31,
                                                   width: 162,
                                                   child: TextFormField(
                                                     decoration: InputDecoration(
                                                       isDense: true,
                                                       contentPadding:
-                                                          EdgeInsets.all(4),
+                                                          const EdgeInsets.all(
+                                                              4),
                                                       enabledBorder:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    130,
-                                                                    79,
-                                                                    82,
-                                                                    78),
-                                                            width: 1),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        130,
+                                                                        79,
+                                                                        82,
+                                                                        78),
+                                                                width: 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4),
                                                       ),
                                                       focusedBorder:
-                                                          OutlineInputBorder(
+                                                          const OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                             color:
                                                                 Color.fromARGB(
@@ -1048,21 +1032,26 @@ class _ThemViecState extends State<ThemViec> {
                                                       ),
                                                       border:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    130,
-                                                                    79,
-                                                                    82,
-                                                                    78),
-                                                            width: 1),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        130,
+                                                                        79,
+                                                                        82,
+                                                                        78),
+                                                                width: 1),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(4),
                                                       ),
                                                       filled: true,
-                                                      fillColor: Color.fromARGB(
-                                                          255, 255, 255, 255),
+                                                      fillColor:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255),
                                                     ),
                                                   ),
                                                 ),
@@ -1070,24 +1059,24 @@ class _ThemViecState extends State<ThemViec> {
                                             )
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         Row(
                                           children: [
-                                            Icon(Icons.add,
+                                            const Icon(Icons.add,
                                                 size: 16,
                                                 color: Color.fromRGBO(
                                                     125, 125, 125, 1)),
-                                            Text("Thêm nhân sự hỗ trợ:",
+                                            const Text("Thêm nhân sự hỗ trợ:",
                                                 style: TextStyle(
                                                     color: Color.fromRGBO(
                                                         125, 125, 125, 1))),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 6,
                                             ),
                                             Wrap(
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   "tuanbv, truongpv",
                                                   style: TextStyle(
@@ -1098,38 +1087,39 @@ class _ThemViecState extends State<ThemViec> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         Container(
                                           height: 230,
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8, vertical: 15),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 228, 250, 214, 1),
                                           ),
                                           child: Column(children: [
                                             Row(
                                               children: [
-                                                Text(
+                                                const Text(
                                                   "Đăng ký làm ngoài giờ",
                                                   style: TextStyle(
                                                       fontSize: 15,
                                                       color: Colors.black),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 4,
                                                 ),
                                                 CustomCheckBox(
                                                   value: shouldCheck,
                                                   shouldShowBorder: true,
-                                                  borderColor: Color.fromARGB(
-                                                      255, 132, 130, 130),
+                                                  borderColor:
+                                                      const Color.fromARGB(
+                                                          255, 132, 130, 130),
                                                   checkedFillColor:
-                                                      Color.fromRGBO(
+                                                      const Color.fromRGBO(
                                                           72, 181, 69, 1),
                                                   borderRadius: 4,
                                                   borderWidth: 1,
@@ -1143,67 +1133,61 @@ class _ThemViecState extends State<ThemViec> {
                                                 ),
                                               ],
                                             ),
-                                            Container(
-                                              child: Row(
-                                                children: [
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        "Ngày-tháng:",
-                                                        style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
-                                                      Container(
-                                                        width: 280,
-                                                        child: DateTimePicker(
-                                                          type:
-                                                              DateTimePickerType
-                                                                  .date,
-                                                          //dateMask: 'yyyy/MM/dd',
-                                                          controller:
-                                                              _controller3,
-                                                          //initialValue: _initialValue,
-                                                          firstDate:
-                                                              DateTime(2000),
-                                                          lastDate:
-                                                              DateTime(2100),
-                                                          icon:
-                                                              Icon(Icons.event),
+                                            Row(
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    const Text(
+                                                      "Ngày-tháng:",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 280,
+                                                      child: DateTimePicker(
+                                                        type: DateTimePickerType
+                                                            .date,
+                                                        //dateMask: 'yyyy/MM/dd',
+                                                        controller:
+                                                            _controller3,
+                                                        //initialValue: _initialValue,
+                                                        firstDate:
+                                                            DateTime(2000),
+                                                        lastDate:
+                                                            DateTime(2100),
+                                                        icon: const Icon(
+                                                            Icons.event),
 
-                                                          locale: Locale(
-                                                              'en', 'US'),
-                                                          onChanged: (val) =>
-                                                              setState(() =>
-                                                                  _valueChanged3 =
-                                                                      val),
-                                                          validator: (val) {
+                                                        locale: const Locale(
+                                                            'en', 'US'),
+                                                        onChanged: (val) =>
                                                             setState(() =>
-                                                                _valueToValidate3 =
-                                                                    val ?? '');
-                                                            return null;
-                                                          },
-                                                          onSaved: (val) =>
-                                                              setState(() =>
-                                                                  _valueSaved3 =
-                                                                      val ??
-                                                                          ''),
-                                                        ),
+                                                                _valueChanged3 =
+                                                                    val),
+                                                        validator: (val) {
+                                                          setState(() =>
+                                                              _valueToValidate3 =
+                                                                  val ?? '');
+                                                          return null;
+                                                        },
+                                                        onSaved: (val) =>
+                                                            setState(() =>
+                                                                _valueSaved3 =
+                                                                    val ?? ''),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 20,
                                             ),
-                                            Container(
+                                            SizedBox(
                                               width: double.infinity,
                                               child: IntrinsicWidth(
                                                 child: Row(
@@ -1218,7 +1202,7 @@ class _ThemViecState extends State<ThemViec> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Từ giờ:",
                                                             style: TextStyle(
                                                                 color: Colors
@@ -1227,67 +1211,67 @@ class _ThemViecState extends State<ThemViec> {
                                                                     FontWeight
                                                                         .w500),
                                                           ),
-                                                          Container(
-                                                            child:
-                                                                TextFormField(
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                isDense: true,
-                                                                contentPadding:
-                                                                    EdgeInsets
-                                                                        .all(4),
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4),
-                                                                ),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                ),
-                                                                border:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4),
-                                                                ),
-                                                                filled: true,
-                                                                fillColor: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        255,
-                                                                        255),
+                                                          TextFormField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              isDense: true,
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                      .all(4),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
                                                               ),
+                                                              focusedBorder:
+                                                                  const OutlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                              ),
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  255,
+                                                                  255,
+                                                                  255),
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 4,
                                                     ),
                                                     Expanded(
@@ -1296,7 +1280,7 @@ class _ThemViecState extends State<ThemViec> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text(
+                                                          const Text(
                                                             "Đến giờ:",
                                                             style: TextStyle(
                                                                 color: Colors
@@ -1305,61 +1289,61 @@ class _ThemViecState extends State<ThemViec> {
                                                                     FontWeight
                                                                         .w500),
                                                           ),
-                                                          Container(
-                                                            child:
-                                                                TextFormField(
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                isDense: true,
-                                                                contentPadding:
-                                                                    EdgeInsets
-                                                                        .all(4),
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4),
-                                                                ),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                ),
-                                                                border:
-                                                                    OutlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: Color.fromARGB(
-                                                                          130,
-                                                                          79,
-                                                                          82,
-                                                                          78),
-                                                                      width: 1),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4),
-                                                                ),
-                                                                filled: true,
-                                                                fillColor: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        255,
-                                                                        255,
-                                                                        255),
+                                                          TextFormField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              isDense: true,
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                      .all(4),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
                                                               ),
+                                                              focusedBorder:
+                                                                  const OutlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                              ),
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                    width: 1),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor: const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  255,
+                                                                  255,
+                                                                  255),
                                                             ),
                                                           ),
                                                         ],
@@ -1371,7 +1355,7 @@ class _ThemViecState extends State<ThemViec> {
                                             ),
                                           ]),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 40,
                                         ),
                                         Align(
@@ -1383,7 +1367,7 @@ class _ThemViecState extends State<ThemViec> {
                                               width: 175,
                                               child: ElevatedButton(
                                                 onPressed: () => ({}),
-                                                style: ButtonStyle(
+                                                style: const ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStatePropertyAll(
                                                           Color.fromRGBO(
@@ -1395,7 +1379,7 @@ class _ThemViecState extends State<ThemViec> {
                                                             FontWeight.w700)),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                             TextButton(
@@ -1415,21 +1399,23 @@ class _ThemViecState extends State<ThemViec> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 30),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 30),
                                     child: ListView(
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -1438,11 +1424,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -1499,7 +1480,7 @@ class _ThemViecState extends State<ThemViec> {
                                                   // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -1514,10 +1495,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -1533,7 +1515,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -1548,17 +1530,18 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Color.fromARGB(
+                                              color: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                               borderRadius:
                                                   BorderRadius.circular(8)),
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -1567,11 +1550,6 @@ class _ThemViecState extends State<ThemViec> {
                                                   isExpanded: true,
                                                   hint: Row(
                                                     children: const [
-                                                      // Icon(
-                                                      //   Icons.list,
-                                                      //   size: 16,
-                                                      //   color: Colors.yellow,
-                                                      // ),
                                                       SizedBox(
                                                         width: 4,
                                                       ),
@@ -1623,12 +1601,9 @@ class _ThemViecState extends State<ThemViec> {
                                                           value as String;
                                                     });
                                                   },
-                                                  // icon: const Icon(
-                                                  //   Icons.arrow_forward_ios_outlined,
-                                                  // ),
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -1643,10 +1618,11 @@ class _ThemViecState extends State<ThemViec> {
                                                         BorderRadius.circular(
                                                             4),
                                                     border: Border.all(
-                                                      color: Color.fromARGB(
-                                                          114, 97, 95, 95),
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              114, 97, 95, 95),
                                                     ),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   buttonElevation: 2,
@@ -1662,7 +1638,7 @@ class _ThemViecState extends State<ThemViec> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             4),
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 255, 255, 255),
                                                   ),
                                                   dropdownElevation: 8,
@@ -1677,7 +1653,8 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          decoration: BoxDecoration(boxShadow: [
+                                          decoration:
+                                              const BoxDecoration(boxShadow: [
                                             BoxShadow(
                                                 color:
                                                     Color.fromARGB(76, 0, 0, 0),
@@ -1689,24 +1666,25 @@ class _ThemViecState extends State<ThemViec> {
                                             decoration: InputDecoration(
                                               isDense: true,
                                               contentPadding:
-                                                  EdgeInsets.all(15),
+                                                  const EdgeInsets.all(15),
                                               hintText: 'Mô tả việc',
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
                                                 borderRadius:
                                                     BorderRadius.circular(4),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
                                               ),
                                               border: OutlineInputBorder(
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                     color: Color.fromARGB(
                                                         130, 79, 82, 78),
                                                     width: 1),
@@ -1714,15 +1692,15 @@ class _ThemViecState extends State<ThemViec> {
                                                     BorderRadius.circular(4),
                                               ),
                                               filled: true,
-                                              fillColor: Color.fromARGB(
+                                              fillColor: const Color.fromARGB(
                                                   255, 255, 255, 255),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 12,
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: double.infinity,
                                           child: Row(
                                             children: [
@@ -1730,25 +1708,26 @@ class _ThemViecState extends State<ThemViec> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     "ĐVT:",
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontWeight:
                                                             FontWeight.w500),
                                                   ),
-                                                  Container(
+                                                  SizedBox(
                                                     width: 70,
                                                     child: TextFormField(
                                                       decoration:
                                                           InputDecoration(
                                                         isDense: true,
                                                         contentPadding:
-                                                            EdgeInsets.all(4),
+                                                            const EdgeInsets
+                                                                .all(4),
                                                         enabledBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                                   color: Color
                                                                       .fromARGB(
                                                                           130,
@@ -1761,7 +1740,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                   .circular(4),
                                                         ),
                                                         focusedBorder:
-                                                            OutlineInputBorder(
+                                                            const OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
                                                                   color: Color
@@ -2121,7 +2100,7 @@ class _ThemViecState extends State<ThemViec> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
+                                                        const Text(
                                                           "Ngày-tháng:",
                                                           style: TextStyle(
                                                               color:
@@ -2130,7 +2109,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                   FontWeight
                                                                       .w500),
                                                         ),
-                                                        Container(
+                                                        SizedBox(
                                                           width: 280,
                                                           child: DateTimePicker(
                                                             type:
@@ -2144,11 +2123,12 @@ class _ThemViecState extends State<ThemViec> {
                                                                 DateTime(2000),
                                                             lastDate:
                                                                 DateTime(2100),
-                                                            icon: Icon(
+                                                            icon: const Icon(
                                                                 Icons.event),
 
-                                                            locale: Locale(
-                                                                'en', 'US'),
+                                                            locale:
+                                                                const Locale(
+                                                                    'en', 'US'),
                                                             onChanged: (val) =>
                                                                 setState(() =>
                                                                     _valueChanged3 =
@@ -2171,10 +2151,10 @@ class _ThemViecState extends State<ThemViec> {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 20,
                                                 ),
-                                                Container(
+                                                SizedBox(
                                                   width: double.infinity,
                                                   child: IntrinsicWidth(
                                                     child: Row(
@@ -2190,7 +2170,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text(
+                                                              const Text(
                                                                 "Từ giờ:",
                                                                 style: TextStyle(
                                                                     color: Colors
@@ -2199,70 +2179,66 @@ class _ThemViecState extends State<ThemViec> {
                                                                         FontWeight
                                                                             .w500),
                                                               ),
-                                                              Container(
-                                                                child:
-                                                                    TextFormField(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    isDense:
-                                                                        true,
-                                                                    contentPadding:
-                                                                        EdgeInsets
-                                                                            .all(4),
-                                                                    enabledBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4),
-                                                                    ),
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            255,
-                                                                            255),
+                                                              TextFormField(
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  isDense: true,
+                                                                  contentPadding:
+                                                                      const EdgeInsets
+                                                                          .all(4),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide: const BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(4),
                                                                   ),
+                                                                  focusedBorder:
+                                                                      const OutlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                  ),
+                                                                  border:
+                                                                      OutlineInputBorder(
+                                                                    borderSide: const BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(4),
+                                                                  ),
+                                                                  filled: true,
+                                                                  fillColor:
+                                                                      const Color
+                                                                              .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           width: 4,
                                                         ),
                                                         Expanded(
@@ -2271,7 +2247,7 @@ class _ThemViecState extends State<ThemViec> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text(
+                                                              const Text(
                                                                 "Đến giờ:",
                                                                 style: TextStyle(
                                                                     color: Colors
@@ -2280,64 +2256,60 @@ class _ThemViecState extends State<ThemViec> {
                                                                         FontWeight
                                                                             .w500),
                                                               ),
-                                                              Container(
-                                                                child:
-                                                                    TextFormField(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    isDense:
-                                                                        true,
-                                                                    contentPadding:
-                                                                        EdgeInsets
-                                                                            .all(4),
-                                                                    enabledBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderSide: BorderSide(
-                                                                          color: Color.fromARGB(
-                                                                              130,
-                                                                              79,
-                                                                              82,
-                                                                              78),
-                                                                          width:
-                                                                              1),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4),
-                                                                    ),
-                                                                    filled:
-                                                                        true,
-                                                                    fillColor: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            255,
-                                                                            255,
-                                                                            255),
+                                                              TextFormField(
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  isDense: true,
+                                                                  contentPadding:
+                                                                      const EdgeInsets
+                                                                          .all(4),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide: const BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(4),
                                                                   ),
+                                                                  focusedBorder:
+                                                                      const OutlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                  ),
+                                                                  border:
+                                                                      OutlineInputBorder(
+                                                                    borderSide: const BorderSide(
+                                                                        color: Color.fromARGB(
+                                                                            130,
+                                                                            79,
+                                                                            82,
+                                                                            78),
+                                                                        width:
+                                                                            1),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(4),
+                                                                  ),
+                                                                  filled: true,
+                                                                  fillColor:
+                                                                      const Color
+                                                                              .fromARGB(
+                                                                          255,
+                                                                          255,
+                                                                          255,
+                                                                          255),
                                                                 ),
                                                               ),
                                                             ],
@@ -2351,7 +2323,7 @@ class _ThemViecState extends State<ThemViec> {
                                             ],
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 40,
                                         ),
                                         Align(
@@ -2363,7 +2335,7 @@ class _ThemViecState extends State<ThemViec> {
                                               width: 175,
                                               child: ElevatedButton(
                                                 onPressed: () => ({}),
-                                                style: ButtonStyle(
+                                                style: const ButtonStyle(
                                                   backgroundColor:
                                                       MaterialStatePropertyAll(
                                                           Color.fromRGBO(
@@ -2375,7 +2347,7 @@ class _ThemViecState extends State<ThemViec> {
                                                             FontWeight.w700)),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                             TextButton(

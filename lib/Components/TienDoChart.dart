@@ -329,11 +329,10 @@ class TienDoChart extends StatelessWidget {
                   child: Column(children: [
                     Transform.translate(
                       offset: Offset((totalWidth * 2 * 0.9) - totalWidth, 0),
-                      child: Container(
-                          child: Image.asset(
+                      child: Image.asset(
                         'assets/images/Polygon15.png',
                         fit: BoxFit.cover,
-                      )),
+                      ),
                     ),
                     LinearPercentIndicator(
                       padding: EdgeInsets.zero,
