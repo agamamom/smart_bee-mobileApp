@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -36,7 +37,6 @@ class _ChiTienMatState extends State<ChiTienMat> {
   String? dropdownPhanLoai;
   String? dropdownDuAn;
 
-  String _fileText = "";
   String? _fileName;
   String? _saveAsFileName;
   List<PlatformFile>? _paths;
@@ -46,7 +46,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
   bool _userAborted = false;
   final bool _multiPick = true;
   final FileType _pickingType = FileType.any;
-  TextEditingController _soController = TextEditingController();
+  final TextEditingController _soController = TextEditingController();
   bool processing = false;
   late String proId;
 
@@ -71,7 +71,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
   }
 
   Future<void> uploadImages() async {
-    print(_soController.text);
+    if (kDebugMode) {
+      print(_soController.text);
+    }
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       if (_paths!.isNotEmpty) {
@@ -87,12 +89,16 @@ class _ChiTienMatState extends State<ChiTienMat> {
             await ref.putFile(File(image.path!)).whenComplete(() async {
               await ref.getDownloadURL().then((value) {
                 filesUrlList.add(value);
-                print("filesUrlList $filesUrlList");
+                if (kDebugMode) {
+                  print("filesUrlList $filesUrlList");
+                }
               });
             });
           }
         } catch (e) {
-          print(e);
+          if (kDebugMode) {
+            print(e);
+          }
         }
       } else {
         MyMessageHandler.showSnackBar(_scaffoldKey, 'Lỗi chưa chọn tệp!');
@@ -135,7 +141,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
       setState(() {
         processing = false;
       });
-      print('no images');
+      if (kDebugMode) {
+        print('no images');
+      }
     }
   }
 
@@ -156,7 +164,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
             : null,
       ))
           ?.files;
-      print("_paths  $_paths");
+      if (kDebugMode) {
+        print("_paths  $_paths");
+      }
     } on PlatformException catch (e) {
       _logException('Unsupported operation$e');
     } catch (e) {
@@ -192,7 +202,9 @@ class _ChiTienMatState extends State<ChiTienMat> {
   }
 
   void _logException(String message) {
-    print(message);
+    if (kDebugMode) {
+      print(message);
+    }
     _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
     _scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
@@ -980,40 +992,35 @@ class _ChiTienMatState extends State<ChiTienMat> {
 
                                           // Builder(builder: (BuildContext context) =>_isLoading ?  ),
                                           Builder(
-                                            builder: (BuildContext context) =>
-                                                _isLoading
-                                                    ? Container(
-                                                        child:
-                                                            const CircularProgressIndicator(),
+                                            builder: (BuildContext context) => _isLoading
+                                                ? const CircularProgressIndicator()
+                                                : _userAborted
+                                                    ? const Text(
+                                                        'User has aborted the dialog',
                                                       )
-                                                    : _userAborted
-                                                        ? const Text(
-                                                            'User has aborted the dialog',
+                                                    : _directoryPath != null
+                                                        ? ListTile(
+                                                            title: const Text(
+                                                                'Directory path'),
+                                                            subtitle: Text(
+                                                                _directoryPath!),
                                                           )
-                                                        : _directoryPath != null
-                                                            ? ListTile(
-                                                                title: const Text(
-                                                                    'Directory path'),
-                                                                subtitle: Text(
-                                                                    _directoryPath!),
+                                                        : _paths != null
+                                                            ? SingleChildScrollView(
+                                                                child: Wrap(
+                                                                  children:
+                                                                      _buildList(
+                                                                          _paths!),
+                                                                ),
                                                               )
-                                                            : _paths != null
-                                                                ? SingleChildScrollView(
-                                                                    child: Wrap(
-                                                                      children:
-                                                                          _buildList(
-                                                                              _paths!),
-                                                                    ),
+                                                            : _saveAsFileName != null
+                                                                ? ListTile(
+                                                                    title: const Text(
+                                                                        'Save file'),
+                                                                    subtitle: Text(
+                                                                        _saveAsFileName!),
                                                                   )
-                                                                : _saveAsFileName !=
-                                                                        null
-                                                                    ? ListTile(
-                                                                        title: const Text(
-                                                                            'Save file'),
-                                                                        subtitle:
-                                                                            Text(_saveAsFileName!),
-                                                                      )
-                                                                    : const SizedBox(),
+                                                                : const SizedBox(),
                                           ),
                                           const SizedBox(
                                             height: 25,
@@ -1099,7 +1106,7 @@ class _ChiTienMatState extends State<ChiTienMat> {
     return items.asMap().entries.map((item) {
       var value = item.value;
       var key = item.key;
-      String? fileDelete = value.path;
+
       String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(

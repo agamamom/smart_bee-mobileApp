@@ -38,10 +38,12 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
     );
   }
 
-  GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   late TextEditingController _controller3;
+  // ignore: unused_field
   String _valueChanged3 = '';
+  // ignore: unused_field
   String _valueToValidate3 = '';
+  // ignore: unused_field
   String _valueSaved3 = '';
 
   @override
@@ -50,9 +52,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
-
-    String lsHour = TimeOfDay.now().hour.toString().padLeft(2, '0');
-    String lsMinute = TimeOfDay.now().minute.toString().padLeft(2, '0');
 
     _getValue();
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_bee/Components/SettingButton.dart';
-import 'package:smart_bee/Components/TienDoChart.dart';
+import 'package:smart_bee/Components/tien_do_chart.dart';
 
 class TienDoBaoCaoTuan extends StatefulWidget {
   const TienDoBaoCaoTuan({super.key});

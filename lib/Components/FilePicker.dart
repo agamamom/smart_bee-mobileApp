@@ -20,7 +20,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
   bool _userAborted = false;
   bool _multiPick = false;
   FileType _pickingType = FileType.any;
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
       ))
           ?.files;
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     }
@@ -68,7 +68,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
         ),
       );
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     } finally {
@@ -85,7 +85,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
         _userAborted = path == null;
       });
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     } finally {
@@ -107,7 +107,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
         _userAborted = fileName == null;
       });
     } on PlatformException catch (e) {
-      _logException('Unsupported operation' + e.toString());
+      _logException('Unsupported operation$e');
     } catch (e) {
       _logException(e.toString());
     } finally {
@@ -116,7 +116,9 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
   }
 
   void _logException(String message) {
-    print(message);
+    if (kDebugMode) {
+      print(message);
+    }
     _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
     _scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
@@ -162,8 +164,8 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                         value: _pickingType,
                         items: FileType.values
                             .map((fileType) => DropdownMenuItem<FileType>(
-                                  child: Text(fileType.toString()),
                                   value: fileType,
+                                  child: Text(fileType.toString()),
                                 ))
                             .toList(),
                         onChanged: (value) => setState(() {
@@ -180,7 +182,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                             maxLength: 15,
                             autovalidateMode: AutovalidateMode.always,
                             controller: _controller,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'File extension',
                             ),
                             keyboardType: TextInputType.text,
@@ -191,7 +193,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                   ConstrainedBox(
                     constraints: const BoxConstraints.tightFor(width: 200.0),
                     child: SwitchListTile.adaptive(
-                      title: Text(
+                      title: const Text(
                         'Pick multiple files',
                         textAlign: TextAlign.right,
                       ),
@@ -208,17 +210,17 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                           onPressed: () => _pickFiles(),
                           child: Text(_multiPick ? 'Pick files' : 'Pick file'),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () => _selectFolder(),
                           child: const Text('Pick folder'),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () => _saveFile(),
                           child: const Text('Save file'),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () => _clearCachedFiles(),
                           child: const Text('Clear temporary files'),
@@ -228,14 +230,14 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                   ),
                   Builder(
                     builder: (BuildContext context) => _isLoading
-                        ? Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: const CircularProgressIndicator(),
+                        ? const Padding(
+                            padding: EdgeInsets.only(bottom: 10.0),
+                            child: CircularProgressIndicator(),
                           )
                         : _userAborted
-                            ? Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: const Text(
+                            ? const Padding(
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: Text(
                                   'User has aborted the dialog',
                                 ),
                               )
@@ -263,12 +265,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                                                 _paths != null &&
                                                     _paths!.isNotEmpty;
                                             final String name =
-                                                'File $index: ' +
-                                                    (isMultiPath
-                                                        ? _paths!
-                                                            .map((e) => e.name)
-                                                            .toList()[index]
-                                                        : _fileName ?? '...');
+                                                'File $index: ${isMultiPath ? _paths!.map((e) => e.name).toList()[index] : _fileName ?? '...'}';
                                             final path = kIsWeb
                                                 ? null
                                                 : _paths!

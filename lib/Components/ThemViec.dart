@@ -16,7 +16,6 @@ class ThemViec extends StatefulWidget {
 
 class _ThemViecState extends State<ThemViec> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   String? selectedValue;
@@ -30,14 +29,12 @@ class _ThemViecState extends State<ThemViec> {
   String _valueToValidate3 = '';
   String _valueSaved3 = '';
 
+  @override
   void initState() {
     super.initState();
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
-
-    String lsHour = TimeOfDay.now().hour.toString().padLeft(2, '0');
-    String lsMinute = TimeOfDay.now().minute.toString().padLeft(2, '0');
 
     _getValue();
   }
@@ -94,18 +91,18 @@ class _ThemViecState extends State<ThemViec> {
                       'assets/images/calendar-icon.png',
                       fit: BoxFit.contain,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15.0,
                     ),
                     const SettingButton()
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 14.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Welcome, hienltt',
                         style: TextStyle(
                             fontSize: 15.0,
@@ -117,7 +114,7 @@ class _ThemViecState extends State<ThemViec> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -168,7 +165,7 @@ class _ThemViecState extends State<ThemViec> {
                         const SizedBox(
                           width: 6,
                         ),
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: DefaultTabController(
                             length: 2,
@@ -338,7 +335,7 @@ class _ThemViecState extends State<ThemViec> {
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Container(
+                                            child: SizedBox(
                                               width: 500,
                                               height: 50,
                                               child:
@@ -400,7 +397,7 @@ class _ThemViecState extends State<ThemViec> {
                                                   },
                                                   iconSize: 24,
                                                   iconEnabledColor:
-                                                      Color.fromARGB(
+                                                      const Color.fromARGB(
                                                           255, 71, 69, 69),
                                                   iconDisabledColor:
                                                       Colors.grey,
@@ -450,7 +447,8 @@ class _ThemViecState extends State<ThemViec> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(bottom: 10),
+                                          margin:
+                                              const EdgeInsets.only(bottom: 10),
                                           width: double.infinity,
                                           decoration: BoxDecoration(
                                               color: const Color.fromARGB(

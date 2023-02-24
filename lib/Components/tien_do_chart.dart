@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:smart_bee/Components/BaoCaoDuAn.dart';
 import 'package:smart_bee/Components/BaoCaoViec.dart';
 
 class TienDoChart extends StatelessWidget {

@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-import 'package:smart_bee/Components/FormLogin.dart';
-import 'package:smart_bee/widget/alert_dialog.dart';
 
 class SettingButton extends StatefulWidget {
   const SettingButton({super.key});
@@ -18,50 +15,46 @@ class SettingButton extends StatefulWidget {
 class _SettingButtonState extends State<SettingButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton2(
-          customButton: Container(
-            child: Image.asset(
-              'assets/images/setting-icon.png',
-              fit: BoxFit.contain,
-            ),
-          ),
-          openWithLongPress: false,
-          customItemsHeights: [
-            ...List<double>.filled(MenuItems.firstItems.length, 48),
-            8,
-            ...List<double>.filled(MenuItems.secondItems.length, 48),
-          ],
-          items: [
-            ...MenuItems.firstItems.map(
-              (item) => DropdownMenuItem<MenuItem>(
-                value: item,
-                child: MenuItems.buildItem(item),
-              ),
-            ),
-            const DropdownMenuItem<Divider>(enabled: false, child: Divider()),
-            ...MenuItems.secondItems.map(
-              (item) => DropdownMenuItem<MenuItem>(
-                value: item,
-                child: MenuItems.buildItem(item),
-              ),
-            ),
-          ],
-          onChanged: (value) {
-            MenuItems.onChanged(context, value as MenuItem);
-          },
-          itemHeight: 48,
-          itemPadding: const EdgeInsets.only(left: 16, right: 16),
-          dropdownWidth: 160,
-          dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-          dropdownDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            color: Color(0xFF59843E),
-          ),
-          dropdownElevation: 8,
-          offset: const Offset(4, -4),
+    return DropdownButtonHideUnderline(
+      child: DropdownButton2(
+        customButton: Image.asset(
+          'assets/images/setting-icon.png',
+          fit: BoxFit.contain,
         ),
+        openWithLongPress: false,
+        customItemsHeights: [
+          ...List<double>.filled(MenuItems.firstItems.length, 48),
+          8,
+          ...List<double>.filled(MenuItems.secondItems.length, 48),
+        ],
+        items: [
+          ...MenuItems.firstItems.map(
+            (item) => DropdownMenuItem<MenuItem>(
+              value: item,
+              child: MenuItems.buildItem(item),
+            ),
+          ),
+          const DropdownMenuItem<Divider>(enabled: false, child: Divider()),
+          ...MenuItems.secondItems.map(
+            (item) => DropdownMenuItem<MenuItem>(
+              value: item,
+              child: MenuItems.buildItem(item),
+            ),
+          ),
+        ],
+        onChanged: (value) {
+          MenuItems.onChanged(context, value as MenuItem);
+        },
+        itemHeight: 48,
+        itemPadding: const EdgeInsets.only(left: 16, right: 16),
+        dropdownWidth: 160,
+        dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
+        dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: Color(0xFF59843E),
+        ),
+        dropdownElevation: 8,
+        offset: const Offset(4, -4),
       ),
     );
   }
@@ -119,10 +112,6 @@ class MenuItems {
         //Do something
         break;
       case MenuItems.logout:
-
-        // FirebaseAuth.instance.signOut();
-        // Navigator.pushReplacementNamed(context, '/login_screen');
-
         QuickAlert.show(
           context: context,
           type: QuickAlertType.warning,

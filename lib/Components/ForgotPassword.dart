@@ -11,7 +11,6 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  var _isObscure = true;
   TextEditingController dateinput = TextEditingController();
   @override
   void initState() {
@@ -24,23 +23,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/background.png'),
                   fit: BoxFit.cover)),
           child: Column(
             children: [
               Container(
-                color: Color.fromARGB(255, 89, 132, 62),
+                color: const Color.fromARGB(255, 89, 132, 62),
                 height: 130,
-                child: HeaderApp(),
+                child: const HeaderApp(),
               ),
               Container(
                   margin: const EdgeInsets.symmetric(
                       horizontal: 37.0, vertical: 40.0),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Lấy lại mật khẩu',
                         style: TextStyle(
                             fontSize: 30.0,
@@ -48,26 +47,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             color: Color.fromARGB(255, 89, 132, 62),
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 86,
                       ),
                       TextFormField(
                         decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.74, horizontal: 24.34),
                             border: OutlineInputBorder(),
                             hintText: 'Email',
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
                             enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black26, width: 1),
+                                borderSide: const BorderSide(
+                                    color: Colors.black26, width: 1),
                                 borderRadius: BorderRadius.circular(30))),
                         validator: (value) => EmailValidator.validate(value!)
                             ? null
                             : "Please enter a valid email",
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       TextFormField(
@@ -80,32 +79,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           }
                         },
                         decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.74, horizontal: 24.34),
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Số điện thoại',
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0)),
                             enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.black26, width: 1),
+                                borderSide: const BorderSide(
+                                    color: Colors.black26, width: 1),
                                 borderRadius: BorderRadius.circular(30))),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       ElevatedButton(
-                          child: Text("Gửi mã xác nhận",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w600)),
                           style: ElevatedButton.styleFrom(
-                              primary: Color.fromRGBO(89, 132, 62, 1),
+                              backgroundColor:
+                                  const Color.fromRGBO(89, 132, 62, 1),
                               shadowColor: Color.fromARGB(255, 125, 130, 128),
                               elevation: 3,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32.0)),
-                              minimumSize: Size(400, 50)),
-                          onPressed: () => null),
+                              minimumSize: const Size(400, 50)),
+                          onPressed: () => null,
+                          child: const Text("Gửi mã xác nhận",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w600))),
                     ],
                   ))
             ],

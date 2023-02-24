@@ -4,8 +4,7 @@ import 'package:smart_bee/Components/SettingButton.dart';
 import 'package:smart_bee/Components/SoQuy.dart';
 import 'package:smart_bee/Components/ThemViec.dart';
 import 'package:smart_bee/Components/ThuTienMat.dart';
-import 'package:smart_bee/Components/TongHopViecTheoCaNhan.dart';
-import 'package:smart_bee/Components/DuyetViec.dart';
+import 'package:smart_bee/Components/duyet_viec.dart';
 import 'package:smart_bee/Components/TongHopViecTheoND.dart';
 
 class CongViec extends StatefulWidget {

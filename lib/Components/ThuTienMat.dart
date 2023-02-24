@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -71,7 +72,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
   }
 
   Future<void> uploadImages() async {
-    print(_soController.text);
+    if (kDebugMode) {
+      print(_soController.text);
+    }
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       if (_paths!.isNotEmpty) {
@@ -87,7 +90,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
             await ref.putFile(File(image.path!)).whenComplete(() async {
               await ref.getDownloadURL().then((value) {
                 filesUrlList.add(value);
-                print("filesUrlList $filesUrlList");
+                if (kDebugMode) {
+                  print("filesUrlList $filesUrlList");
+                }
               });
             });
           }
@@ -135,7 +140,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
       setState(() {
         processing = false;
       });
-      print('no images');
+      if (kDebugMode) {
+        print('no images');
+      }
     }
   }
 
@@ -156,7 +163,9 @@ class _ThuTienMatState extends State<ThuTienMat> {
             : null,
       ))
           ?.files;
-      print("_paths  $_paths");
+      if (kDebugMode) {
+        print("_paths  $_paths");
+      }
     } on PlatformException catch (e) {
       _logException('Unsupported operation$e');
     } catch (e) {
@@ -1082,16 +1091,6 @@ class _ThuTienMatState extends State<ThuTienMat> {
 
   List<Widget> _buildList(List<PlatformFile> items) {
     Widget icon;
-
-    // Future<void> deleteFile(File file) async {
-    //   try {
-    //     if (await file.exists()) {
-    //       await file.delete();
-    //     }
-    //   } catch (e) {
-    //     // Error in getting access to the file.
-    //   }
-    // }
 
     void _delete(int ref) {
       // remove the element at the passed index

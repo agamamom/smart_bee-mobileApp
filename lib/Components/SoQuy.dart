@@ -56,7 +56,6 @@ class _SoQuyState extends State<SoQuy> {
     );
   }
 
-  GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   late TextEditingController _controller3;
   String _valueChanged3 = '';
   String _valueToValidate3 = '';
@@ -74,9 +73,6 @@ class _SoQuyState extends State<SoQuy> {
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
     _controller4 = TextEditingController(text: DateTime.now().toString());
-
-    String lsHour = TimeOfDay.now().hour.toString().padLeft(2, '0');
-    String lsMinute = TimeOfDay.now().minute.toString().padLeft(2, '0');
 
     _getValue();
   }
@@ -427,15 +423,18 @@ class _SoQuyState extends State<SoQuy> {
                                                     DataCell(Container(
                                                         alignment:
                                                             Alignment.center,
-                                                        child: Text(
-                                                            '${e.ngay!.substring(0, 10).toString()}'))),
+                                                        child: Text(e.ngay!
+                                                            .substring(0, 10)
+                                                            .toString()))),
                                                     DataCell(e.loai == "1"
                                                         ? Container(
                                                             width: 90,
                                                             alignment: Alignment
                                                                 .center,
-                                                            child: Text(
-                                                                '${vnCurrencyFormat.format(int.parse(e.soTien ?? ""))}'))
+                                                            child: Text(vnCurrencyFormat
+                                                                .format(int.parse(
+                                                                    e.soTien ??
+                                                                        ""))))
                                                         : Container(
                                                             width: 90,
                                                             alignment: Alignment
@@ -447,8 +446,10 @@ class _SoQuyState extends State<SoQuy> {
                                                             width: 90,
                                                             alignment: Alignment
                                                                 .center,
-                                                            child: Text(
-                                                                '${vnCurrencyFormat.format(int.parse(e.soTien ?? ""))}'))
+                                                            child: Text(vnCurrencyFormat
+                                                                .format(int.parse(
+                                                                    e.soTien ??
+                                                                        ""))))
                                                         : Container(
                                                             width: 90,
                                                             alignment: Alignment

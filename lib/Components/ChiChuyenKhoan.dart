@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -38,7 +39,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   String? dropdownDuAn;
   String? dropdownTaiKhoanChi;
 
-  String _fileText = "";
+  // ignore: unused_field
   String? _fileName;
   String? _saveAsFileName;
   List<PlatformFile>? _paths;
@@ -48,7 +49,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   bool _userAborted = false;
   final bool _multiPick = true;
   final FileType _pickingType = FileType.any;
-  TextEditingController _soController = TextEditingController();
+  final TextEditingController _soController = TextEditingController();
   bool processing = false;
   late String proId;
 
@@ -92,7 +93,9 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
             });
           }
         } catch (e) {
-          print(e);
+          if (kDebugMode) {
+            print(e);
+          }
         }
       } else {
         MyMessageHandler.showSnackBar(_scaffoldKey, 'Lỗi chưa chọn tệp!');
@@ -135,7 +138,9 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
       setState(() {
         processing = false;
       });
-      print('no images');
+      if (kDebugMode) {
+        print('no images');
+      }
     }
   }
 
@@ -150,6 +155,7 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
       _paths = (await FilePicker.platform.pickFiles(
         type: _pickingType,
         allowMultiple: _multiPick,
+        // ignore: avoid_print
         onFileLoading: (FilePickerStatus status) => print(status),
         allowedExtensions: (_extension?.isNotEmpty ?? false)
             ? _extension?.replaceAll(' ', '').split(',')
@@ -191,7 +197,9 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
   }
 
   void _logException(String message) {
-    print(message);
+    if (kDebugMode) {
+      print(message);
+    }
     _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
     _scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
@@ -1163,7 +1171,6 @@ class _ChiChuyenKhoanState extends State<ChiChuyenKhoan> {
     return items.asMap().entries.map((item) {
       var value = item.value;
       var key = item.key;
-      String? fileDelete = value.path;
       String fileExtension = value.path!.split('.').last;
       if (fileExtension == 'txt') {
         icon = Column(

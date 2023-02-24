@@ -40,7 +40,6 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
     );
   }
 
-  GlobalKey<FormState> _oFormKey = GlobalKey<FormState>();
   late TextEditingController _controller3;
   String _valueChanged3 = '';
   String _valueToValidate3 = '';
@@ -52,9 +51,6 @@ class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
-
-    String lsHour = TimeOfDay.now().hour.toString().padLeft(2, '0');
-    String lsMinute = TimeOfDay.now().minute.toString().padLeft(2, '0');
 
     _getValue();
   }

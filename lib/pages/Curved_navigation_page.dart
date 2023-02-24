@@ -8,7 +8,7 @@ import 'package:smart_bee/pages/CongViec.dart';
 import 'package:smart_bee/pages/DuAn.dart';
 import 'package:smart_bee/pages/ListDuAn.dart';
 import 'package:smart_bee/pages/TaiChinh.dart';
-import 'package:smart_bee/pages/TienDoBaoCaoTuan.dart';
+import 'package:smart_bee/pages/tien_do_bao_cao_tuan.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Curved_navigation_page extends StatefulWidget {

@@ -12,7 +12,6 @@ class GhiSo extends StatefulWidget {
 }
 
 class _GhiSoState extends State<GhiSo> {
-  String _fileText = "";
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;

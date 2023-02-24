@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_bee/model/data.dart';
-import 'package:http/http.dart' as http;
 
 class NetworkRequest {
   static const String url =

@@ -975,7 +975,8 @@ class DuAnDangThucHien extends StatelessWidget {
                                 height: 29,
                                 child: ClipOval(
                                   child: SizedBox.fromSize(
-                                    size: Size.fromRadius(48), // Image radius
+                                    size: const Size.fromRadius(
+                                        48), // Image radius
                                     child: Image.asset(
                                         'assets/images/Ellipse 4.png',
                                         fit: BoxFit.cover),
@@ -994,7 +995,7 @@ class DuAnDangThucHien extends StatelessWidget {
                                         width: 1,
                                         color: const Color.fromARGB(
                                             253, 63, 62, 62))),
-                                child: Icon(Icons.add_sharp),
+                                child: const Icon(Icons.add_sharp),
                               ),
                             ],
                           )

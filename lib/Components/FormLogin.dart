@@ -1,13 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_bee/Components/ForgotPassword.dart';
-import 'package:smart_bee/pages/WelcomePage.dart';
 import 'package:smart_bee/pages/RegisterPage.dart';
-import 'package:smart_bee/provider/google_sign_in.dart';
 
 import 'HeaderApp.dart';
 
@@ -27,13 +23,14 @@ class _FormLoginState extends State<FormLogin> {
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Do you want to exit app?'),
+          title: const Text('Do you want to exit app?'),
           actions: [
             ElevatedButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: Text('No')),
+                child: const Text('No')),
             ElevatedButton(
-                onPressed: () => SystemNavigator.pop(), child: Text('Yes')),
+                onPressed: () => SystemNavigator.pop(),
+                child: const Text('Yes')),
           ],
         ),
       );
@@ -51,7 +48,7 @@ class _FormLoginState extends State<FormLogin> {
     return WillPopScope(
       child: Scaffold(
           body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/background.png'),
                 fit: BoxFit.cover)),
@@ -60,12 +57,12 @@ class _FormLoginState extends State<FormLogin> {
             child: Column(
               children: [
                 Container(
-                  color: Color.fromARGB(255, 89, 132, 62),
+                  color: const Color.fromARGB(255, 89, 132, 62),
                   height: 130,
-                  child: HeaderApp(),
+                  child: const HeaderApp(),
                 ),
                 Container(
-                    margin: EdgeInsets.only(top: 38.0),
+                    margin: const EdgeInsets.only(top: 38.0),
                     child: Column(children: <Widget>[
                       const Text(
                         'SMARTBEE',
@@ -87,7 +84,7 @@ class _FormLoginState extends State<FormLogin> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Tài khoản',
+                                const Text('Tài khoản',
                                     style:
                                         TextStyle(fontWeight: FontWeight.w500)),
                                 TextFormField(
@@ -98,23 +95,25 @@ class _FormLoginState extends State<FormLogin> {
                                     return null;
                                   },
                                   decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 16.74, horizontal: 24.34),
-                                      border: OutlineInputBorder(),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 16.74,
+                                              horizontal: 24.34),
+                                      border: const OutlineInputBorder(),
                                       hintText: 'Tên tài khoản',
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(30.0)),
                                       enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.black26, width: 1),
                                           borderRadius:
                                               BorderRadius.circular(30))),
                                   controller: taiKhoanController,
                                 ),
                                 Container(
-                                    margin: EdgeInsets.only(top: 10.0),
-                                    child: Text('Mật khẩu',
+                                    margin: const EdgeInsets.only(top: 10.0),
+                                    child: const Text('Mật khẩu',
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500))),
                                 TextFormField(
@@ -129,33 +128,35 @@ class _FormLoginState extends State<FormLogin> {
                                   enableSuggestions: false,
                                   autocorrect: false,
                                   decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 16.74, horizontal: 24.34),
-                                      border: OutlineInputBorder(),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 16.74,
+                                              horizontal: 24.34),
+                                      border: const OutlineInputBorder(),
                                       hintText: 'Mật khẩu',
                                       focusedBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(30.0)),
                                       enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: Colors.black26, width: 1),
                                           borderRadius:
                                               BorderRadius.circular(30))),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.only(top: 40.0),
+                                  margin: const EdgeInsets.only(top: 40.0),
                                   child: Column(children: [
                                     Row(
                                       children: [
                                         Checkbox(
-                                            shape: CircleBorder(),
+                                            shape: const CircleBorder(),
                                             value: isChecked,
                                             onChanged: (bool? value) {
                                               setState(() {
                                                 isChecked = value!;
                                               });
                                             }),
-                                        Text(
+                                        const Text(
                                           "Ghi nhớ tôi",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -167,10 +168,6 @@ class _FormLoginState extends State<FormLogin> {
                                       ],
                                     ),
                                     ElevatedButton(
-                                      child: Text("Đăng nhập",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w600)),
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: const Color.fromRGBO(
                                               89, 132, 62, 1),
@@ -180,19 +177,17 @@ class _FormLoginState extends State<FormLogin> {
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(32.0)),
-                                          minimumSize: Size(400, 50)),
+                                          minimumSize: const Size(400, 50)),
                                       onPressed: () => {
-                                        // Navigator.push(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //       builder: (context) =>
-                                        //           const WelcomePage()),
-                                        // )
                                         if (_formKey.currentState!.validate())
                                           {signIn()}
                                         else
                                           {print('not valid')}
                                       },
+                                      child: const Text("Đăng nhập",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600)),
                                     ),
                                     const SizedBox(
                                       height: 12.0,
@@ -262,7 +257,7 @@ class _FormLoginState extends State<FormLogin> {
                                                                   context) =>
                                                               const RegisterPage()))
                                                 },
-                                            child: Text(
+                                            child: const Text(
                                               "Đăng ký!",
                                               style: TextStyle(
                                                   color: Color.fromARGB(

@@ -7,8 +7,7 @@ class ListDuAnCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Align(
+    return Align(
       alignment: AlignmentDirectional.topStart,
       child: Wrap(spacing: 20.0, runSpacing: 20.0, children: [
         GestureDetector(
@@ -174,6 +173,6 @@ class ListDuAnCardList extends StatelessWidget {
           ),
         ),
       ]),
-    ));
+    );
   }
 }
