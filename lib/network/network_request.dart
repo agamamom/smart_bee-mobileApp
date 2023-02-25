@@ -14,6 +14,7 @@ class NetworkRequest {
   }
 
   static Future<List<CongViec>> fetchPosts({int page = 1}) async {
+    // ignore: unnecessary_string_interpolations
     final response = await http.get(Uri.parse("$url"));
     if (response.statusCode == 200) {
       return compute(parsePost, response.body);

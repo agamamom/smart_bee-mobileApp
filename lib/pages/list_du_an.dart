@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:smart_bee/Components/co_cau_to_chuc.dart';
+import 'package:smart_bee/Components/he_so_phu_cap_chuc_vu.dart';
+import 'package:smart_bee/Components/list_du_an_card_list.dart';
+import 'package:smart_bee/Components/list_du_an_overview.dart';
+import 'package:smart_bee/Components/nhom_muc.dart';
 import 'package:smart_bee/Components/setting_button.dart';
-import 'package:smart_bee/Components/tien_do_chart.dart';
 
-class TienDoBaoCaoTuan extends StatefulWidget {
-  const TienDoBaoCaoTuan({super.key});
+class ListDuAn extends StatefulWidget {
+  const ListDuAn({super.key});
 
   @override
-  State<TienDoBaoCaoTuan> createState() => _TienDoBaoCaoTuanState();
+  State<ListDuAn> createState() => _ListDuAnState();
 }
 
-class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
+class _ListDuAnState extends State<ListDuAn> {
   int _currentPage = 0;
   final PageController _controller = PageController();
 
   final List<Widget> _pages = [
-    const TienDoChart(
-      color: Color.fromRGBO(0, 219, 153, 1),
-    ),
+    const ListDuAnCardList(),
+    const ListDuAnOverview(),
+    const NhomMuc(),
+    const CoCauToChuc(),
+    const HeSoPhuCapChucVu()
   ];
 
   _onchanged(int index) {
@@ -51,7 +57,7 @@ class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
                       const SizedBox(
                         width: 15.0,
                       ),
-                      const SettingButton()
+                      const SettingButton(),
                     ]),
                     const SizedBox(
                       height: 14.0,
@@ -101,8 +107,22 @@ class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
                                                   99, 99, 100, 1)));
                                 })),
                           ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          const Positioned(
+                            left: 0,
+                            top: 50,
+                            child: Text(
+                              "Cài đặt",
+                              style: TextStyle(
+                                  fontSize: 28.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromRGBO(99, 99, 100, 1)),
+                            ),
+                          ),
                           Container(
-                            margin: const EdgeInsets.only(top: 70),
+                            margin: const EdgeInsets.only(top: 120),
                             child: PageView.builder(
                               scrollDirection: Axis.horizontal,
                               onPageChanged: _onchanged,

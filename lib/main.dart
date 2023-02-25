@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_bee/pages/Curved_navigation_page.dart';
-import 'package:smart_bee/pages/WelcomePage.dart';
+import 'package:smart_bee/pages/curved_navigation_page.dart';
+import 'package:smart_bee/pages/welcome_page.dart';
 import 'package:smart_bee/provider/google_sign_in.dart';
-import 'Components/FormLogin.dart';
+import 'Components/form_login.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         routes: {
           '/login_screen': (context) => const FormLogin(),
           '/welcome': (context) => const WelcomePage(),
-          '/main_screen': (context) => Curved_navigation_page(
+          '/main_screen': (context) => CurvedNavigationPage(
                 indexOfScreen: 0,
               ),
         },

@@ -2,7 +2,8 @@ class CongViec {
   List<Result>? result;
   bool? success;
   int? statusCode;
-  Null? message;
+  // ignore: prefer_void_to_null
+  Null message;
 
   CongViec({this.result, this.success, this.statusCode, this.message});
 
@@ -19,13 +20,14 @@ class CongViec {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (result != null) {
+      data['result'] = result!.map((v) => v.toJson()).toList();
     }
-    data['success'] = this.success;
-    data['statusCode'] = this.statusCode;
-    data['message'] = this.message;
+    data['success'] = success;
+    data['statusCode'] = statusCode;
+    data['message'] = message;
     return data;
   }
 }
@@ -62,15 +64,16 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['idCongviec'] = this.idCongviec;
-    data['ngaybatdau'] = this.ngaybatdau;
-    data['ngayketthuc'] = this.ngayketthuc;
-    data['mota'] = this.mota;
-    data['idNguoichutri'] = this.idNguoichutri;
-    data['idNguoiphancong'] = this.idNguoiphancong;
-    data['loaicv'] = this.loaicv;
+    // ignore: prefer_collection_literals
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['idCongviec'] = idCongviec;
+    data['ngaybatdau'] = ngaybatdau;
+    data['ngayketthuc'] = ngayketthuc;
+    data['mota'] = mota;
+    data['idNguoichutri'] = idNguoichutri;
+    data['idNguoiphancong'] = idNguoiphancong;
+    data['loaicv'] = loaicv;
     return data;
   }
 }

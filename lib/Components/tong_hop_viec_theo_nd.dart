@@ -1,19 +1,21 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+
 import 'package:quickalert/quickalert.dart';
 import 'package:smart_bee/Components/setting_button.dart';
 import 'package:smart_bee/pages/curved_navigation_page.dart';
+
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
 
-class BaoCaoDuAn extends StatefulWidget {
-  const BaoCaoDuAn({super.key});
+class TongHopViecTheoND extends StatefulWidget {
+  const TongHopViecTheoND({super.key});
 
   @override
-  State<BaoCaoDuAn> createState() => _BaoCaoDuAnState();
+  State<TongHopViecTheoND> createState() => _TongHopViecTheoNDState();
 }
 
-class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
+class _TongHopViecTheoNDState extends State<TongHopViecTheoND> {
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;
@@ -30,7 +32,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => CurvedNavigationPage(
-                  indexOfScreen: 3,
+                  indexOfScreen: 5,
                 )))
       },
       onCancelBtnTap: () =>
@@ -39,11 +41,8 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
   }
 
   late TextEditingController _controller3;
-
   String valueChanged3 = '';
-
   String valueToValidate3 = '';
-
   String valueSaved3 = '';
 
   @override
@@ -91,7 +90,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                     const SizedBox(
                       width: 15.0,
                     ),
-                    const SettingButton(),
+                    const SettingButton()
                   ]),
                   const SizedBox(
                     height: 14.0,
@@ -150,7 +149,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                           ),
                         ),
                         const Text(
-                          "Báo cáo dự án",
+                          "Tổng hợp việc",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
                         ),
@@ -201,7 +200,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'DA_CAT 1.111 giờ công',
+                                      '1111 Tiền Việt Nam',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color:
@@ -266,7 +265,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                           ),
                         ),
                         const SizedBox(
-                          height: 12,
+                          height: 10,
                         ),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
@@ -280,7 +279,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'Nhân sự tham gia',
+                                      'Từ ngày - Đến ngày',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color.fromARGB(255, 83, 81, 81),
@@ -310,6 +309,9 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   selectedValue = value as String;
                                 });
                               },
+                              // icon: const Icon(
+                              //   Icons.arrow_forward_ios_outlined,
+                              // ),
                               iconSize: 24,
                               iconEnabledColor:
                                   const Color.fromARGB(255, 83, 81, 81),
@@ -381,10 +383,13 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                 child: Form(
                                   child: DateTimePicker(
                                     type: DateTimePickerType.date,
+                                    //dateMask: 'yyyy/MM/dd',
                                     controller: _controller3,
-                                    firstDate: DateTime(2023),
+                                    //initialValue: _initialValue,
+                                    firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
                                     icon: const Icon(Icons.event),
+
                                     locale: const Locale('en', 'US'),
                                     onChanged: (val) =>
                                         setState(() => valueChanged3 = val),
@@ -404,9 +409,8 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                         ),
                         Table(
                           columnWidths: const {
-                            0: FractionColumnWidth(.43),
-                            1: FractionColumnWidth(.23),
-                            2: FractionColumnWidth(.23),
+                            0: FractionColumnWidth(.53),
+                            1: FractionColumnWidth(.23)
                           },
                           border: TableBorder.all(
                               color: const Color.fromARGB(255, 219, 216, 216),
@@ -422,7 +426,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                     child: Container(
                                       height: 35.0,
                                       alignment: Alignment.center,
-                                      child: const Text('Họ và tên',
+                                      child: const Text('Nhóm việc',
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               color: Color.fromRGBO(
@@ -433,16 +437,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   Container(
                                     height: 35.0,
                                     alignment: Alignment.center,
-                                    child: const Text('Vai trò',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Color.fromRGBO(
-                                                112, 112, 112, 1),
-                                            fontWeight: FontWeight.w500)),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 35.0,
                                     child: const Text('Giờ công',
                                         style: TextStyle(
                                             fontSize: 14.0,
@@ -463,19 +457,11 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                 ]),
                             TableRow(children: [
                               Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: const Text('Lê Quang Phú',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('leader',
+                                child: const Text('ádadadasdadasdasdzxczxczxc',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -505,53 +491,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: const Text('Nguyễn Duy Khánh',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('coder',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('9h',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('9%',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              )
-                            ]),
-                            TableRow(children: [
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
                                 child: const Text('',
                                     style: TextStyle(
                                         fontSize: 12.0,
@@ -578,15 +517,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                               )
                             ]),
                             TableRow(children: [
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
@@ -642,6 +572,26 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
+                              )
+                            ]),
+                            TableRow(children: [
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: const Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: const Text('',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
                               ),
                               Container(
                                 height: 50.0,
@@ -680,15 +630,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
                               )
                             ]),
                             TableRow(children: [
@@ -718,27 +659,9 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
                               )
                             ]),
                             TableRow(children: [
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('',
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,

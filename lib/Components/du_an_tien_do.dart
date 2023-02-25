@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:smart_bee/Components/bao_cao_viec.dart';
 
-class TienDoChart extends StatelessWidget {
-  const TienDoChart({
+class DuAnTienDo extends StatelessWidget {
+  const DuAnTienDo({
     super.key,
     required this.color,
   });
@@ -16,45 +15,12 @@ class TienDoChart extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: Stack(
-              children: [
-                const Center(
-                  child: Text(
-                    "Tiến độ",
-                    style: TextStyle(
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(99, 99, 100, 1)),
-                  ),
-                ),
-                Positioned(
-                  right: 10,
-                  bottom: 10,
-                  child: InkResponse(
-                    onTap: () => {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BaoCaoViec()))
-                    },
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(72, 181, 69, 1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+          const Text(
+            "Tiến độ ",
+            style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.w700,
+                color: Color.fromRGBO(99, 99, 100, 1)),
           ),
           Container(
             margin: const EdgeInsets.only(top: 20, bottom: 12),

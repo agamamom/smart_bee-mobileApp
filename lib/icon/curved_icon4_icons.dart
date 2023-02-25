@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CurvedIcon4.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -21,5 +21,6 @@ class CurvedIcon4 {
   static const _kFontFam = 'CurvedIcon4';
   static const String? _kFontPkg = null;
 
-  static const IconData checkbox_marked_outline = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData checkboxMarkedOutline =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

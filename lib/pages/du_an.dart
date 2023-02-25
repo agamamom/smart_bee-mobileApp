@@ -1,22 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_bee/Components/du_an_cong_viec.dart';
+import 'package:smart_bee/Components/du_an_dang_thuc_hien.dart';
+import 'package:smart_bee/Components/du_an_tai_chinh.dart';
+import 'package:smart_bee/Components/du_an_tien_do.dart';
 import 'package:smart_bee/Components/setting_button.dart';
-import 'package:smart_bee/Components/tien_do_chart.dart';
 
-class TienDoBaoCaoTuan extends StatefulWidget {
-  const TienDoBaoCaoTuan({super.key});
+class DuAn extends StatefulWidget {
+  const DuAn({super.key});
 
   @override
-  State<TienDoBaoCaoTuan> createState() => _TienDoBaoCaoTuanState();
+  State<DuAn> createState() => _DuAnState();
 }
 
-class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
+class _DuAnState extends State<DuAn> {
   int _currentPage = 0;
   final PageController _controller = PageController();
 
   final List<Widget> _pages = [
-    const TienDoChart(
+    const DuAnDangThucHien(),
+    DuAnTaiChinh(),
+    const DuAnCongViec(),
+    const DuAnTienDo(
       color: Color.fromRGBO(0, 219, 153, 1),
-    ),
+    )
   ];
 
   _onchanged(int index) {
@@ -51,7 +58,7 @@ class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
                       const SizedBox(
                         width: 15.0,
                       ),
-                      const SettingButton()
+                      const SettingButton(),
                     ]),
                     const SizedBox(
                       height: 14.0,
@@ -122,5 +129,65 @@ class _TienDoBaoCaoTuanState extends State<TienDoBaoCaoTuan> {
         ],
       ),
     );
+  }
+}
+
+class MenuItem {
+  final String text;
+  final IconData icon;
+
+  const MenuItem({
+    required this.text,
+    required this.icon,
+  });
+}
+
+class MenuItems {
+  static const List<MenuItem> firstItems = [like, share, download];
+  static const List<MenuItem> secondItems = [logout];
+
+  static const like = MenuItem(text: 'Like', icon: Icons.favorite);
+  static const share = MenuItem(text: 'Share', icon: Icons.share);
+  static const download = MenuItem(text: 'Download', icon: Icons.download);
+  static const logout = MenuItem(text: 'Logout', icon: Icons.logout);
+
+  static Widget buildItem(MenuItem item) {
+    return Row(
+      children: [
+        Icon(
+          item.icon,
+          color: Colors.white,
+          size: 22,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          item.text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  static onChanged(BuildContext context, MenuItem item) {
+    switch (item) {
+      case MenuItems.like:
+        //Do something
+        break;
+      case MenuItems.share:
+        //Do something
+        break;
+      case MenuItems.download:
+        //Do something
+        break;
+      case MenuItems.logout:
+        {
+          FirebaseAuth.instance.signOut();
+        }
+        break;
+    }
   }
 }

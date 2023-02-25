@@ -4,23 +4,24 @@ import 'package:smart_bee/icon/curved_icon2_icons.dart';
 import 'package:smart_bee/icon/curved_icon4_icons.dart';
 import 'package:smart_bee/icon/curved_icon5_icons.dart';
 import 'package:smart_bee/icon/my_flutter_app_icons.dart';
-import 'package:smart_bee/pages/CongViec.dart';
-import 'package:smart_bee/pages/DuAn.dart';
-import 'package:smart_bee/pages/ListDuAn.dart';
-import 'package:smart_bee/pages/TaiChinh.dart';
+import 'package:smart_bee/pages/cong_viec.dart';
+import 'package:smart_bee/pages/du_an.dart';
+import 'package:smart_bee/pages/list_du_an.dart';
+import 'package:smart_bee/pages/tai_chinh.dart';
 import 'package:smart_bee/pages/tien_do_bao_cao_tuan.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class Curved_navigation_page extends StatefulWidget {
+// ignore: must_be_immutable
+class CurvedNavigationPage extends StatefulWidget {
   final int? indexOfScreen;
   int? index;
-  Curved_navigation_page({super.key, required this.indexOfScreen, this.index});
+  CurvedNavigationPage({super.key, required this.indexOfScreen, this.index});
 
   @override
-  State<Curved_navigation_page> createState() => _Curved_navigation_pageState();
+  State<CurvedNavigationPage> createState() => _CurvedNavigationPageState();
 }
 
-class _Curved_navigation_pageState extends State<Curved_navigation_page> {
+class _CurvedNavigationPageState extends State<CurvedNavigationPage> {
   final items = const [
     Icon(
       MyFlutterApp.group_1000001220,
@@ -38,7 +39,7 @@ class _Curved_navigation_pageState extends State<Curved_navigation_page> {
       color: Colors.white,
     ),
     Icon(
-      CurvedIcon4.checkbox_marked_outline,
+      CurvedIcon4.checkboxMarkedOutline,
       size: 30,
       color: Colors.white,
     ),

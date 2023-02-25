@@ -2,8 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:quickalert/quickalert.dart';
-import 'package:smart_bee/Components/SettingButton.dart';
-import 'package:smart_bee/pages/Curved_navigation_page.dart';
+import 'package:smart_bee/Components/setting_button.dart';
+import 'package:smart_bee/pages/curved_navigation_page.dart';
 
 import 'package:intl/intl.dart';
 import 'package:custom_check_box/custom_check_box.dart';
@@ -30,7 +30,7 @@ class _DuyetViecState extends State<DuyetViec> {
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => Curved_navigation_page(
+            builder: (BuildContext context) => CurvedNavigationPage(
                   indexOfScreen: 5,
                 )))
       },

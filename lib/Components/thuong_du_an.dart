@@ -6,14 +6,14 @@ import 'package:smart_bee/pages/curved_navigation_page.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:intl/intl.dart';
 
-class BaoCaoDuAn extends StatefulWidget {
-  const BaoCaoDuAn({super.key});
+class ThuongDuAn extends StatefulWidget {
+  const ThuongDuAn({super.key});
 
   @override
-  State<BaoCaoDuAn> createState() => _BaoCaoDuAnState();
+  State<ThuongDuAn> createState() => _SoQuyState();
 }
 
-class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
+class _SoQuyState extends State<ThuongDuAn> {
   final List<String> items = ['Vào', 'Ra', 'Khác'];
   final List<String> itemsTK = ['No 1', "No 2"];
   String? selectedValue;
@@ -28,10 +28,13 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
       cancelBtnText: 'Không',
       confirmBtnColor: Colors.green,
       onConfirmBtnTap: () => {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => CurvedNavigationPage(
-                  indexOfScreen: 3,
-                )))
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CurvedNavigationPage(
+                      indexOfScreen: 2,
+                      index: 2,
+                    )))
       },
       onCancelBtnTap: () =>
           {Navigator.of(context, rootNavigator: true).pop(false)},
@@ -39,12 +42,10 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
   }
 
   late TextEditingController _controller3;
-
   String valueChanged3 = '';
-
   String valueToValidate3 = '';
-
   String valueSaved3 = '';
+  late TextEditingController _controller4;
 
   @override
   void initState() {
@@ -52,6 +53,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
     Intl.defaultLocale = 'pt_BR';
 
     _controller3 = TextEditingController(text: DateTime.now().toString());
+    _controller4 = TextEditingController(text: DateTime.now().toString());
 
     _getValue();
   }
@@ -59,7 +61,8 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
   Future<void> _getValue() async {
     await Future.delayed(const Duration(seconds: 3), () {
       setState(() {
-        _controller3.text = '2002-11-22';
+        _controller3.text = '2022-11-22';
+        _controller4.text = '2022-11-22';
       });
     });
   }
@@ -81,6 +84,10 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                     horizontal: 20.0, vertical: 20.0),
                 child: Column(children: [
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Image.asset(
+                      'assets/images/bee-icon.png',
+                      fit: BoxFit.contain,
+                    ),
                     const SizedBox(
                       width: 15.0,
                     ),
@@ -91,25 +98,15 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                     const SizedBox(
                       width: 15.0,
                     ),
-                    const SettingButton(),
+                    const SettingButton()
                   ]),
                   const SizedBox(
                     height: 14.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Welcome, hienltt',
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            color: Color.fromRGBO(99, 99, 100, 1)),
-                      ),
-                      Image.asset(
-                        'assets/images/bee-icon.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ],
+                  const Text(
+                    'Welcome, hienltt',
+                    style: TextStyle(
+                        fontSize: 15.0, color: Color.fromRGBO(99, 99, 100, 1)),
                   ),
                   const SizedBox(
                     height: 20,
@@ -150,7 +147,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                           ),
                         ),
                         const Text(
-                          "Báo cáo dự án",
+                          "Thưởng dự án",
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w500),
                         ),
@@ -196,12 +193,17 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                               isExpanded: true,
                               hint: Row(
                                 children: const [
+                                  // Icon(
+                                  //   Icons.list,
+                                  //   size: 16,
+                                  //   color: Colors.yellow,
+                                  // ),
                                   SizedBox(
                                     width: 4,
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'DA_CAT 1.111 giờ công',
+                                      'DA_CAT  100 triệu đồng',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color:
@@ -231,6 +233,9 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   selectedValue = value as String;
                                 });
                               },
+                              // icon: const Icon(
+                              //   Icons.arrow_forward_ios_outlined,
+                              // ),
                               iconSize: 24,
                               iconEnabledColor:
                                   const Color.fromARGB(255, 255, 255, 255),
@@ -266,7 +271,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                           ),
                         ),
                         const SizedBox(
-                          height: 12,
+                          height: 10,
                         ),
                         Align(
                           alignment: AlignmentDirectional.centerStart,
@@ -280,7 +285,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'Nhân sự tham gia',
+                                      'Từ ngày - Đến ngày',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color.fromARGB(255, 83, 81, 81),
@@ -310,6 +315,9 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                   selectedValue = value as String;
                                 });
                               },
+                              // icon: const Icon(
+                              //   Icons.arrow_forward_ios_outlined,
+                              // ),
                               iconSize: 24,
                               iconEnabledColor:
                                   const Color.fromARGB(255, 83, 81, 81),
@@ -381,10 +389,13 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                 child: Form(
                                   child: DateTimePicker(
                                     type: DateTimePickerType.date,
+                                    //dateMask: 'yyyy/MM/dd',
                                     controller: _controller3,
-                                    firstDate: DateTime(2023),
+                                    //initialValue: _initialValue,
+                                    firstDate: DateTime(2000),
                                     lastDate: DateTime(2100),
                                     icon: const Icon(Icons.event),
+
                                     locale: const Locale('en', 'US'),
                                     onChanged: (val) =>
                                         setState(() => valueChanged3 = val),
@@ -404,9 +415,9 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                         ),
                         Table(
                           columnWidths: const {
-                            0: FractionColumnWidth(.43),
+                            0: FractionColumnWidth(.33),
                             1: FractionColumnWidth(.23),
-                            2: FractionColumnWidth(.23),
+                            2: FractionColumnWidth(.1)
                           },
                           border: TableBorder.all(
                               color: const Color.fromARGB(255, 219, 216, 216),
@@ -434,16 +445,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                     height: 35.0,
                                     alignment: Alignment.center,
                                     child: const Text('Vai trò',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: Color.fromRGBO(
-                                                112, 112, 112, 1),
-                                            fontWeight: FontWeight.w500)),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 35.0,
-                                    child: const Text('Giờ công',
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -454,6 +456,16 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                     alignment: Alignment.center,
                                     height: 35.0,
                                     child: const Text('%',
+                                        style: TextStyle(
+                                            fontSize: 14.0,
+                                            color: Color.fromRGBO(
+                                                112, 112, 112, 1),
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 35.0,
+                                    child: const Text('Thành tiền',
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             color: Color.fromRGBO(
@@ -476,16 +488,6 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                 height: 50.0,
                                 alignment: Alignment.center,
                                 child: const Text('leader',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Color.fromRGBO(80, 82, 89, 1),
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                height: 50.0,
-                                alignment: Alignment.center,
-                                child: const Text('10h',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -499,6 +501,15 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
                                         fontWeight: FontWeight.w400)),
+                              ),
+                              Container(
+                                height: 50.0,
+                                alignment: Alignment.center,
+                                child: const Text('10.000.000',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Color.fromRGBO(80, 82, 89, 1),
+                                        fontWeight: FontWeight.w400)),
                               )
                             ]),
                             TableRow(children: [
@@ -506,6 +517,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                                 height: 50.0,
                                 alignment: Alignment.center,
                                 child: const Text('Nguyễn Duy Khánh',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -523,7 +535,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: const Text('9h',
+                                child: const Text('9%',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
@@ -532,7 +544,7 @@ class _BaoCaoDuAnState extends State<BaoCaoDuAn> {
                               Container(
                                 height: 50.0,
                                 alignment: Alignment.center,
-                                child: const Text('9%',
+                                child: const Text('10.000.000',
                                     style: TextStyle(
                                         fontSize: 12.0,
                                         color: Color.fromRGBO(80, 82, 89, 1),
