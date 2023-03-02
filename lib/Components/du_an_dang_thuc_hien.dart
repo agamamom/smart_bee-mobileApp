@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:readmore/readmore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -95,14 +96,6 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        // Text(
-                                        //     '${e.title}',
-                                        //     style: const TextStyle(
-                                        //         color: Color.fromRGBO(
-                                        //             60, 85, 122, 1),
-                                        //         fontWeight: FontWeight.w500,
-                                        //         fontSize: 18.0),
-                                        //   ),
                                         SizedBox(
                                             width: 210,
                                             child: ReadMoreText(
@@ -122,7 +115,6 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                                 fontSize: 14,
                                               ),
                                             )),
-
                                         Row(children: [
                                           Image.asset(
                                             'assets/images/pencil.png',
@@ -146,8 +138,8 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const [
-                                            Text(
+                                          children: [
+                                            const Text(
                                               'Start date',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w400,
@@ -156,8 +148,8 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                                       113, 121, 134, 1)),
                                             ),
                                             Text(
-                                              '12-02-2022',
-                                              style: TextStyle(
+                                              e.ngaybatdau!.substring(0, 10),
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12.0,
                                                   color: Color.fromRGBO(
@@ -171,8 +163,8 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const [
-                                            Text(
+                                          children: [
+                                            const Text(
                                               "Stop date",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w400,
@@ -181,8 +173,8 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
                                                       113, 121, 134, 1)),
                                             ),
                                             Text(
-                                              '30-11-2022',
-                                              style: TextStyle(
+                                              e.ngayketthuc!.substring(0, 10),
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12.0,
                                                   color: Color.fromRGBO(
@@ -1212,9 +1204,11 @@ class _DuAnDangThucHienState extends State<DuAnDangThucHien> {
   Widget calculatePercent(value1, value2) {
     final calculatedValue =
         ((double.parse(value1) / double.parse(value2)) * 100).toString();
-    print(
-      MediaQuery.of(context).size.width - 60,
-    );
+    if (kDebugMode) {
+      print(
+        MediaQuery.of(context).size.width - 60,
+      );
+    }
     return Text(
       "$calculatedValue%",
       style: const TextStyle(

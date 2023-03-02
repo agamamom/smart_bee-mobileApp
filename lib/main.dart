@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         initialRoute: '/login_screen',
+        home: const FormLogin(),
         routes: {
           '/login_screen': (context) => const FormLogin(),
           '/welcome': (context) => const WelcomePage(),
